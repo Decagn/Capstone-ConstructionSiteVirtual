@@ -2,7 +2,7 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 
-public class MeasurementToolSelector : MonoBehaviour
+public class MeasurementToolManager : MonoBehaviour
 {
     /*
      * SYSTEM DESIGN
@@ -16,8 +16,8 @@ public class MeasurementToolSelector : MonoBehaviour
 
     [SerializeField] private MeasurementPointSelector _pointSelector;
 
-    public event Action<float> OnMeasurementComplete;
-    public event Action OnResetMeasurement;
+    public event Action<MeasurementCollection> OnMeasurementsUpdated;
+    public event Action OnResetMeasurements;
 
     private void Awake()
     {
@@ -43,15 +43,26 @@ public class MeasurementToolSelector : MonoBehaviour
 
     private void SelectTool(int toolIndex)
     {
-        _activeTool?.ResetMeasurement();
+        if (_activeTool != null)
+        {
+            _activeTool.OnMeasurementsUpdated -= UpdateMeasurements;
+
+        }
+
+        _activeTool?.ResetMeasurements();
         _activeTool = _tools[toolIndex];
-        OnResetMeasurement?.Invoke();
+        OnResetMeasurements?.Invoke();
+    }
+
+    private void UpdateMeasurements(MeasurementCollection collection)
+    {
+        OnMeasurementsUpdated?.Invoke(collection);
     }
 
     private void ResetMeasurement()
     {
-        _activeTool?.ResetMeasurement();
-        OnResetMeasurement?.Invoke();
+        _activeTool?.ResetMeasurements();
+        OnResetMeasurements?.Invoke();
     }
 
     private void HandlePointSelected(Vector3 selectedPoint)
