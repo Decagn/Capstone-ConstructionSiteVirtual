@@ -2,7 +2,7 @@ using UnityEngine;
 
 public interface IMeasurementTool
 {
-    string Tool {  get; }
+    string ToolName {  get; }
     void OnPointSelected(Vector3 point);
     void ResetMeasurement();
 }

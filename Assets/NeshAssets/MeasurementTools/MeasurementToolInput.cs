@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class UserMeasuringInput : MonoBehaviour
+public class MeasurementToolInput : MonoBehaviour
 {
-    [SerializeField] private PointSelector _pointSelector;
+    [SerializeField] private MeasurementPointSelector _pointSelector;
     [SerializeField] private InputAction _click;
 
     private void OnEnable()
