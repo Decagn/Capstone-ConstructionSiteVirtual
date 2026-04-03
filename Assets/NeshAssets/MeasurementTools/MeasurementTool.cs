@@ -1,16 +1,36 @@
+using System;
 using UnityEngine;
 
 public class MeasurementTool : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+}
+
+public class PointSelector : MonoBehaviour
+{
+    private Camera _mainSceneCamera;
+    private const float _maxRayLength = Mathf.Infinity;
+    public event Action<Vector3> OnPointSelected;
+
+    private void Awake()
     {
-        
+        /* 
+         * [OPTIMISATION]
+         * Get the scene's main camera so we don't have to look it up repeatedly.
+         */
+        _mainSceneCamera = Camera.main;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void TrySelectPoint(Vector2 pointOnScreen)
     {
-        
+        Ray ray = _mainSceneCamera.ScreenPointToRay(pointOnScreen);
+        bool surfaceFound = Physics.Raycast(ray, out RaycastHit hit, _maxRayLength);
+        if (surfaceFound)
+        {
+            Vector3 pointOnSurface = hit.point;
+            Debug.Log($"PointSelector: Point selected --> {pointOnSurface}");
+            OnPointSelected?.Invoke(pointOnSurface);
+        }
     }
 }
+
