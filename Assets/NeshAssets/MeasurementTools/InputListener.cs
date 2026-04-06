@@ -6,7 +6,7 @@ public class InputListener : MonoBehaviour
 {
     /*
      * SYSTEM DESIGN
-     * User clicking sends out Vector2 position of mouse on screen
+     * Clicking delegates to functions that take in the mouse's position on screen.
      */
     public event Action<Vector2> OnClick;
     [SerializeField] private InputAction _click;
