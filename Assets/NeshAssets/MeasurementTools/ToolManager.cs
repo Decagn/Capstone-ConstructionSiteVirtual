@@ -5,6 +5,7 @@ using UnityEngine;
 public class ToolManager : MonoBehaviour
 {
     [SerializeField] private PointSelector _pointSelector;
+    [SerializeField] private MeasurementVisualiser _visualiser;
 
     private List<IMeasuringTool> _tools = new List<IMeasuringTool>();
     private IMeasuringTool _activeTool;
@@ -30,5 +31,14 @@ public class ToolManager : MonoBehaviour
     private void HandleSelectedPoint(Vector3 selectedPoint)
     {
         _activeTool?.HandleSelectedPoint(selectedPoint);
+        DrawMeasurementLine();
+    }
+
+    private void DrawMeasurementLine()
+    {
+        if (_activeTool != null)
+        {
+            _visualiser.DrawLine(_activeTool.SelectedPoints);
+        }
     }
 }

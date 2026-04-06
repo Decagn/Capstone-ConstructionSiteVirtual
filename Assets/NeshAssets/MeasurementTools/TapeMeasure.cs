@@ -1,10 +1,24 @@
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class TapeMeasure : MonoBehaviour, IMeasuringTool
 {
-    public string ToolName => "TapeMeasure";
-    public List<Vector3> SelectedPoints = new List<Vector3>();
+    public string ToolName
+    {
+        get => "Tape Measure";
+    }
+
+    public List<Vector3> SelectedPoints 
+    {
+        get;
+        set;
+    }
+
+    private void Awake()
+    {
+        SelectedPoints = new List<Vector3>();
+    }
 
     public void HandleSelectedPoint(Vector3 selectedPoint)
     {
