@@ -10,7 +10,7 @@ public class MeasurementVisualiser : MonoBehaviour
     private LineRenderer _lineRenderer;
 
     [SerializeField] private GameObject _pointMarkerPrefab;
-    private List<GameObject> _pointMarkers;
+    private List<GameObject> _pointMarkers = new List<GameObject>();
 
     private void Awake()
     {
@@ -29,5 +29,26 @@ public class MeasurementVisualiser : MonoBehaviour
         {
             _lineRenderer.SetPosition(i, selectedPoints[i]);
         }
+    }
+
+    public void DrawPointMarkers(List<Vector3> selectedPoints)
+    {
+        foreach (GameObject pointMarker in _pointMarkers)
+        {
+           Destroy(pointMarker);
+        }
+        _pointMarkers.Clear();
+        foreach (Vector3 point in selectedPoints)
+        {
+            GameObject pointMarker = Instantiate(_pointMarkerPrefab);
+            pointMarker.transform.position = point;
+            _pointMarkers.Add(pointMarker);
+        }
+    }
+
+    public void VisualiseMeasurement(List<Vector3> selectedPoints)
+    {
+        DrawPointMarkers(selectedPoints);
+        DrawLine(selectedPoints);
     }
 }

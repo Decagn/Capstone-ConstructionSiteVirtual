@@ -31,14 +31,14 @@ public class ToolManager : MonoBehaviour
     private void HandleSelectedPoint(Vector3 selectedPoint)
     {
         _activeTool?.HandleSelectedPoint(selectedPoint);
-        DrawMeasurementLine();
+        VisualiseMeasurement();
     }
 
-    private void DrawMeasurementLine()
+    private void VisualiseMeasurement()
     {
         if (_activeTool != null)
         {
-            _visualiser.DrawLine(_activeTool.SelectedPoints);
+            _visualiser.VisualiseMeasurement(_activeTool.SelectedPoints);
         }
     }
 }
