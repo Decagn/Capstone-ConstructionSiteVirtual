@@ -4,13 +4,21 @@ using UnityEngine;
 
 public class ToolManager : MonoBehaviour
 {
-    [SerializeField] private PointSelector _pointSelector;
-    [SerializeField] private MeasurementVisualiser _visualiser;
+    private PointSelector _pointSelector;
+    private MeasurementVisualiser _measurementVisualiser;
 
     private List<IMeasuringTool> _tools = new List<IMeasuringTool>();
     private IMeasuringTool _activeTool;
 
-    private void Awake()
+
+    public void Initialise(PointSelector pointSelector, MeasurementVisualiser measurementVisualiser)
+    {
+        ConnectPointSelector(pointSelector);
+        ConnectMeasurementVisualiser(measurementVisualiser);
+        InitialiseTools();
+    }
+
+    private void InitialiseTools()
     {
         TapeMeasure tapeMeasure = gameObject.AddComponent<TapeMeasure>();
         _tools.Add(tapeMeasure);
@@ -18,14 +26,12 @@ public class ToolManager : MonoBehaviour
         Debug.Log($"Tool Manage: tool selected --> {_tools[0].ToolName}");
     }
 
-    private void OnEnable()
-    {
-        _pointSelector.OnPointSelected += HandleSelectedPoint;
-    }
-
     private void OnDisable()
     {
-        _pointSelector.OnPointSelected -= HandleSelectedPoint;
+        if (_pointSelector != null)
+        {
+            _pointSelector.OnPointSelected -= HandleSelectedPoint;
+        }
     }
 
     private void HandleSelectedPoint(Vector3 selectedPoint)
@@ -38,7 +44,18 @@ public class ToolManager : MonoBehaviour
     {
         if (_activeTool != null)
         {
-            _visualiser.VisualiseMeasurement(_activeTool.SelectedPoints);
+            _measurementVisualiser.VisualiseMeasurement(_activeTool.SelectedPoints);
         }
+    }
+
+    private void ConnectPointSelector(PointSelector pointSelector)
+    {
+        _pointSelector = pointSelector;
+        _pointSelector.OnPointSelected += HandleSelectedPoint;
+    }
+
+    private void ConnectMeasurementVisualiser(MeasurementVisualiser measurementVisualiser)
+    {
+        _measurementVisualiser = measurementVisualiser;
     }
 }

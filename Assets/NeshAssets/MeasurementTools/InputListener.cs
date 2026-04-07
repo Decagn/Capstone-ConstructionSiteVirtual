@@ -9,18 +9,21 @@ public class InputListener : MonoBehaviour
      * Clicking delegates to functions that take in the mouse's position on screen.
      */
     public event Action<Vector2> OnClick;
-    [SerializeField] private InputAction _click;
-    private void OnEnable()
+    private InputAction _clickButton;
+
+    public void Initialise(InputAction clickButton)
     {
-        _click.Enable();
+        SetClickButton(clickButton);
+        _clickButton.Enable();
     }
+
     private void OnDisable()
     {
-        _click.Disable();
+        _clickButton?.Disable();
     }
     private void Update()
     {
-        if (_click.WasPressedThisFrame())
+        if (_clickButton.WasPressedThisFrame())
         {
             OnClick?.Invoke(GetClickPosition());
         }
@@ -28,5 +31,10 @@ public class InputListener : MonoBehaviour
     private Vector2 GetClickPosition()
     {
         return Mouse.current.position.ReadValue();
+    }
+
+    public void SetClickButton(InputAction button)
+    {
+        _clickButton = button;
     }
 }

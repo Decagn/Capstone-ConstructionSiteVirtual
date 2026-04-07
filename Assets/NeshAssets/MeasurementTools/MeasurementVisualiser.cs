@@ -4,22 +4,20 @@ using UnityEngine;
 
 public class MeasurementVisualiser : MonoBehaviour
 {
-    [SerializeField] private Material _lineMaterial;
-    [SerializeField] private float _lineThickness = 0.02f;
-    [SerializeField] private Color _lineColor = Color.green;
+    private float _lineThickness = 0.02f;
+    private Color _lineColor = Color.green;
     private LineRenderer _lineRenderer;
 
-    [SerializeField] private GameObject _pointMarkerPrefab;
-    private List<GameObject> _pointMarkers = new List<GameObject>();
+    private GameObject _pointMarkerPrefab;
+    private List<GameObject> _pointMarkers;
 
-    private void Awake()
+    public void Initialise(GameObject pointMarkerPrefab)
     {
+        _pointMarkers = new List<GameObject>();
+        SetPointMarkerPrefab(pointMarkerPrefab);
+
         _lineRenderer = gameObject.AddComponent<LineRenderer>();
-        _lineRenderer.material = _lineMaterial;
-        _lineRenderer.startWidth = _lineThickness;
-        _lineRenderer.endWidth = _lineThickness;
-        _lineRenderer.startColor = _lineColor;
-        _lineRenderer.endColor = _lineColor;
+        SetMeasurementLineAppearance();
     }
 
     public void DrawLine(List<Vector3> selectedPoints)
@@ -50,5 +48,18 @@ public class MeasurementVisualiser : MonoBehaviour
     {
         DrawPointMarkers(selectedPoints);
         DrawLine(selectedPoints);
+    }
+    
+    private void SetPointMarkerPrefab(GameObject pointMarkerPrefab)
+    {
+        _pointMarkerPrefab = pointMarkerPrefab;
+    }
+
+    private void SetMeasurementLineAppearance()
+    {
+        _lineRenderer.startWidth = _lineThickness;
+        _lineRenderer.endWidth = _lineThickness;
+        _lineRenderer.startColor = _lineColor;
+        _lineRenderer.endColor = _lineColor;
     }
 }
