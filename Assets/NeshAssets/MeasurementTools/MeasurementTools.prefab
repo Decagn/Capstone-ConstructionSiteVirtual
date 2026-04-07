@@ -61,3 +61,5 @@ MonoBehaviour:
       m_Action: Click Button
       m_Flags: 0
     m_Flags: 0
+  _pointMarkerPrefab: {fileID: 899428459418414007, guid: e5f4daf24146ee040b5a2d7a73b30aa0, type: 3}
+  _crosshairsSprite: {fileID: -1822554583, guid: 9edba1c7c956451479a9b11a2b4a19b3, type: 3}

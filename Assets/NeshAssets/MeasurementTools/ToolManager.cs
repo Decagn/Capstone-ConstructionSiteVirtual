@@ -5,24 +5,23 @@ using UnityEngine;
 public class ToolManager : MonoBehaviour
 {
     private PointSelector _pointSelector;
-    private MeasurementVisualiser _measurementVisualiser;
 
     private List<IMeasuringTool> _tools = new List<IMeasuringTool>();
-    private IMeasuringTool _activeTool;
+    public IMeasuringTool activeTool;
 
-
-    public void Initialise(PointSelector pointSelector, MeasurementVisualiser measurementVisualiser)
+    public void Initialise(PointSelector pointSelector, Sprite tapeMeasureIcon)
     {
         ConnectPointSelector(pointSelector);
-        ConnectMeasurementVisualiser(measurementVisualiser);
-        InitialiseTools();
+        InitialiseTools(tapeMeasureIcon);
     }
 
-    private void InitialiseTools()
+    private void InitialiseTools(Sprite tapeMeasureIcon)
     {
         TapeMeasure tapeMeasure = gameObject.AddComponent<TapeMeasure>();
+        tapeMeasure.Initialise(tapeMeasureIcon);
         _tools.Add(tapeMeasure);
-        _activeTool = _tools[0];
+
+        activeTool = _tools[0];
         Debug.Log($"Tool Manage: tool selected --> {_tools[0].ToolName}");
     }
 
@@ -36,26 +35,12 @@ public class ToolManager : MonoBehaviour
 
     private void HandleSelectedPoint(Vector3 selectedPoint)
     {
-        _activeTool?.HandleSelectedPoint(selectedPoint);
-        VisualiseMeasurement();
-    }
-
-    private void VisualiseMeasurement()
-    {
-        if (_activeTool != null)
-        {
-            _measurementVisualiser.VisualiseMeasurement(_activeTool.SelectedPoints);
-        }
+        activeTool?.HandleSelectedPoint(selectedPoint);
     }
 
     private void ConnectPointSelector(PointSelector pointSelector)
     {
         _pointSelector = pointSelector;
         _pointSelector.OnPointSelected += HandleSelectedPoint;
-    }
-
-    private void ConnectMeasurementVisualiser(MeasurementVisualiser measurementVisualiser)
-    {
-        _measurementVisualiser = measurementVisualiser;
     }
 }

@@ -589,126 +589,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2114283753834967213}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1403322069
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1403322070}
-  - component: {fileID: 1403322072}
-  - component: {fileID: 1403322071}
-  - component: {fileID: 1403322073}
-  - component: {fileID: 1403322074}
-  - component: {fileID: 1403322075}
-  m_Layer: 8
-  m_Name: MeasurementTools
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1403322070
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1403322069}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1403322071
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1403322069}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b10eb1fbbf9bd224ba7b617b5c4924e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PointSelector
-  _inputListener: {fileID: 1403322072}
---- !u!114 &1403322072
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1403322069}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b585070cc15c2ff4eab8cd26b29939ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InputListener
-  _click:
-    m_Name: Click
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: d8c4c9a1-f058-488e-a106-998264847091
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: fbbd8b5b-77ec-4267-b3f3-95a22ba3ae18
-      m_Path: <Mouse>/leftButton
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Click
-      m_Flags: 0
-    m_Flags: 0
---- !u!114 &1403322073
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1403322069}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2490c6928e9fcbb4887e6c0baefcbf64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ToolManager
-  _pointSelector: {fileID: 1403322071}
-  _visualiser: {fileID: 1403322074}
---- !u!114 &1403322074
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1403322069}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b35eac4708fd9ee40869f422ff8aac49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MeasurementVisualiser
-  _lineMaterial: {fileID: 2100000, guid: 7ab977a21c92388468ee65ad1c0e5a78, type: 2}
-  _lineThickness: 0.02
-  _lineColor: {r: 0, g: 1, b: 0, a: 1}
-  _pointMarkerPrefab: {fileID: 899428459418414007, guid: e5f4daf24146ee040b5a2d7a73b30aa0, type: 3}
---- !u!114 &1403322075
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1403322069}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19e367e10972b6b49bb48242c6c5e475, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ToolCrosshairsVisualiser
 --- !u!1 &1660830617 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9005220659476430823, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
@@ -823,6 +703,79 @@ ReflectionProbe:
   m_UseOcclusionCulling: 1
   m_Importance: 1
   m_CustomBakedTexture: {fileID: 0}
+--- !u!1001 &1847563403
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1213468298058124273, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
+      propertyPath: _lineMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: a4f37d8277c9eb2489ac21562a07a02a, type: 2}
+    - target: {fileID: 1213468298058124273, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
+      propertyPath: _tapeMeasureIcon
+      value: 
+      objectReference: {fileID: 1269478077, guid: 349095e3650957d438a85a9346b35736, type: 3}
+    - target: {fileID: 1213468298058124273, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
+      propertyPath: _crosshairsSprite
+      value: 
+      objectReference: {fileID: 325422570, guid: 1c6e21dd5e09ab1458346e3a6b8c9cb7, type: 3}
+    - target: {fileID: 1213468298058124273, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
+      propertyPath: _pointMarkerPrefab
+      value: 
+      objectReference: {fileID: 2292414266416149384, guid: 979e39e5e5bcb4f40ae6f76c16c9a10e, type: 3}
+    - target: {fileID: 1570402492178290136, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -9.26575
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570402492178290136, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -11.54603
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570402492178290136, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.7903
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570402492178290136, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570402492178290136, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570402492178290136, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570402492178290136, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570402492178290136, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570402492178290136, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570402492178290136, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6307293760908830091, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
+      propertyPath: m_Name
+      value: MeasurementTools
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
 --- !u!1001 &1979352518
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1404,4 +1357,4 @@ SceneRoots:
   - {fileID: 5393215579111688471}
   - {fileID: 1979352518}
   - {fileID: 746329221}
-  - {fileID: 1403322070}
+  - {fileID: 1847563403}
