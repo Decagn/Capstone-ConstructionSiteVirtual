@@ -62,13 +62,20 @@ public class CTrainerInteraction : MonoBehaviour
 
             // Check if the hit object has a BuildingElement component attached.
             // BuildingElement stores metadata about structural components (name, material, description).
-            var element = hit.collider.GetComponent<BuildingElement>();
+            
+            // TODO: Uncomment element, when BuildElement is implemented.
+            // var element = hit.collider.GetComponent<BuildingElement>();
 
             // If a BuildingElement component is found, trigger its OnClick behaviour.
             // This will display the element's information (currently via Debug.Log,
             // and later via a UI panel).
-            if (element != null)
-                element.OnClick();
+
+            //TODO: Uncomment when BuildingElement implemented.
+            // if (element != null)
+            // {
+            //     element.OnClick();
+            // }
+                
         }
     }
 }
