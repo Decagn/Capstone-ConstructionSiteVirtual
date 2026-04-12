@@ -61,5 +61,7 @@ MonoBehaviour:
       m_Action: Click Button
       m_Flags: 0
     m_Flags: 0
-  _pointMarkerPrefab: {fileID: 899428459418414007, guid: e5f4daf24146ee040b5a2d7a73b30aa0, type: 3}
-  _crosshairsSprite: {fileID: -1822554583, guid: 9edba1c7c956451479a9b11a2b4a19b3, type: 3}
+  _lineMaterial: {fileID: 2100000, guid: a4f37d8277c9eb2489ac21562a07a02a, type: 2}
+  _pointMarkerPrefab: {fileID: 2292414266416149384, guid: 979e39e5e5bcb4f40ae6f76c16c9a10e, type: 3}
+  _crosshairsSprite: {fileID: 325422570, guid: 1c6e21dd5e09ab1458346e3a6b8c9cb7, type: 3}
+  _tapeMeasureIcon: {fileID: 1269478077, guid: 349095e3650957d438a85a9346b35736, type: 3}
