@@ -243,7 +243,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8616685848737228372, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3499749811327723522}
+    - targetCorrespondingSourceObject: {fileID: 8616685848737228372, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8842150934812711702}
   m_SourcePrefab: {fileID: 100100000, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
 --- !u!4 &82931886238531495 stripped
 Transform:
@@ -255,6 +261,55 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8997996947095583982, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
   m_PrefabInstance: {fileID: 4054408488240488623}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5751300312597595899 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8616685848737228372, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+  m_PrefabInstance: {fileID: 4054408488240488623}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3499749811327723522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5751300312597595899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42e651a97d24ba14ea5e535e2e7eef13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerControllerManager
+  playerController1: {fileID: 5751300312597595900}
+  playerController2: {fileID: 8842150934812711702}
+  camera1: {fileID: 8789378341165840305}
+  camera2: {fileID: 8789378341165840305}
+  switchKey: 113
+--- !u!114 &8842150934812711702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5751300312597595899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08abc0414491ae544899a49b71ee9bf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FirstPersonController
+  moveSpeed: 5
+  gravity: -9.81
+  mouseSensitivity: 2
+  cameraTransform: {fileID: 0}
+--- !u!114 &5751300312597595900 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8616685848737228371, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+  m_PrefabInstance: {fileID: 4054408488240488623}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5751300312597595899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55919ac34a26952479f3fc91f777b2fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7512524694856042065
 PrefabInstance:
   m_ObjectHideFlags: 0
