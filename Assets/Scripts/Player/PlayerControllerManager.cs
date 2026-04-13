@@ -1,6 +1,11 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
+/// <summary>
+/// This code manages the player controllers and cameras.
+/// Currently experimental and does not work with existing systems as is, 
+/// because need to understand how Mike's code works first, if we want to use this anyway.
 public class PlayerControllerManager : MonoBehaviour
 {
     [Header("Player Controllers")]
@@ -11,9 +16,6 @@ public class PlayerControllerManager : MonoBehaviour
     public GameObject camera1;
     public GameObject camera2;
 
-    [Header("Settings")]
-    public KeyCode switchKey = KeyCode.Q;
-
     private int activePlayer = 1;
 
     public void Start()
@@ -23,7 +25,7 @@ public class PlayerControllerManager : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(switchKey))
+        if (Keyboard.current.qKey.wasPressedThisFrame)
         {
             // Switches then sets the active Player if key is pressed
             activePlayer = activePlayer == 1 ? 2 : 1;
