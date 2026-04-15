@@ -53,7 +53,7 @@ public class ToolCrosshairsVisualiser : MonoBehaviour
         rect.anchorMax = new Vector2(0.5f, 0.5f);
         rect.pivot = new Vector2(0.5f, 0.5f);
         rect.anchoredPosition = Vector2.zero;
-        rect.sizeDelta = new Vector2(32f, 32f);
+        rect.sizeDelta = new Vector2(64f, 64f);
     }
 
     private void DrawMeasurementText()
@@ -62,7 +62,7 @@ public class ToolCrosshairsVisualiser : MonoBehaviour
         textObject.transform.SetParent(_canvas.transform, false);
 
         _measurementText = textObject.AddComponent<TextMeshProUGUI>();
-        _measurementText.fontSize = 14;
+        _measurementText.fontSize = 20;
         _measurementText.alignment = TextAlignmentOptions.Center;
         _measurementText.color = Color.white;
         _measurementText.text = "";
@@ -71,7 +71,7 @@ public class ToolCrosshairsVisualiser : MonoBehaviour
         rect.anchorMin = new Vector2(0.5f, 0.5f);
         rect.anchorMax = new Vector2(0.5f, 0.5f);
         rect.pivot = new Vector2(0.5f, 0.5f);
-        rect.anchoredPosition = new Vector2(0f, -40f);
+        rect.anchoredPosition = new Vector2(0f, -75f);
         rect.sizeDelta = new Vector2(200f, 30f);
     }
 
@@ -87,8 +87,8 @@ public class ToolCrosshairsVisualiser : MonoBehaviour
         rect.anchorMin = new Vector2(0.5f, 0.5f);
         rect.anchorMax = new Vector2(0.5f, 0.5f);
         rect.pivot = new Vector2(0.5f, 0.5f);
-        rect.anchoredPosition = new Vector2(-20f, 20f);
-        rect.sizeDelta = new Vector2(32f, 32f);
+        rect.anchoredPosition = new Vector2(-40f, 40f);
+        rect.sizeDelta = new Vector2(64f, 64f);
     }
 
     public void UpdateMeasurementText()
