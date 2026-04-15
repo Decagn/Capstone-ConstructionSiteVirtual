@@ -12,6 +12,8 @@ public class MeasurementTools : MonoBehaviour
 
     [Header("User Input")]
     [SerializeField] private InputAction _clickButton;
+    [SerializeField] private InputAction _deselectButton;
+    [SerializeField] private InputAction _resetButton;
     [Header("Visualing Measurements")]
     [SerializeField] private Material _lineMaterial;
     [SerializeField] private Material _arcMaterial;
@@ -24,13 +26,13 @@ public class MeasurementTools : MonoBehaviour
     private void Awake()
     {
         _inputListener = gameObject.AddComponent<InputListener>();
-        _inputListener.Initialise(_clickButton);
+        _inputListener.Initialise(_clickButton, _deselectButton, _resetButton);
 
         _pointSelector = gameObject.AddComponent<PointSelector>();
         _pointSelector.Initialise(_inputListener);
 
         _toolManager = gameObject.AddComponent<ToolManager>();
-        _toolManager.Initialise(_pointSelector, _tapeMeasureIcon, _protractorIcon);
+        _toolManager.Initialise(_inputListener, _pointSelector, _tapeMeasureIcon, _protractorIcon);
 
         _measurementVisualiser = gameObject.AddComponent<MeasurementVisualiser>();
         _measurementVisualiser.Initialise(_toolManager, _pointMarkerPrefab, _lineMaterial, _arcMaterial);

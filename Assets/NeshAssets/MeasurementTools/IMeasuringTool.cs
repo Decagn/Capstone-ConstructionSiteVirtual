@@ -16,4 +16,5 @@ public interface IMeasuringTool
     void HandleSelectedPoint(Vector3 selectedPoint);
     void ResetSelectedPoints();
     void AddSelectedPoint(Vector3 selectedPoint);
+    void RemoveLastSelectedPoint();
 }

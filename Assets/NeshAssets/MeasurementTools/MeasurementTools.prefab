@@ -61,6 +61,40 @@ MonoBehaviour:
       m_Action: Click Button
       m_Flags: 0
     m_Flags: 0
+  _deselectButton:
+    m_Name: Deselect Button
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: ba82cd1c-2c65-4896-b15e-95cf5f69230d
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: f2a504fa-c0e9-4e30-8538-af3a1820a62b
+      m_Path: <Mouse>/rightButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Deselect Button
+      m_Flags: 0
+    m_Flags: 0
+  _resetButton:
+    m_Name: Reset Button
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 76df6c91-25e4-470e-a622-637bdf13a339
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: d3cbb81d-86a0-4a92-938b-fb8d953e35a6
+      m_Path: <Keyboard>/r
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Reset Button
+      m_Flags: 0
+    m_Flags: 0
   _lineMaterial: {fileID: 2100000, guid: a4f37d8277c9eb2489ac21562a07a02a, type: 2}
   _arcMaterial: {fileID: 2100000, guid: a4f37d8277c9eb2489ac21562a07a02a, type: 2}
   _pointMarkerPrefab: {fileID: 2292414266416149384, guid: 979e39e5e5bcb4f40ae6f76c16c9a10e, type: 3}

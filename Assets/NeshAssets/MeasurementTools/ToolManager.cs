@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ToolManager : MonoBehaviour
 {
+    private InputListener _inputListener;
     private PointSelector _pointSelector;
 
     private Sprite _tapeMeasureIcon;
@@ -12,13 +13,14 @@ public class ToolManager : MonoBehaviour
     private List<IMeasuringTool> _tools = new List<IMeasuringTool>();
     public IMeasuringTool activeTool;
 
-    public void Initialise(PointSelector pointSelector, Sprite tapeMeasureIcon, Sprite protractorIcon)
+    public void Initialise(InputListener inputListener, PointSelector pointSelector, Sprite tapeMeasureIcon, Sprite protractorIcon)
     {
-        ConnectPointSelector(pointSelector);
-
         _tapeMeasureIcon = tapeMeasureIcon;
         _protractorIcon = protractorIcon;
         InitialiseTools();
+
+        ConnectPointSelector(pointSelector);
+        ConnectInputListener(inputListener);
     }
 
     private void InitialiseTools()
@@ -52,5 +54,12 @@ public class ToolManager : MonoBehaviour
     {
         _pointSelector = pointSelector;
         _pointSelector.OnPointSelected += HandleSelectedPoint;
+    }
+
+    private void ConnectInputListener(InputListener inputListener)
+    {
+        _inputListener = inputListener;
+        _inputListener.OnResetMeasurement += activeTool.ResetSelectedPoints;
+        _inputListener.OnDeselectLastPoint += activeTool.RemoveLastSelectedPoint;
     }
 }

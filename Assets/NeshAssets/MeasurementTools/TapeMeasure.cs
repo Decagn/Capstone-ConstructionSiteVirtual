@@ -63,6 +63,15 @@ public class TapeMeasure : MonoBehaviour, IMeasuringTool
         OnSelectedPointsUpdated?.Invoke();
     }
 
+    public void RemoveLastSelectedPoint()
+    {
+        if (SelectedPoints.Count > 0)
+        {
+            SelectedPoints.RemoveAt(SelectedPoints.Count - 1);
+        }
+        OnSelectedPointsUpdated?.Invoke();
+    }
+
     private float GetDistance(Vector3 pointA, Vector3 pointB)
     {
         float distance = MeasurementCalculator.DistanceBetweenPoints(pointA, pointB);

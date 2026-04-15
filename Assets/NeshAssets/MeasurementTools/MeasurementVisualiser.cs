@@ -11,7 +11,7 @@ public class MeasurementVisualiser : MonoBehaviour
     private Material _lineMaterial;
     private float _lineThickness = 0.02f;
     private Color _lineColor = Color.green;
-    private LineRenderer _lineRenderer;
+    private List<GameObject> _lineRendererObjects;
 
     /*
      * SYSTEM DESIGN
@@ -23,7 +23,7 @@ public class MeasurementVisualiser : MonoBehaviour
      * for example, 0.3 means the arc will be drawn at 30% mark of whichever line is shorter.
      */
     private Material _arcMaterial;
-    private List<Object> _arcRendererObjects;
+    private List<GameObject> _arcRendererObjects;
     private int _arcSegments = 100;
     private float _arcPositionRatio = 0.3f;
 
@@ -34,33 +34,48 @@ public class MeasurementVisualiser : MonoBehaviour
     {
         ConnectToolManager(toolManager);
         _toolManager.activeTool.OnSelectedPointsUpdated += VisualiseMeasurements;
-        _toolManager.activeTool.OnSelectedPointsReseted += ClearVisualisations;
+        _toolManager.activeTool.OnSelectedPointsReseted += ClearAllVisualisations;
 
         _pointMarkers = new List<GameObject>();
         SetPointMarkerPrefab(pointMarkerPrefab);
 
         _lineMaterial = lineMaterial;
-        GameObject lineObject = new GameObject("MeasurementTools:LineRenderer");
-        lineObject.transform.SetParent(transform);
-        _lineRenderer = lineObject.AddComponent<LineRenderer>();
-        SetLineAppearance();
+        _lineRendererObjects = new List<GameObject>();
 
         _arcMaterial = arcMaterial;
-        _arcRendererObjects = new List<Object>();
+        _arcRendererObjects = new List<GameObject>();
     }
 
     private void OnDisable()
     {
         _toolManager.activeTool.OnSelectedPointsUpdated -= VisualiseMeasurements;
-        _toolManager.activeTool.OnSelectedPointsReseted -= ClearVisualisations;
+        _toolManager.activeTool.OnSelectedPointsReseted -= ClearAllVisualisations;
     }
 
-    private void DrawLine(List<Vector3> selectedPoints)
+    private void DrawLine(int lineNum, Vector3 pointA, Vector3 pointB)
     {
-        _lineRenderer.positionCount = selectedPoints.Count;
-        for (int i = 0;  i < _lineRenderer.positionCount; i++)
+        GameObject lineObject = new GameObject($"MeasurementTools:lineRenderer {lineNum}");
+        _lineRendererObjects.Add(lineObject);
+        lineObject.transform.SetParent(transform);
+
+        LineRenderer lineRenderer = lineObject.AddComponent<LineRenderer>();
+        SetLineAppearance(lineRenderer);
+
+        lineRenderer.positionCount = 2;
+        lineRenderer.SetPosition(0, pointA);
+        lineRenderer.SetPosition(1, pointB);
+    }
+
+    private void DrawAllLines(List<Vector3> selectedPoints)
+    {
+        if (selectedPoints.Count < 2)
         {
-            _lineRenderer.SetPosition(i, selectedPoints[i]);
+            return;
+        }
+
+        for (int line = 0; line < selectedPoints.Count - 1; line++)
+        {
+            DrawLine(line, selectedPoints[line], selectedPoints[line + 1]);
         }
     }
 
@@ -77,7 +92,7 @@ public class MeasurementVisualiser : MonoBehaviour
 
     private void DrawArc(int arcNum, Vector3 pointA, Vector3 pointB, Vector3 pointC)
     {
-        GameObject arcObject = new GameObject($"MeasurementTools:ArcRenderer {arcNum}");
+        GameObject arcObject = new GameObject($"MeasurementTools:arcRenderer {arcNum}");
         _arcRendererObjects.Add(arcObject);
         arcObject.transform.SetParent(transform);
 
@@ -135,19 +150,32 @@ public class MeasurementVisualiser : MonoBehaviour
 
     private void VisualiseMeasurements()
     {
+        ClearAllVisualisations();
         List<Vector3> selectedPoints = _toolManager.activeTool.SelectedPoints;
         DrawPointMarkers(selectedPoints);
-        DrawLine(selectedPoints);
+        DrawAllLines(selectedPoints);
         DrawAllArcs(selectedPoints);
     }
 
-    private void ClearVisualisations()
+    private void ClearAllVisualisations()
     {
+        foreach (GameObject lineObject in _lineRendererObjects)
+        {
+            Destroy(lineObject);
+        }
+        _lineRendererObjects.Clear();
+
         foreach (GameObject arcObject in _arcRendererObjects)
         {
             Destroy(arcObject);
         }
         _arcRendererObjects.Clear();
+
+        foreach (GameObject pointMarker in _pointMarkers)
+        {
+            Destroy(pointMarker);
+        }
+        _pointMarkers.Clear();
     }
 
     #region UTILITY METHODS
@@ -161,13 +189,13 @@ public class MeasurementVisualiser : MonoBehaviour
         _pointMarkerPrefab = pointMarkerPrefab;
     }
 
-    private void SetLineAppearance()
+    private void SetLineAppearance(LineRenderer lineRenderer)
     {
-        _lineRenderer.material = _lineMaterial;
-        _lineRenderer.startWidth = _lineThickness;
-        _lineRenderer.endWidth = _lineThickness;
-        _lineRenderer.startColor = _lineColor;
-        _lineRenderer.endColor = _lineColor;
+        lineRenderer.material = _lineMaterial;
+        lineRenderer.startWidth = _lineThickness;
+        lineRenderer.endWidth = _lineThickness;
+        lineRenderer.startColor = _lineColor;
+        lineRenderer.endColor = _lineColor;
     }
 
     private void SetArcAppearance(LineRenderer arcRenderer)

@@ -64,6 +64,15 @@ public class Protractor : MonoBehaviour, IMeasuringTool
         OnSelectedPointsUpdated?.Invoke();
     }
 
+    public void RemoveLastSelectedPoint()
+    {
+        if (SelectedPoints.Count > 0)
+        {
+            SelectedPoints.RemoveAt(SelectedPoints.Count - 1);
+        }
+        OnSelectedPointsUpdated?.Invoke();
+    }
+
     private float GetAngle(Vector3 pointA, Vector3 pointB, Vector3 pointC)
     {
         float angle = MeasurementCalculator.AngleBetweenLines(pointA, pointB, pointC);
