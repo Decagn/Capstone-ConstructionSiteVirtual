@@ -11,6 +11,7 @@ public interface IMeasuringTool
     List<float> MeasuredLengths { get; set; }
     List<float> MeasuredAngles { get; set; }
     event Action OnSelectedPointsUpdated;
+    event Action OnSelectedPointsReseted;
     void Initialise(Sprite toolIcon);
     void HandleSelectedPoint(Vector3 selectedPoint);
     void ResetSelectedPoints();

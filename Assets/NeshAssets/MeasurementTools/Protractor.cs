@@ -20,6 +20,7 @@ public class Protractor : MonoBehaviour, IMeasuringTool
     public List<float> MeasuredLengths { get; set; }
     public List<float> MeasuredAngles { get; set; }
     public event Action OnSelectedPointsUpdated;
+    public event Action OnSelectedPointsReseted;
 
     public void Initialise(Sprite toolIcon)
     {
@@ -34,34 +35,33 @@ public class Protractor : MonoBehaviour, IMeasuringTool
     {
         int nSelectedPoints = SelectedPoints.Count;
 
-        if (nSelectedPoints == 0 || nSelectedPoints == 1)
+        if (nSelectedPoints < 2)
         {
             AddSelectedPoint(selectedPoint);
-            OnSelectedPointsUpdated?.Invoke();
         }
         else if (nSelectedPoints == 2)
         {
+            MeasuredAngles[0] = GetAngle(SelectedPoints[0], SelectedPoints[1], selectedPoint);
             AddSelectedPoint(selectedPoint);
-            MeasuredAngles[0] = GetAngle(SelectedPoints[0], SelectedPoints[1], SelectedPoints[2]);
-            OnSelectedPointsUpdated?.Invoke();
         }
         else if (nSelectedPoints == 3)
         {
             ResetSelectedPoints();
             AddSelectedPoint(selectedPoint);
-            OnSelectedPointsUpdated?.Invoke();
         }
     }
 
     public void ResetSelectedPoints()
     {
         SelectedPoints.Clear();
+        OnSelectedPointsReseted?.Invoke();
         Debug.Log("Protractor: Current selected points cleared.");
     }
 
     public void AddSelectedPoint(Vector3 selectedPoint)
     {
         SelectedPoints.Add(selectedPoint);
+        OnSelectedPointsUpdated?.Invoke();
     }
 
     private float GetAngle(Vector3 pointA, Vector3 pointB, Vector3 pointC)

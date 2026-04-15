@@ -14,6 +14,7 @@ public class MeasurementTools : MonoBehaviour
     [SerializeField] private InputAction _clickButton;
     [Header("Visualing Measurements")]
     [SerializeField] private Material _lineMaterial;
+    [SerializeField] private Material _arcMaterial;
     [Header("Visualing Crosshairs & UX")]
     [SerializeField] private GameObject _pointMarkerPrefab;
     [SerializeField] private Sprite _crosshairsSprite;
@@ -32,7 +33,7 @@ public class MeasurementTools : MonoBehaviour
         _toolManager.Initialise(_pointSelector, _tapeMeasureIcon, _protractorIcon);
 
         _measurementVisualiser = gameObject.AddComponent<MeasurementVisualiser>();
-        _measurementVisualiser.Initialise(_toolManager, _pointMarkerPrefab, _lineMaterial);
+        _measurementVisualiser.Initialise(_toolManager, _pointMarkerPrefab, _lineMaterial, _arcMaterial);
 
         _crosshairsVisualiser = gameObject.AddComponent<ToolCrosshairsVisualiser>();
         _crosshairsVisualiser.Initialise(_toolManager, _crosshairsSprite);

@@ -20,6 +20,7 @@ public class TapeMeasure : MonoBehaviour, IMeasuringTool
     public List<float> MeasuredLengths { get; set; }
     public List<float> MeasuredAngles { get; set; }
     public event Action OnSelectedPointsUpdated;
+    public event Action OnSelectedPointsReseted;
 
     public void Initialise(Sprite toolIcon)
     {
@@ -36,31 +37,30 @@ public class TapeMeasure : MonoBehaviour, IMeasuringTool
         if (nSelectedPoints == 0)
         {
             AddSelectedPoint(selectedPoint);
-            OnSelectedPointsUpdated?.Invoke();
         }
         else if (nSelectedPoints == 1)
         {
-            AddSelectedPoint(selectedPoint);
             MeasuredLengths[0] = GetDistance(selectedPoint, SelectedPoints[0]);
-            OnSelectedPointsUpdated?.Invoke();
+            AddSelectedPoint(selectedPoint);
         }
         else if (nSelectedPoints == 2)
         {
             ResetSelectedPoints();
             AddSelectedPoint(selectedPoint);
-            OnSelectedPointsUpdated?.Invoke();
         }
     }
 
     public void ResetSelectedPoints()
     {
         SelectedPoints.Clear();
+        OnSelectedPointsReseted?.Invoke();
         Debug.Log("TapeMeasure: Current selected points cleared.");
     }
 
     public void AddSelectedPoint(Vector3 selectedPoint)
     {
         SelectedPoints.Add(selectedPoint);
+        OnSelectedPointsUpdated?.Invoke();
     }
 
     private float GetDistance(Vector3 pointA, Vector3 pointB)
