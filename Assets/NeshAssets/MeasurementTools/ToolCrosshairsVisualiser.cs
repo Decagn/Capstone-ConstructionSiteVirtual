@@ -93,8 +93,20 @@ public class ToolCrosshairsVisualiser : MonoBehaviour
 
     public void UpdateMeasurementText()
     {
-        float newMeasurement = _toolManager.activeTool.MeasuredLengths[0];
-        _measurementText.text = $"{newMeasurement:F2}m";
+        bool HasLengths = _toolManager.activeTool.MeasuredLengths.Count > 0;
+        bool HasAngles = _toolManager.activeTool.MeasuredAngles.Count > 0;
+
+        if (HasLengths)
+        {
+            float newLength = _toolManager.activeTool.MeasuredLengths[0];
+            _measurementText.text = $"{newLength:F2}m";
+        }
+
+        if (HasAngles)
+        {
+            float newAngle = _toolManager.activeTool.MeasuredAngles[0];
+            _measurementText.text = $"{newAngle:F1}°";
+        }
     }
 
     private void ConnectToolManager(ToolManager manager)

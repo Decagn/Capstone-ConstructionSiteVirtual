@@ -716,6 +716,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: a4f37d8277c9eb2489ac21562a07a02a, type: 2}
     - target: {fileID: 1213468298058124273, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
+      propertyPath: _protractorIcon
+      value: 
+      objectReference: {fileID: 1269478077, guid: 349095e3650957d438a85a9346b35736, type: 3}
+    - target: {fileID: 1213468298058124273, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
       propertyPath: _tapeMeasureIcon
       value: 
       objectReference: {fileID: 1269478077, guid: 349095e3650957d438a85a9346b35736, type: 3}

@@ -6,19 +6,29 @@ public class ToolManager : MonoBehaviour
 {
     private PointSelector _pointSelector;
 
+    private Sprite _tapeMeasureIcon;
+    private Sprite _protractorIcon;
+
     private List<IMeasuringTool> _tools = new List<IMeasuringTool>();
     public IMeasuringTool activeTool;
 
-    public void Initialise(PointSelector pointSelector, Sprite tapeMeasureIcon)
+    public void Initialise(PointSelector pointSelector, Sprite tapeMeasureIcon, Sprite protractorIcon)
     {
         ConnectPointSelector(pointSelector);
-        InitialiseTools(tapeMeasureIcon);
+
+        _tapeMeasureIcon = tapeMeasureIcon;
+        _protractorIcon = protractorIcon;
+        InitialiseTools();
     }
 
-    private void InitialiseTools(Sprite tapeMeasureIcon)
+    private void InitialiseTools()
     {
+        Protractor protractor = gameObject.AddComponent<Protractor>();
+        protractor.Initialise(_protractorIcon);
+        _tools.Add(protractor);
+
         TapeMeasure tapeMeasure = gameObject.AddComponent<TapeMeasure>();
-        tapeMeasure.Initialise(tapeMeasureIcon);
+        tapeMeasure.Initialise(_tapeMeasureIcon);
         _tools.Add(tapeMeasure);
 
         activeTool = _tools[0];

@@ -18,6 +18,7 @@ public class MeasurementTools : MonoBehaviour
     [SerializeField] private GameObject _pointMarkerPrefab;
     [SerializeField] private Sprite _crosshairsSprite;
     [SerializeField] private Sprite _tapeMeasureIcon;
+    [SerializeField] private Sprite _protractorIcon;
 
     private void Awake()
     {
@@ -28,7 +29,7 @@ public class MeasurementTools : MonoBehaviour
         _pointSelector.Initialise(_inputListener);
 
         _toolManager = gameObject.AddComponent<ToolManager>();
-        _toolManager.Initialise(_pointSelector, _tapeMeasureIcon);
+        _toolManager.Initialise(_pointSelector, _tapeMeasureIcon, _protractorIcon);
 
         _measurementVisualiser = gameObject.AddComponent<MeasurementVisualiser>();
         _measurementVisualiser.Initialise(_toolManager, _pointMarkerPrefab, _lineMaterial);
