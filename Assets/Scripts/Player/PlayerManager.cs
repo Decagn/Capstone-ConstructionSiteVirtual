@@ -1,4 +1,4 @@
-using System.Numerics;
+// using System.Numerics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -29,6 +29,6 @@ public class PlayerManager : MonoBehaviour
         GameObject player = GameObject.FindWithTag("MainCamera");
         Destroy(currentPlayer);
         currentPlayerIndex = (currentPlayerIndex + 1) % playerPrefabs.Length;
-        currentPlayer = Instantiate(playerPrefabs[currentPlayerIndex], player.transform.position, player.transform.rotation);
+        currentPlayer = Instantiate(playerPrefabs[currentPlayerIndex], player.transform.position, Quaternion.identity);
     }
 }
