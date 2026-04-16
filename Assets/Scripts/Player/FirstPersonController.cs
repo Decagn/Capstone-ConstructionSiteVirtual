@@ -27,10 +27,6 @@ public class FirstPersonController : MonoBehaviour
     // This should be the Camera child object of the Player GameObject.
     public Transform cameraTransform;
 
-    // Reference to the CharacterController component used to move the player.
-    // Retrieved automatically in Start().
-    private CharacterController _cc;
-
     // Tracks the current vertical rotation (pitch) of the camera in degrees.
     // Clamped to prevent the player from rotating past straight up or straight down.
     private float _xRotation = 0f;
@@ -44,9 +40,6 @@ public class FirstPersonController : MonoBehaviour
     /// </summary>
     void Start()
     {
-        // Cache the CharacterController component attached to this GameObject.
-        _cc = GetComponent<CharacterController>();
-
         // Lock the cursor to the center of the Game window for mouse-look to work correctly.
         Cursor.lockState = CursorLockMode.Locked;
 
@@ -132,6 +125,6 @@ public class FirstPersonController : MonoBehaviour
         // Apply the movement to the CharacterController.
         // Multiplying by moveSpeed and Time.deltaTime ensures consistent speed
         // regardless of the current frame rate.
-        _cc.Move(move * moveSpeed * Time.deltaTime);
+        transform.Translate(move * moveSpeed * Time.deltaTime, Space.World);
     }
 }
