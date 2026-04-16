@@ -35,6 +35,8 @@ public class FirstPersonController : MonoBehaviour
     // Clamped to prevent the player from rotating past straight up or straight down.
     private float _xRotation = 0f;
 
+    private float verticalInput = 0f;
+
     /// <summary>
     /// Called once when the script is first enabled, before the first Update.
     /// Retrieves the CharacterController component and locks the cursor to the center
@@ -115,9 +117,9 @@ public class FirstPersonController : MonoBehaviour
         // Read vertical movement input from E (up) and Q (down) keys.
         // This allows the player to fly up and down freely, which is useful
         // for inspecting construction elements at different heights.
-        float verticalInput = 0f;
-        if (Keyboard.current.eKey.isPressed) verticalInput = 1f;
-        if (Keyboard.current.qKey.isPressed) verticalInput = -1f;
+        verticalInput = 0f;
+        if (Keyboard.current.eKey.isPressed) verticalInput += 1f;
+        if (Keyboard.current.qKey.isPressed) verticalInput -= 1f;
 
         // Combine all three movement directions into a single world-space vector.
         // transform.right and transform.forward are relative to the player's current rotation,
@@ -125,7 +127,7 @@ public class FirstPersonController : MonoBehaviour
         // Vector3.up is always the world Y axis, keeping vertical movement absolute.
         Vector3 move = transform.right * moveInput.x
                      + transform.forward * moveInput.y
-                     + Vector3.up * verticalInput;
+                     + transform.up * verticalInput;
 
         // Apply the movement to the CharacterController.
         // Multiplying by moveSpeed and Time.deltaTime ensures consistent speed
