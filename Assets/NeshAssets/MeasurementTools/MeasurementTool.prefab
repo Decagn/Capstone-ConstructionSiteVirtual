@@ -1,0 +1,249 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1226693208663698225
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5506046769581216139}
+  - component: {fileID: 326324694075979089}
+  - component: {fileID: 8579208239421792878}
+  - component: {fileID: -4349217513542194059}
+  - component: {fileID: 1678225408857308545}
+  - component: {fileID: 293531706389361349}
+  - component: {fileID: -8478434840348611157}
+  - component: {fileID: -869736754291200759}
+  - component: {fileID: 8648137909751200540}
+  - component: {fileID: 1727313247639458414}
+  - component: {fileID: 8016504055823582031}
+  - component: {fileID: 6146766088274043038}
+  m_Layer: 0
+  m_Name: MeasurementTool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5506046769581216139
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226693208663698225}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &326324694075979089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226693208663698225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5905106cca797f545bda6631b8a97e28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UserInputHandler
+  _selectPoint:
+    m_Name: Select Point
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: ece54d58-aa7f-46aa-bf8b-dc7d9b90a304
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  _deselectLastPoint:
+    m_Name: Deselect Last Point
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 13c844b1-bef2-49a2-93c6-224858acd0bb
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  _resetSelectedPoints:
+    m_Name: Reset Selected Points
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: b33d5146-679b-4756-8a29-4502f110d469
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  _switchNextTool:
+    m_Name: Switch Next Tool
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: b46cf3c8-c67b-4bfb-977c-b7872b957c58
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  _switchPrevTool:
+    m_Name: Switch Prev Tool
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 1b853bd5-1aa0-43e5-b574-a110a1569e0d
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+--- !u!114 &8579208239421792878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226693208663698225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ce93164c38f73946a4b9a3ccb5ae396, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PointSelectionHandler
+  _inputHandler: {fileID: 326324694075979089}
+--- !u!114 &-4349217513542194059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226693208663698225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db0bebc98cf067f45bc82ef1b15314ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MeasurementToolHandler
+  _inputHandler: {fileID: 326324694075979089}
+  _pointsHandler: {fileID: 8579208239421792878}
+  _tapeMeasureIcon: {fileID: 896567409, guid: 4a496f5ff5352b84a83fc6db3a461c37, type: 3}
+  _protractorIcon: {fileID: 176814562, guid: 90f7217d2bad0dd498c186c53633b2c3, type: 3}
+--- !u!114 &1678225408857308545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226693208663698225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37c9a8b041b887e49bfa97b923dbf247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UICanvas
+  _toolHandler: {fileID: -4349217513542194059}
+  _crosshairs: {fileID: 293531706389361349}
+  _text: {fileID: -8478434840348611157}
+  _icon: {fileID: -869736754291200759}
+--- !u!114 &293531706389361349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226693208663698225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c620f06ac0df5841b813af5f1750e42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Crosshairs
+  _size: 64
+  _sprite: {fileID: -1019157061, guid: 6c8e02869ceed944bb7bb9e1ea473c09, type: 3}
+--- !u!114 &-8478434840348611157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226693208663698225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbb637d8a29871c4a85910dc10f7b8ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MeasurementText
+  _fontSize: 20
+  _horizontalPosition: 0
+  _verticalPosition: -75
+--- !u!114 &-869736754291200759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226693208663698225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a749003629b1b3f4c8d5b7b5430f072f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ToolIcon
+  _size: 64
+  _horizontalPosition: -40
+  _verticalPosition: 40
+--- !u!114 &8648137909751200540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226693208663698225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2e7bd993d2c2e24bbf9dde08f4039a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Visualiser
+  _toolHandler: {fileID: -4349217513542194059}
+  _markers: {fileID: 1727313247639458414}
+  _lines: {fileID: 8016504055823582031}
+  _arcs: {fileID: 6146766088274043038}
+--- !u!114 &1727313247639458414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226693208663698225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d109de89527736644bf536f8badb43ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PointMarkers
+  _markerPrefab: {fileID: 2292414266416149384, guid: c9deeeba27f40cf48b50fc4981754c2f, type: 3}
+--- !u!114 &8016504055823582031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226693208663698225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e610de0d41bd72d4bb44f88835bfc2a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Lines
+  _lineMaterial: {fileID: 2100000, guid: e5ff8bd16c5a38b45824335655bf5185, type: 2}
+  _lineThickness: 0.02
+  _lineColor: {r: 0, g: 1, b: 0, a: 1}
+--- !u!114 &6146766088274043038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226693208663698225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d406bf9d55b7cd499307e3bd36eb5e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Arcs
+  _arcMaterial: {fileID: 2100000, guid: e5ff8bd16c5a38b45824335655bf5185, type: 2}
+  _arcThickness: 0.02
+  _arcColor: {r: 0, g: 1, b: 0, a: 1}
