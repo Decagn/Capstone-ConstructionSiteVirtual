@@ -1010,6 +1010,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 326324694075979089, guid: 64b990e82c829b94fa9e5327d158d0d0, type: 3}
+      propertyPath: _switchPlayer.m_Name
+      value: Switch Player
+      objectReference: {fileID: 0}
     - target: {fileID: 1226693208663698225, guid: 64b990e82c829b94fa9e5327d158d0d0, type: 3}
       propertyPath: m_Name
       value: MeasurementTool
@@ -5257,7 +5261,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8448731703206330959, guid: 103abced0c94cc74eb256c73891726e7, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 8448731703206330959, guid: 103abced0c94cc74eb256c73891726e7, type: 3}
       propertyPath: m_LocalRotation.x
@@ -5265,7 +5269,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8448731703206330959, guid: 103abced0c94cc74eb256c73891726e7, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 8448731703206330959, guid: 103abced0c94cc74eb256c73891726e7, type: 3}
       propertyPath: m_LocalRotation.z
@@ -5277,7 +5281,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8448731703206330959, guid: 103abced0c94cc74eb256c73891726e7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 8448731703206330959, guid: 103abced0c94cc74eb256c73891726e7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z

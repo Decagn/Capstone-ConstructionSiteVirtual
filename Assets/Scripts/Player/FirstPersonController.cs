@@ -112,7 +112,7 @@ public class FirstPersonController : MonoBehaviour
         // for inspecting construction elements at different heights.
         verticalInput = 0f;
         if (Keyboard.current.spaceKey.isPressed) verticalInput += 1f;
-        if (Keyboard.current.shiftKey.isPressed) verticalInput -= 1f;
+        if (Keyboard.current.ctrlKey.isPressed) verticalInput -= 1f;
 
         // Combine all three movement directions into a single world-space vector.
         // transform.right and transform.forward are relative to the player's current rotation,

@@ -8,21 +8,24 @@ public class PlayerManager : MonoBehaviour
     [Header("Player Prefabs")]
     [SerializeField] private GameObject[] playerPrefabs;
 
-    [Header("Keybinds")]
-    [SerializeField] private InputAction switchPlayerKey;
-
     private GameObject currentPlayer;
     private int currentPlayerIndex = 0;
     private void Awake()
     {
-        currentPlayer = Instantiate(playerPrefabs[0], transform.position, Quaternion.identity);
+        currentPlayer = Instantiate(playerPrefabs[0], transform.position, transform.rotation);
+    }
+
+    public void Update()
+    {
+        if(Keyboard.current.qKey.wasPressedThisFrame) SwitchPlayer();
     }
 
     // Switches to the next player prefab in array after destroying current player prefab.
     public void SwitchPlayer()
     {
-        Destroy(currentPlayer);
+        GameObject previousPlayer = currentPlayer;
         currentPlayerIndex = (currentPlayerIndex + 1) % playerPrefabs.Length;
-        currentPlayer = Instantiate(playerPrefabs[currentPlayerIndex], transform.position, Quaternion.identity);
+        Destroy(currentPlayer);
+        currentPlayer = Instantiate(playerPrefabs[currentPlayerIndex], previousPlayer.transform.position, previousPlayer.transform.rotation);
     }
 }
