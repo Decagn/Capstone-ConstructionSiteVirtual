@@ -28,11 +28,20 @@ public class PointSelectionHandler : MonoBehaviour
         /* 
          * [OPTIMISATION]
          * Get the scene's main camera so we don't have to look it up repeatedly.
+         * I'm sorry, but I'm turning the update back on for this, because PlayerManager is spawning Cameras all the time now (Optimise later?)
+         * -Sean
          */
-        _sceneCamera = Camera.main;
+        if (_sceneCamera == null) _sceneCamera = Camera.main;
 
         SubscribeToInputHandler();
     }
+
+    private void Update()
+    {
+        //If the main camera gets destroyed (e.g. when player controller gets switched), try to get it again.
+        if (_sceneCamera == null) _sceneCamera = Camera.main;
+    }
+
     private void OnDisable()
     {
         UnsubscribeFromInputHandler();
