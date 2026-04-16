@@ -1,3 +1,5 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class RenderText : MonoBehaviour
@@ -6,20 +8,37 @@ public class RenderText : MonoBehaviour
     void Start()
     {
         TextAsset txtData = (TextAsset)Resources.Load("MyText");
-        TextInfo txtInfo = TextInfo.CreateFromJSON(txtData.text);
-        TextMesh textObj = GetComponent <TextMesh>();
-        textObj.text = txtInfo.text + "(" + txtInfo.len + ")";
+        LessonLabels labels = LessonLabels.CreateFromJSON(txtData.text);
+        TextMesh textObj = GetComponent<TextMesh>();
+        Debug.Log($"Model file: {labels.model}");
+
+        foreach (TextLabel label in labels.labels)
+        {
+            Debug.Log($"label pos: {label.xyz_pos}, label text: {label.text}");
+        }
     }
 }
 
 [System.Serializable]
-public class TextInfo
+public class LessonLabels
 {
-    public string text;
-    public int len;
+    public string model;
+    public List<TextLabel> labels;
 
-    public static TextInfo CreateFromJSON(string jsonStr)
+    public static LessonLabels CreateFromJSON(string jsonStr)
     {
-        return JsonUtility.FromJson<TextInfo>(jsonStr);
+        return JsonUtility.FromJson<LessonLabels>(jsonStr);
+    }
+}
+
+[System.Serializable]
+public class TextLabel
+{
+    public Vector3 xyz_pos;
+    public string text;
+
+    public static TextLabel CreateFromJSON(string jsonStr)
+    {
+        return JsonUtility.FromJson<TextLabel>(jsonStr);
     }
 }
