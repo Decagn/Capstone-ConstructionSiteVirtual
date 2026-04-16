@@ -18,10 +18,6 @@ public class FirstPersonController : MonoBehaviour
     // The speed at which the player moves through the scene, measured in Unity units per second.
     public float moveSpeed = 5f;
 
-    // Gravity value applied to the player each frame.
-    // Currently unused in fly mode but kept for future ground-based movement.
-    public float gravity = -9.81f;
-
     [Header("Look")]
     // Controls how fast the camera rotates in response to mouse movement.
     // Higher values = more sensitive, lower values = smoother.
@@ -31,17 +27,11 @@ public class FirstPersonController : MonoBehaviour
     // This should be the Camera child object of the Player GameObject.
     public Transform cameraTransform;
 
-    // Reference to the CharacterController component used to move the player.
-    // Retrieved automatically in Start().
-    private CharacterController _cc;
-
-    // Stores the player's current vertical velocity, used for gravity calculations.
-    // Currently unused in fly mode but retained for future use.
-    private Vector3 _velocity;
-
     // Tracks the current vertical rotation (pitch) of the camera in degrees.
     // Clamped to prevent the player from rotating past straight up or straight down.
     private float _xRotation = 0f;
+
+    private float verticalInput = 0f;
 
     /// <summary>
     /// Called once when the script is first enabled, before the first Update.
@@ -50,9 +40,6 @@ public class FirstPersonController : MonoBehaviour
     /// </summary>
     void Start()
     {
-        // Cache the CharacterController component attached to this GameObject.
-        _cc = GetComponent<CharacterController>();
-
         // Lock the cursor to the center of the Game window for mouse-look to work correctly.
         Cursor.lockState = CursorLockMode.Locked;
 
@@ -93,7 +80,7 @@ public class FirstPersonController : MonoBehaviour
 
         // Clamp the vertical rotation so the player cannot look further than
         // 80 degrees up or 80 degrees down, preventing a full vertical flip.
-        _xRotation = Mathf.Clamp(_xRotation, -80f, 80f);
+        _xRotation = Mathf.Clamp(_xRotation, -89f, 89f);
 
         // Apply the clamped vertical rotation to the Camera transform only.
         // Using localRotation keeps the camera rotation relative to the player body.
@@ -123,9 +110,9 @@ public class FirstPersonController : MonoBehaviour
         // Read vertical movement input from E (up) and Q (down) keys.
         // This allows the player to fly up and down freely, which is useful
         // for inspecting construction elements at different heights.
-        float verticalInput = 0f;
-        if (Keyboard.current.eKey.isPressed) verticalInput = 1f;
-        if (Keyboard.current.qKey.isPressed) verticalInput = -1f;
+        verticalInput = 0f;
+        if (Keyboard.current.spaceKey.isPressed) verticalInput += 1f;
+        if (Keyboard.current.shiftKey.isPressed) verticalInput -= 1f;
 
         // Combine all three movement directions into a single world-space vector.
         // transform.right and transform.forward are relative to the player's current rotation,
@@ -133,11 +120,11 @@ public class FirstPersonController : MonoBehaviour
         // Vector3.up is always the world Y axis, keeping vertical movement absolute.
         Vector3 move = transform.right * moveInput.x
                      + transform.forward * moveInput.y
-                     + Vector3.up * verticalInput;
+                     + transform.up * verticalInput;
 
         // Apply the movement to the CharacterController.
         // Multiplying by moveSpeed and Time.deltaTime ensures consistent speed
         // regardless of the current frame rate.
-        _cc.Move(move * moveSpeed * Time.deltaTime);
+        transform.Translate(move * moveSpeed * Time.deltaTime, Space.World);
     }
 }
