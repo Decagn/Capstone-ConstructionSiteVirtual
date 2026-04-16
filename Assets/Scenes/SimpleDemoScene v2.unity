@@ -5223,6 +5223,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4193893050895472791, guid: 103abced0c94cc74eb256c73891726e7, type: 3}
+      propertyPath: switchPlayerKey.m_Name
+      value: Switch Player Key
+      objectReference: {fileID: 0}
+    - target: {fileID: 4193893050895472791, guid: 103abced0c94cc74eb256c73891726e7, type: 3}
+      propertyPath: switchPlayerKey.m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4193893050895472791, guid: 103abced0c94cc74eb256c73891726e7, type: 3}
+      propertyPath: switchPlayerKey.m_Flags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4193893050895472791, guid: 103abced0c94cc74eb256c73891726e7, type: 3}
+      propertyPath: switchPlayerKey.m_ExpectedControlType
+      value: Button
+      objectReference: {fileID: 0}
     - target: {fileID: 4454180525010783128, guid: 103abced0c94cc74eb256c73891726e7, type: 3}
       propertyPath: m_Name
       value: PlayerControllerManager

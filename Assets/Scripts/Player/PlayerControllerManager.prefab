@@ -47,3 +47,12 @@ MonoBehaviour:
   playerPrefabs:
   - {fileID: 4637216908323064829, guid: 7c83f6e3f0b4a8142b9abcdadaf4729c, type: 3}
   - {fileID: 1401466385427017873, guid: 520f10bd9a40458429aac1ab3d3ac899, type: 3}
+  switchPlayerKey:
+    m_Name: Switch Player Key
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: aee90a43-03d9-4d04-a6a7-8639251f83ec
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
