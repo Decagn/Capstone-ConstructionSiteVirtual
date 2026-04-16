@@ -18,10 +18,6 @@ public class FirstPersonController : MonoBehaviour
     // The speed at which the player moves through the scene, measured in Unity units per second.
     public float moveSpeed = 5f;
 
-    // Gravity value applied to the player each frame.
-    // Currently unused in fly mode but kept for future ground-based movement.
-    public float gravity = -9.81f;
-
     [Header("Look")]
     // Controls how fast the camera rotates in response to mouse movement.
     // Higher values = more sensitive, lower values = smoother.
@@ -34,10 +30,6 @@ public class FirstPersonController : MonoBehaviour
     // Reference to the CharacterController component used to move the player.
     // Retrieved automatically in Start().
     private CharacterController _cc;
-
-    // Stores the player's current vertical velocity, used for gravity calculations.
-    // Currently unused in fly mode but retained for future use.
-    private Vector3 _velocity;
 
     // Tracks the current vertical rotation (pitch) of the camera in degrees.
     // Clamped to prevent the player from rotating past straight up or straight down.
@@ -93,7 +85,7 @@ public class FirstPersonController : MonoBehaviour
 
         // Clamp the vertical rotation so the player cannot look further than
         // 80 degrees up or 80 degrees down, preventing a full vertical flip.
-        _xRotation = Mathf.Clamp(_xRotation, -80f, 80f);
+        _xRotation = Mathf.Clamp(_xRotation, -89f, 89f);
 
         // Apply the clamped vertical rotation to the Camera transform only.
         // Using localRotation keeps the camera rotation relative to the player body.
