@@ -11,15 +11,29 @@ public class InputListener : MonoBehaviour
     public event Action<Vector2> OnClick;
     private InputAction _clickButton;
 
-    public void Initialise(InputAction clickButton)
+    public event Action OnDeselectLastPoint;
+    private InputAction _deselectButton;
+
+    public event Action OnResetMeasurement;
+    private InputAction _resetButton;
+
+    public void Initialise(InputAction clickButton, InputAction deselectButton, InputAction resetButton)
     {
         SetClickButton(clickButton);
         _clickButton.Enable();
+
+        SetDeselectButton(deselectButton);
+        _deselectButton.Enable();
+
+        SetResetButton(resetButton);
+        _resetButton.Enable();
     }
 
     private void OnDisable()
     {
         _clickButton?.Disable();
+        _deselectButton?.Disable();
+        _resetButton?.Disable();
     }
     private void Update()
     {
@@ -27,14 +41,32 @@ public class InputListener : MonoBehaviour
         {
             OnClick?.Invoke(GetClickPosition());
         }
+        else if (_deselectButton.WasPressedThisFrame())
+        {
+            OnDeselectLastPoint?.Invoke();
+        }
+        else if (_resetButton.WasPressedThisFrame())
+        {
+            OnResetMeasurement?.Invoke();
+        }
     }
     private Vector2 GetClickPosition()
     {
         return Mouse.current.position.ReadValue();
     }
 
-    public void SetClickButton(InputAction button)
+    private void SetClickButton(InputAction button)
     {
         _clickButton = button;
+    }
+
+    private void SetResetButton(InputAction button)
+    {
+        _resetButton = button;
+    }
+
+    private void SetDeselectButton(InputAction button)
+    {
+        _deselectButton = button;
     }
 }

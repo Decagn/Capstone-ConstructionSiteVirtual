@@ -524,6 +524,79 @@ LightProbeGroup:
   - {x: 7.1518564, y: 2.7763042, z: -11.2319765}
   - {x: 8.993203, y: 2.3566551, z: -8.796325}
   m_Dering: 1
+--- !u!1001 &878117974
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1213468298058124273, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
+      propertyPath: _resetButton.m_Name
+      value: Reset Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 1213468298058124273, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
+      propertyPath: _resetButton.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1213468298058124273, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
+      propertyPath: _resetButton.m_SingletonActionBindings.Array.data[1].m_Id
+      value: fb31733e-5660-4aec-a07a-467992f072e4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1213468298058124273, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
+      propertyPath: _resetButton.m_SingletonActionBindings.Array.data[1].m_Action
+      value: Reset Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570402492178290136, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -14.84682
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570402492178290136, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.43263
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570402492178290136, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.49105
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570402492178290136, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570402492178290136, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570402492178290136, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570402492178290136, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570402492178290136, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570402492178290136, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570402492178290136, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6307293760908830091, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
+      propertyPath: m_Name
+      value: MeasurementTools
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
 --- !u!1 &1028513131
 GameObject:
   m_ObjectHideFlags: 0
@@ -654,79 +727,6 @@ ReflectionProbe:
   m_UseOcclusionCulling: 1
   m_Importance: 1
   m_CustomBakedTexture: {fileID: 0}
---- !u!1001 &1847563403
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1213468298058124273, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
-      propertyPath: _lineMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: a4f37d8277c9eb2489ac21562a07a02a, type: 2}
-    - target: {fileID: 1213468298058124273, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
-      propertyPath: _tapeMeasureIcon
-      value: 
-      objectReference: {fileID: 1269478077, guid: 349095e3650957d438a85a9346b35736, type: 3}
-    - target: {fileID: 1213468298058124273, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
-      propertyPath: _crosshairsSprite
-      value: 
-      objectReference: {fileID: 325422570, guid: 1c6e21dd5e09ab1458346e3a6b8c9cb7, type: 3}
-    - target: {fileID: 1213468298058124273, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
-      propertyPath: _pointMarkerPrefab
-      value: 
-      objectReference: {fileID: 2292414266416149384, guid: 979e39e5e5bcb4f40ae6f76c16c9a10e, type: 3}
-    - target: {fileID: 1570402492178290136, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -9.26575
-      objectReference: {fileID: 0}
-    - target: {fileID: 1570402492178290136, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -11.54603
-      objectReference: {fileID: 0}
-    - target: {fileID: 1570402492178290136, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1.7903
-      objectReference: {fileID: 0}
-    - target: {fileID: 1570402492178290136, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1570402492178290136, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1570402492178290136, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1570402492178290136, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1570402492178290136, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1570402492178290136, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1570402492178290136, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6307293760908830091, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
-      propertyPath: m_Name
-      value: MeasurementTools
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5f7ebb2a4d1e2984e900888aeffa5ca7, type: 3}
 --- !u!1001 &1979352518
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1156,4 +1156,4 @@ SceneRoots:
   - {fileID: 2156563007799739152}
   - {fileID: 1979352518}
   - {fileID: 746329221}
-  - {fileID: 1847563403}
+  - {fileID: 878117974}
