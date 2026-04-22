@@ -8,12 +8,13 @@ public class TapeMeasure : MonoBehaviour, IMeasurementTool
         get => "Tape Measure";
     }
     public Sprite ToolIcon { get; set; }
+    [SerializeField] private Sprite Icon;
     public MeasurementType CurrentMeasurement { get; set; }
     public List<MeasurementType> StoredMeasurements {get; set;}
 
-    public void Initialise(Sprite toolIcon)
+    public void Initialise()
     {
-        ToolIcon = toolIcon;
+        SetIcon(Icon);
         CurrentMeasurement = new Length(new Vector3(0, 0, 0), new Vector3(0, 0, 0));
         StoredMeasurements = new List<MeasurementType>();
     }
@@ -26,5 +27,10 @@ public class TapeMeasure : MonoBehaviour, IMeasurementTool
         CurrentMeasurement = newLength;
         StoredMeasurements.Add(newLength);
         return true;
+    }
+
+    public void SetIcon(Sprite icon)
+    {
+        ToolIcon = icon;
     }
 }

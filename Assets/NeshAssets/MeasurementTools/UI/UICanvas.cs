@@ -10,7 +10,7 @@ public class UICanvas : MonoBehaviour
     private GameObject _canvasObj;
     private Canvas _canvas;
 
-    private void Awake()
+    private void Start()
     {
         SubscribeToToolHandler();
         CreateCanvas();

@@ -8,11 +8,11 @@ public class MeasurementToolHandler : MonoBehaviour
 {
     [SerializeField] private UserInputHandler _inputHandler;
     [SerializeField] private PointSelectionHandler _pointsHandler;
-
-    [SerializeField] private Sprite _tapeMeasureIcon;
-    [SerializeField] private Sprite _protractorIcon;
+    [SerializeField] private TapeMeasure _tapeMeasure;
+    [SerializeField] private Protractor _protractor;
 
     private List<IMeasurementTool> _toolBelt = new List<IMeasurementTool>();
+
     private IMeasurementTool _activeTool;
     int _activeToolIndex = -1;
 
@@ -39,14 +39,10 @@ public class MeasurementToolHandler : MonoBehaviour
 
     private void InitialiseToolBelt()
     {
-        TapeMeasure tapeMeasure = gameObject.AddComponent<TapeMeasure>();
-        tapeMeasure.Initialise(_tapeMeasureIcon);
-        _toolBelt.Add(tapeMeasure);
-
-        Protractor protractor = gameObject.AddComponent<Protractor>();
-        protractor.Initialise(_protractorIcon);
-        _toolBelt.Add(protractor);
-
+        _tapeMeasure.Initialise();
+        _protractor.Initialise();
+        _toolBelt.Add(_tapeMeasure);
+        _toolBelt.Add(_protractor);
         _activeToolIndex = 0;
         SwitchToTool(_activeToolIndex);
     }
