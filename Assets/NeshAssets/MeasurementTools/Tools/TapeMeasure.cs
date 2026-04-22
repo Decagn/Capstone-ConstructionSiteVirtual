@@ -12,7 +12,7 @@ public class TapeMeasure : MonoBehaviour, IMeasurementTool
     public MeasurementType CurrentMeasurement { get; set; }
     public List<MeasurementType> StoredMeasurements {get; set;}
 
-    public void Initialise()
+    public void Awake()
     {
         SetIcon(Icon);
         CurrentMeasurement = new Length(new Vector3(0, 0, 0), new Vector3(0, 0, 0));

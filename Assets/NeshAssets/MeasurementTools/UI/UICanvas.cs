@@ -10,11 +10,14 @@ public class UICanvas : MonoBehaviour
     private GameObject _canvasObj;
     private Canvas _canvas;
 
-    private void Start()
+    private void Awake()
     {
         SubscribeToToolHandler();
         CreateCanvas();
+    }
 
+    private void DrawUI()
+    {
         _crosshairs.Draw(_canvas);
         _text.Draw(_canvas);
         _icon.Draw(_canvas);
@@ -51,6 +54,7 @@ public class UICanvas : MonoBehaviour
         _toolHandler.OnSwitchTool += SwitchTool;
         _toolHandler.OnSelectedPointsResettedManually += HandleSelectedPointsReset;
         _toolHandler.OnDeselectLastPoint += HandleSelectedPointsReset;
+        _toolHandler.OnToolBeltInitialised += DrawUI;
     }
     private void UnsubscribedFromToolHandler()
     {
@@ -58,5 +62,6 @@ public class UICanvas : MonoBehaviour
         _toolHandler.OnSwitchTool -= SwitchTool;
         _toolHandler.OnSelectedPointsResettedManually -= HandleSelectedPointsReset;
         _toolHandler.OnDeselectLastPoint -= HandleSelectedPointsReset;
+        _toolHandler.OnToolBeltInitialised -= DrawUI;
     }
 }

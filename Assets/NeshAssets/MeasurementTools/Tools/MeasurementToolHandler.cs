@@ -21,6 +21,7 @@ public class MeasurementToolHandler : MonoBehaviour
     public event Action<float, IMeasurementTool> OnMeasurementUpdated;
     public event Action<IMeasurementTool> OnSelectedPointsResettedManually;
     public event Action<IMeasurementTool> OnDeselectLastPoint;
+    public event Action OnToolBeltInitialised;
 
     private List<Vector3> _selectedPoints = new List<Vector3>();
     private bool wasMeasurementUpdated = false;
@@ -39,11 +40,10 @@ public class MeasurementToolHandler : MonoBehaviour
 
     private void InitialiseToolBelt()
     {
-        _tapeMeasure.Initialise();
-        _protractor.Initialise();
         _toolBelt.Add(_tapeMeasure);
         _toolBelt.Add(_protractor);
         _activeToolIndex = 0;
+        OnToolBeltInitialised?.Invoke();
         SwitchToTool(_activeToolIndex);
     }
     private void SwitchToTool(int index)
