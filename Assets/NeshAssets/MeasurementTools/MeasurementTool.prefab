@@ -177,7 +177,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeasurementToolHandler
   _inputHandler: {fileID: 5890552465658935170}
-  _pointsHandler: {fileID: 4249273147747718876}
   _tapeMeasure: {fileID: 2505192994232459899}
   _protractor: {fileID: 6402933561591008267}
 --- !u!114 &2505192994232459899
@@ -310,7 +309,6 @@ GameObject:
   m_Component:
   - component: {fileID: 258666207469936143}
   - component: {fileID: 5890552465658935170}
-  - component: {fileID: 4249273147747718876}
   m_Layer: 0
   m_Name: Input
   m_TagString: Untagged
@@ -390,16 +388,3 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
---- !u!114 &4249273147747718876
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7558543888685590894}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ce93164c38f73946a4b9a3ccb5ae396, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PointSelectionHandler
-  _inputHandler: {fileID: 5890552465658935170}

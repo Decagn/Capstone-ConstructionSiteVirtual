@@ -7,7 +7,6 @@ using UnityEngine.Rendering;
 public class MeasurementToolHandler : MonoBehaviour
 {
     [SerializeField] private UserInputHandler _inputHandler;
-    [SerializeField] private PointSelectionHandler _pointsHandler;
     [SerializeField] private TapeMeasure _tapeMeasure;
     [SerializeField] private Protractor _protractor;
 
@@ -29,13 +28,11 @@ public class MeasurementToolHandler : MonoBehaviour
     private void Awake()
     {
         SubscribeToInputHandler();
-        SubscribeToPointHandler();
         InitialiseToolBelt();
     }
     private void OnDisable()
     {
         UnsubscribeFromInputHandler();
-        UnsubscribedFromPointHandler();
     }
 
     private void InitialiseToolBelt()
@@ -66,6 +63,13 @@ public class MeasurementToolHandler : MonoBehaviour
         SwitchToTool(_activeToolIndex);
     }
 
+    private void TrySelectPoint(Vector2 pointOnScreen)
+    {
+        Vector3 newPoint = PointSelector.TrySelectPoint(pointOnScreen);
+        if (newPoint == null || newPoint == Vector3.zero) return;
+
+        HandleSelectedPoint(newPoint);
+    }
     private void HandleSelectedPoint(Vector3 point)
     {
         if (wasMeasurementUpdated) ResetSelectedPoints();
@@ -105,6 +109,7 @@ public class MeasurementToolHandler : MonoBehaviour
     {
         if (_inputHandler != null)
         {
+            _inputHandler.OnSelectPoint += TrySelectPoint;
             _inputHandler.OnSwitchNextTool += SwitchToNextTool;
             _inputHandler.OnSwitchPrevTool += SwitchtoPrevTool;
             _inputHandler.OnDeselectLastPoint += DeselectLastPoint;
@@ -115,24 +120,11 @@ public class MeasurementToolHandler : MonoBehaviour
     {
         if (_inputHandler != null)
         {
+            _inputHandler.OnSelectPoint -= TrySelectPoint;
             _inputHandler.OnSwitchNextTool -= SwitchToNextTool;
             _inputHandler.OnSwitchPrevTool -= SwitchtoPrevTool;
             _inputHandler.OnDeselectLastPoint -= DeselectLastPoint;
             _inputHandler.OnResetSelectedPoints -= ResetSelectedPoints;
-        }
-    }
-    private void SubscribeToPointHandler()
-    {
-        if (_pointsHandler != null)
-        {
-            _pointsHandler.OnPointSelected += HandleSelectedPoint;
-        }
-    }
-    private void UnsubscribedFromPointHandler()
-    { 
-        if (_pointsHandler != null)
-        {
-            _pointsHandler.OnPointSelected -= HandleSelectedPoint;
         }
     }
 }
