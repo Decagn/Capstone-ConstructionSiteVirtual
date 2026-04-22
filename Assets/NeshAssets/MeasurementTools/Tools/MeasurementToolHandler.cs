@@ -10,6 +10,9 @@ public class MeasurementToolHandler : MonoBehaviour
     [SerializeField] private TapeMeasure _tapeMeasure;
     [SerializeField] private Protractor _protractor;
 
+    [SerializeField] private bool _enableSnapping = true;
+    [SerializeField] private float _snapDistance = 0.2f;
+
     private List<IMeasurementTool> _toolBelt = new List<IMeasurementTool>();
 
     private IMeasurementTool _activeTool;
@@ -65,7 +68,7 @@ public class MeasurementToolHandler : MonoBehaviour
 
     private void TrySelectPoint(Vector2 pointOnScreen)
     {
-        Vector3 newPoint = PointSelector.TrySelectPoint(pointOnScreen);
+        Vector3 newPoint = PointSelector.TrySelectPoint(pointOnScreen, _selectedPoints, _enableSnapping, _snapDistance);
         if (newPoint == null || newPoint == Vector3.zero) return;
 
         HandleSelectedPoint(newPoint);
