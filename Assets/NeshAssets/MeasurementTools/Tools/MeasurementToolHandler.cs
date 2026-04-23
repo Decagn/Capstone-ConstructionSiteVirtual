@@ -9,6 +9,7 @@ public class MeasurementToolHandler : MonoBehaviour
     [SerializeField] private UserInputHandler _inputHandler;
     [SerializeField] private TapeMeasure _tapeMeasure;
     [SerializeField] private Protractor _protractor;
+    [SerializeField] private MultiAngleRuler _multiAngleRuler;
 
     [SerializeField] private bool _enableSnapping = true;
     [SerializeField] private float _snapDistance = 0.2f;
@@ -17,9 +18,9 @@ public class MeasurementToolHandler : MonoBehaviour
     private IMeasurementTool _activeTool;
     int _activeToolIndex = -1;
 
-    public event Action<Vector3> OnPointSelected;
+    public event Action<IMeasurementTool, Vector3> OnPointSelected;
     public event Action<IMeasurementTool> OnSwitchTool;
-    public event Action<float, IMeasurementTool> OnMeasurementUpdated;
+    public event Action<IMeasurementTool, float> OnMeasurementUpdated;
     public event Action<IMeasurementTool> OnSelectedPointsResettedManually;
     public event Action<IMeasurementTool> OnDeselectLastPoint;
     public event Action OnToolBeltInitialised;
@@ -41,6 +42,7 @@ public class MeasurementToolHandler : MonoBehaviour
     {
         _toolBelt.Add(_tapeMeasure);
         _toolBelt.Add(_protractor);
+        _toolBelt.Add(_multiAngleRuler);
         _activeToolIndex = 0;
         OnToolBeltInitialised?.Invoke();
         SwitchToTool(_activeToolIndex);
@@ -67,18 +69,19 @@ public class MeasurementToolHandler : MonoBehaviour
 
     private void TrySelectPoint(Vector2 pointOnScreen)
     {
-        Vector3 newPoint = PointSelector.TrySelectPoint(pointOnScreen, _selectedPoints, _enableSnapping, _snapDistance);
-        bool pointIsInvalid = (newPoint == null || newPoint == Vector3.zero);
-        if (pointIsInvalid) return;
+        Vector3 point = PointSelector.TrySelectPoint(pointOnScreen, _selectedPoints, _enableSnapping, _snapDistance);
 
-        HandleSelectedPoint(newPoint);
+        bool invalidPoint = (point == null || point == Vector3.zero);
+        if (invalidPoint) return;
+
+        HandleSelectedPoint(point);
     }
     private void HandleSelectedPoint(Vector3 point)
     {
-        if (wasMeasurementUpdated) ResetSelectedPoints();
+        if (wasMeasurementUpdated && _activeTool is not MultiAngleRuler) ResetSelectedPoints();
 
         _selectedPoints.Add(point);
-        OnPointSelected?.Invoke(point);
+        OnPointSelected?.Invoke(_activeTool, point);
 
         bool MeasurementCreated = _activeTool.CreateMeasurement(_selectedPoints);
         if (!MeasurementCreated)
@@ -90,7 +93,7 @@ public class MeasurementToolHandler : MonoBehaviour
         wasMeasurementUpdated = true;
         float newMeasurement = _activeTool.CurrentMeasurement.value;
         Debug.Log($"MeasurementToolHandler: {_activeTool.ToolName} just measured {newMeasurement}");
-        OnMeasurementUpdated?.Invoke(newMeasurement, _activeTool);
+        OnMeasurementUpdated?.Invoke(_activeTool, newMeasurement);
     }
     private void DeselectLastPoint()
     {

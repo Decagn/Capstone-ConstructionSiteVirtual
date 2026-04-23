@@ -22,26 +22,26 @@ public class Visualiser : MonoBehaviour
         UnsubscribeFromToolHandler();
     }
 
-    private void HandleSelectedPoint(Vector3 point)
+    private void HandleSelectedPoint(IMeasurementTool activeTool, Vector3 point)
     {
         _selectedPoints.Add(point);
-        UpdateVisuals();
+        UpdateVisuals(activeTool);
     }
-    private void ResetSelectedPoints(IMeasurementTool tool)
+    private void ResetSelectedPoints(IMeasurementTool activeTool)
     {
         _selectedPoints.Clear();
-        UpdateVisuals();
+        UpdateVisuals(activeTool);
     }
-    private void DeselectLastPoint(IMeasurementTool tool)
+    private void DeselectLastPoint(IMeasurementTool activeTool)
     {
         if (_selectedPoints.Count < 1) return;
         _selectedPoints.RemoveAt(_selectedPoints.Count - 1);
-        UpdateVisuals();
+        UpdateVisuals(activeTool);
     }
-    private void UpdateVisuals()
+    private void UpdateVisuals(IMeasurementTool activeTool)
     {
         _markers.CreateMarkers(_selectedPoints);
-        _lines.CreateLines(_selectedPoints);
+        _lines.CreateLines(_selectedPoints, activeTool);
         _arcs.CreateArcs(_selectedPoints);
     }
 

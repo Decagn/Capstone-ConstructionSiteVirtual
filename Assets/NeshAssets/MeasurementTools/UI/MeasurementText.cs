@@ -30,7 +30,7 @@ public class MeasurementText : MonoBehaviour
 
     public void UpdateText(float newMeasurement, IMeasurementTool tool)
     {
-        if (tool is TapeMeasure) _text.text = $"{newMeasurement:F2}m";
+        if (tool is TapeMeasure || tool is MultiAngleRuler) _text.text = $"{newMeasurement:F2}m";
         else if (tool is Protractor) _text.text = $"{newMeasurement:F1}°";
     }
 
@@ -38,5 +38,6 @@ public class MeasurementText : MonoBehaviour
     {
         if (tool is TapeMeasure) _text.text = "select two points";
         else if (tool is Protractor) _text.text = "select three points";
+        else if (tool is MultiAngleRuler) _text.text = "select two or more points";
     }
 }

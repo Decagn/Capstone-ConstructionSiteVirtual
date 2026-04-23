@@ -24,17 +24,17 @@ public class Lines : MonoBehaviour
         }
     }
 
-    public void CreateLines(List<Vector3> points)
+    public void CreateLines(List<Vector3> points,  IMeasurementTool activeTool)
     {
         Clear();
         if (points.Count < 2) return;
 
         for (int line = 0; line < points.Count - 1; line++)
         {
-            CreateAt(points[line], points[line + 1]);
+            CreateLineAt(points[line], points[line + 1]);
         }
     }
-    private void CreateAt(Vector3 pointA, Vector3 pointB)
+    private void CreateLineAt(Vector3 pointA, Vector3 pointB)
     {
         GameObject lineObject = new GameObject($"MeasurementTools:line");
         _lines.Add(lineObject);

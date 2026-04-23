@@ -34,7 +34,7 @@ public class UICanvas : MonoBehaviour
         _canvas.renderMode = RenderMode.ScreenSpaceOverlay;
     }
 
-    private void HandleNewMeasurement(float newMeasurement, IMeasurementTool tool)
+    private void HandleNewMeasurement(IMeasurementTool tool, float newMeasurement)
     {
         _text.UpdateText(newMeasurement, tool);
     }
