@@ -131,10 +131,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MeasurementTool
       objectReference: {fileID: 0}
-    - target: {fileID: 3018444761180936768, guid: 64b990e82c829b94fa9e5327d158d0d0, type: 3}
-      propertyPath: _firstToolIcon
-      value: 
-      objectReference: {fileID: 896567409, guid: 4a496f5ff5352b84a83fc6db3a461c37, type: 3}
     - target: {fileID: 5506046769581216139, guid: 64b990e82c829b94fa9e5327d158d0d0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -14.84682
@@ -175,12 +171,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8612815384222124981, guid: 64b990e82c829b94fa9e5327d158d0d0, type: 3}
-      propertyPath: _enableSnapping
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4249273147747718876, guid: 64b990e82c829b94fa9e5327d158d0d0, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

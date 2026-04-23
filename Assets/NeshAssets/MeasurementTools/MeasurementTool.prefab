@@ -179,6 +179,8 @@ MonoBehaviour:
   _inputHandler: {fileID: 5890552465658935170}
   _tapeMeasure: {fileID: 2505192994232459899}
   _protractor: {fileID: 6402933561591008267}
+  _enableSnapping: 1
+  _snapDistance: 0.2
 --- !u!114 &2505192994232459899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,6 +286,8 @@ MonoBehaviour:
   _lineMaterial: {fileID: 2100000, guid: e5ff8bd16c5a38b45824335655bf5185, type: 2}
   _lineThickness: 0.02
   _lineColor: {r: 0, g: 1, b: 0, a: 1}
+  _popupSize: 0.01
+  _popupMaterial: {fileID: 2100000, guid: b8bfa5e88b9b5e243914bf0af33266f3, type: 2}
 --- !u!114 &6425654465779196420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -299,6 +303,8 @@ MonoBehaviour:
   _arcMaterial: {fileID: 2100000, guid: e5ff8bd16c5a38b45824335655bf5185, type: 2}
   _arcThickness: 0.02
   _arcColor: {r: 0, g: 1, b: 0, a: 1}
+  _popupSize: 0.01
+  _popupMaterial: {fileID: 2100000, guid: b8bfa5e88b9b5e243914bf0af33266f3, type: 2}
 --- !u!1 &7558543888685590894
 GameObject:
   m_ObjectHideFlags: 0
