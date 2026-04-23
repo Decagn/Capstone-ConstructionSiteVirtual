@@ -14,7 +14,6 @@ public class MeasurementToolHandler : MonoBehaviour
     [SerializeField] private float _snapDistance = 0.2f;
 
     private List<IMeasurementTool> _toolBelt = new List<IMeasurementTool>();
-
     private IMeasurementTool _activeTool;
     int _activeToolIndex = -1;
 
@@ -69,7 +68,8 @@ public class MeasurementToolHandler : MonoBehaviour
     private void TrySelectPoint(Vector2 pointOnScreen)
     {
         Vector3 newPoint = PointSelector.TrySelectPoint(pointOnScreen, _selectedPoints, _enableSnapping, _snapDistance);
-        if (newPoint == null || newPoint == Vector3.zero) return;
+        bool pointIsInvalid = (newPoint == null || newPoint == Vector3.zero);
+        if (pointIsInvalid) return;
 
         HandleSelectedPoint(newPoint);
     }
@@ -107,7 +107,6 @@ public class MeasurementToolHandler : MonoBehaviour
         OnSelectedPointsResettedManually?.Invoke(_activeTool);
     }
 
-    
     private void SubscribeToInputHandler()
     {
         if (_inputHandler != null)
