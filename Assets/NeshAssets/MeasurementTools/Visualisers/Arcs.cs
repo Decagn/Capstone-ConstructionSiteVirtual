@@ -9,7 +9,7 @@ public class Arcs : MonoBehaviour
     [SerializeField] private float _arcThickness = 0.02f;
     [SerializeField] private Color _arcColor = Color.green;
 
-    [SerializeField] private float _popupSize = 0.01f;
+    [SerializeField] private float _popupSize = 0.05f;
     [SerializeField] private Material _popupMaterial;
 
     /*

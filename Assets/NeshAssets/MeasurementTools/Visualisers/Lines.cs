@@ -10,7 +10,7 @@ public class Lines : MonoBehaviour
     [SerializeField] private float _lineThickness = 0.02f;
     [SerializeField] private Color _lineColor = Color.green;
 
-    [SerializeField] private float _popupSize = 0.01f;
+    [SerializeField] private float _popupSize = 0.005f;
     [SerializeField] private Material _popupMaterial;
 
     private List<GameObject> _lines = new List<GameObject>();
