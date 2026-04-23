@@ -4,6 +4,7 @@ using UnityEngine;
 public class PointMarkers : MonoBehaviour
 {
     [SerializeField] private GameObject _markerPrefab;
+    [SerializeField] private float _pointMarkerSize = 0.075f;
     private List<GameObject> _markers = new List<GameObject>();
 
     public void CreateMarkers(List<Vector3> points)
@@ -15,6 +16,7 @@ public class PointMarkers : MonoBehaviour
     {
         GameObject pointMarker = Instantiate(_markerPrefab);
         pointMarker.transform.position = point;
+        pointMarker.transform.localScale = new Vector3(_pointMarkerSize, _pointMarkerSize, _pointMarkerSize);
         _markers.Add(pointMarker);
     }
     private void Clear()
