@@ -15,7 +15,7 @@ public class MultiAngleRuler : MonoBehaviour, IMeasurementTool
     public void Awake()
     {
         SetIcon(Icon);
-        CurrentMeasurement = new Angle(new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0));
+        CurrentMeasurement = new Angles(new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0));
         StoredMeasurements = new List<MeasurementType>();
     }
 
@@ -23,7 +23,7 @@ public class MultiAngleRuler : MonoBehaviour, IMeasurementTool
     {
         if (points.Count < 2) return false;
 
-        Length newLength = new Length(points[points.Count - 1], points[points.Count - 2]);
+        Lengths newLength = new Lengths(points[points.Count - 1], points[points.Count - 2]);
         CurrentMeasurement = newLength;
         StoredMeasurements.Add(CurrentMeasurement);
 

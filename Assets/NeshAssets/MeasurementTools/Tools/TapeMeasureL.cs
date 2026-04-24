@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TapeMeasure : MonoBehaviour, IMeasurementTool
+public class TapeMeasureL : MonoBehaviour, IMeasurementTool
 {
     public string ToolName
     {
@@ -15,7 +15,7 @@ public class TapeMeasure : MonoBehaviour, IMeasurementTool
     public void Awake()
     {
         SetIcon(Icon);
-        CurrentMeasurement = new Length(new Vector3(0, 0, 0), new Vector3(0, 0, 0));
+        CurrentMeasurement = new Lengths(new Vector3(0, 0, 0), new Vector3(0, 0, 0));
         StoredMeasurements = new List<MeasurementType>();
     }
 
@@ -23,7 +23,7 @@ public class TapeMeasure : MonoBehaviour, IMeasurementTool
     {
         if (points.Count < 2) return false;
 
-        Length newLength = new Length(points[0], points[1]);
+        Lengths newLength = new Lengths(points[0], points[1]);
         CurrentMeasurement = newLength;
         StoredMeasurements.Add(newLength);
         return true;

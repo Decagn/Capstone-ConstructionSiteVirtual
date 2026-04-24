@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Protractor : MonoBehaviour, IMeasurementTool
+public class ProtractorL : MonoBehaviour, IMeasurementTool
 {
     public string ToolName
     {
@@ -15,7 +15,7 @@ public class Protractor : MonoBehaviour, IMeasurementTool
     public void Awake()
     {
         SetIcon(Icon);
-        CurrentMeasurement = new Angle(new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0));
+        CurrentMeasurement = new Angles(new Vector3(0, 0, 0), new Vector3(0, 0, 0), new Vector3(0, 0, 0));
         StoredMeasurements = new List<MeasurementType>();
     }
 
@@ -23,7 +23,7 @@ public class Protractor : MonoBehaviour, IMeasurementTool
     {
         if (points.Count < 3) return false;
 
-        Angle newAngle = new Angle(points[0], points[1], points[2]);
+        Angles newAngle = new Angles(points[0], points[1], points[2]);
         CurrentMeasurement = newAngle;
         StoredMeasurements.Add(newAngle);
         return true;

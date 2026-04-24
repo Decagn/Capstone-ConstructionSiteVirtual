@@ -7,8 +7,8 @@ using UnityEngine.Rendering;
 public class MeasurementToolHandler : MonoBehaviour
 {
     [SerializeField] private UserInputHandler _inputHandler;
-    [SerializeField] private TapeMeasure _tapeMeasure;
-    [SerializeField] private Protractor _protractor;
+    [SerializeField] private TapeMeasureL _tapeMeasure;
+    [SerializeField] private ProtractorL _protractor;
     [SerializeField] private MultiAngleRuler _multiAngleRuler;
 
     [SerializeField] private bool _enableSnapping = true;

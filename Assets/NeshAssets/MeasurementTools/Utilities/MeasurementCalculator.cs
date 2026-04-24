@@ -7,12 +7,12 @@ public class MeasurementType
     public float value;
 }
 
-public class Length : MeasurementType
+public class Lengths : MeasurementType
 {
     public Vector3 pointA { get; private set; }
     public Vector3 pointB { get; private set; }
 
-    public Length(Vector3 pointA, Vector3 pointB)
+    public Lengths(Vector3 pointA, Vector3 pointB)
     {
         this.pointA = pointA;
         this.pointB = pointB;
@@ -21,12 +21,12 @@ public class Length : MeasurementType
     public float Calc(Vector3 pointA, Vector3 pointB) => Vector3.Distance(pointA, pointB);
 }
 
-public class Angle : MeasurementType    
+public class Angles : MeasurementType    
 {
     public Vector3 pointA { get; private set; }
     public Vector3 vertex { get; private set; }
     public Vector3 pointB { get; private set; }
-    public Angle(Vector3 pointA, Vector3 vertex, Vector3 pointB)
+    public Angles(Vector3 pointA, Vector3 vertex, Vector3 pointB)
     {
         this.pointA = pointA;
         this.pointB = pointB;
