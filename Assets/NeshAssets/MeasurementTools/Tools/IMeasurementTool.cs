@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,6 +13,6 @@ public interface IMeasurementTool
      * [SYSTEM DESIGN]
      * CreateMeasurement returns true if measurement is sucessfully created.
      */
-    void Initialise(Sprite toolIcon);
     bool CreateMeasurement(List<Vector3> points);
+    void SetIcon(Sprite icon);
 }

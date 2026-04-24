@@ -14,7 +14,10 @@ public class UICanvas : MonoBehaviour
     {
         SubscribeToToolHandler();
         CreateCanvas();
+    }
 
+    private void DrawUI()
+    {
         _crosshairs.Draw(_canvas);
         _text.Draw(_canvas);
         _icon.Draw(_canvas);
@@ -31,7 +34,7 @@ public class UICanvas : MonoBehaviour
         _canvas.renderMode = RenderMode.ScreenSpaceOverlay;
     }
 
-    private void HandleNewMeasurement(float newMeasurement, IMeasurementTool tool)
+    private void HandleNewMeasurement(IMeasurementTool tool, float newMeasurement)
     {
         _text.UpdateText(newMeasurement, tool);
     }
@@ -51,6 +54,7 @@ public class UICanvas : MonoBehaviour
         _toolHandler.OnSwitchTool += SwitchTool;
         _toolHandler.OnSelectedPointsResettedManually += HandleSelectedPointsReset;
         _toolHandler.OnDeselectLastPoint += HandleSelectedPointsReset;
+        _toolHandler.OnToolBeltInitialised += DrawUI;
     }
     private void UnsubscribedFromToolHandler()
     {
@@ -58,5 +62,6 @@ public class UICanvas : MonoBehaviour
         _toolHandler.OnSwitchTool -= SwitchTool;
         _toolHandler.OnSelectedPointsResettedManually -= HandleSelectedPointsReset;
         _toolHandler.OnDeselectLastPoint -= HandleSelectedPointsReset;
+        _toolHandler.OnToolBeltInitialised -= DrawUI;
     }
 }

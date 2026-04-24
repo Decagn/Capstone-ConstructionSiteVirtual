@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Protractor : MonoBehaviour, IMeasurementTool
+public class MultiAngleRuler : MonoBehaviour, IMeasurementTool
 {
     public string ToolName
     {
-        get => "Protractor";
+        get => "Multi-angle Ruler";
     }
     public Sprite ToolIcon { get; set; }
     [SerializeField] private Sprite Icon;
@@ -21,11 +21,12 @@ public class Protractor : MonoBehaviour, IMeasurementTool
 
     public bool CreateMeasurement(List<Vector3> points)
     {
-        if (points.Count < 3) return false;
+        if (points.Count < 2) return false;
 
-        Angle newAngle = new Angle(points[0], points[1], points[2]);
-        CurrentMeasurement = newAngle;
-        StoredMeasurements.Add(newAngle);
+        Length newLength = new Length(points[points.Count - 1], points[points.Count - 2]);
+        CurrentMeasurement = newLength;
+        StoredMeasurements.Add(CurrentMeasurement);
+
         return true;
     }
 

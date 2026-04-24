@@ -7,20 +7,23 @@ using UnityEngine.Rendering;
 public class MeasurementToolHandler : MonoBehaviour
 {
     [SerializeField] private UserInputHandler _inputHandler;
-    [SerializeField] private PointSelectionHandler _pointsHandler;
+    [SerializeField] private TapeMeasure _tapeMeasure;
+    [SerializeField] private Protractor _protractor;
+    [SerializeField] private MultiAngleRuler _multiAngleRuler;
 
-    [SerializeField] private Sprite _tapeMeasureIcon;
-    [SerializeField] private Sprite _protractorIcon;
+    [SerializeField] private bool _enableSnapping = true;
+    [SerializeField] private float _snapDistance = 0.2f;
 
     private List<IMeasurementTool> _toolBelt = new List<IMeasurementTool>();
     private IMeasurementTool _activeTool;
     int _activeToolIndex = -1;
 
-    public event Action<Vector3> OnPointSelected;
+    public event Action<IMeasurementTool, Vector3> OnPointSelected;
     public event Action<IMeasurementTool> OnSwitchTool;
-    public event Action<float, IMeasurementTool> OnMeasurementUpdated;
+    public event Action<IMeasurementTool, float> OnMeasurementUpdated;
     public event Action<IMeasurementTool> OnSelectedPointsResettedManually;
     public event Action<IMeasurementTool> OnDeselectLastPoint;
+    public event Action OnToolBeltInitialised;
 
     private List<Vector3> _selectedPoints = new List<Vector3>();
     private bool wasMeasurementUpdated = false;
@@ -28,26 +31,20 @@ public class MeasurementToolHandler : MonoBehaviour
     private void Awake()
     {
         SubscribeToInputHandler();
-        SubscribeToPointHandler();
         InitialiseToolBelt();
     }
     private void OnDisable()
     {
         UnsubscribeFromInputHandler();
-        UnsubscribedFromPointHandler();
     }
 
     private void InitialiseToolBelt()
     {
-        TapeMeasure tapeMeasure = gameObject.AddComponent<TapeMeasure>();
-        tapeMeasure.Initialise(_tapeMeasureIcon);
-        _toolBelt.Add(tapeMeasure);
-
-        Protractor protractor = gameObject.AddComponent<Protractor>();
-        protractor.Initialise(_protractorIcon);
-        _toolBelt.Add(protractor);
-
+        _toolBelt.Add(_tapeMeasure);
+        _toolBelt.Add(_protractor);
+        _toolBelt.Add(_multiAngleRuler);
         _activeToolIndex = 0;
+        OnToolBeltInitialised?.Invoke();
         SwitchToTool(_activeToolIndex);
     }
     private void SwitchToTool(int index)
@@ -70,12 +67,21 @@ public class MeasurementToolHandler : MonoBehaviour
         SwitchToTool(_activeToolIndex);
     }
 
+    private void TrySelectPoint(Vector2 pointOnScreen)
+    {
+        Vector3 point = PointSelector.TrySelectPoint(pointOnScreen, _selectedPoints, _enableSnapping, _snapDistance);
+
+        bool invalidPoint = (point == null || point == Vector3.zero);
+        if (invalidPoint) return;
+
+        HandleSelectedPoint(point);
+    }
     private void HandleSelectedPoint(Vector3 point)
     {
-        if (wasMeasurementUpdated) ResetSelectedPoints();
+        if (wasMeasurementUpdated && _activeTool is not MultiAngleRuler) ResetSelectedPoints();
 
         _selectedPoints.Add(point);
-        OnPointSelected?.Invoke(point);
+        OnPointSelected?.Invoke(_activeTool, point);
 
         bool MeasurementCreated = _activeTool.CreateMeasurement(_selectedPoints);
         if (!MeasurementCreated)
@@ -87,7 +93,7 @@ public class MeasurementToolHandler : MonoBehaviour
         wasMeasurementUpdated = true;
         float newMeasurement = _activeTool.CurrentMeasurement.value;
         Debug.Log($"MeasurementToolHandler: {_activeTool.ToolName} just measured {newMeasurement}");
-        OnMeasurementUpdated?.Invoke(newMeasurement, _activeTool);
+        OnMeasurementUpdated?.Invoke(_activeTool, newMeasurement);
     }
     private void DeselectLastPoint()
     {
@@ -104,11 +110,11 @@ public class MeasurementToolHandler : MonoBehaviour
         OnSelectedPointsResettedManually?.Invoke(_activeTool);
     }
 
-    
     private void SubscribeToInputHandler()
     {
         if (_inputHandler != null)
         {
+            _inputHandler.OnSelectPoint += TrySelectPoint;
             _inputHandler.OnSwitchNextTool += SwitchToNextTool;
             _inputHandler.OnSwitchPrevTool += SwitchtoPrevTool;
             _inputHandler.OnDeselectLastPoint += DeselectLastPoint;
@@ -119,24 +125,11 @@ public class MeasurementToolHandler : MonoBehaviour
     {
         if (_inputHandler != null)
         {
+            _inputHandler.OnSelectPoint -= TrySelectPoint;
             _inputHandler.OnSwitchNextTool -= SwitchToNextTool;
             _inputHandler.OnSwitchPrevTool -= SwitchtoPrevTool;
             _inputHandler.OnDeselectLastPoint -= DeselectLastPoint;
             _inputHandler.OnResetSelectedPoints -= ResetSelectedPoints;
-        }
-    }
-    private void SubscribeToPointHandler()
-    {
-        if (_pointsHandler != null)
-        {
-            _pointsHandler.OnPointSelected += HandleSelectedPoint;
-        }
-    }
-    private void UnsubscribedFromPointHandler()
-    { 
-        if (_pointsHandler != null)
-        {
-            _pointsHandler.OnPointSelected -= HandleSelectedPoint;
         }
     }
 }

@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Arcs : MonoBehaviour
@@ -6,6 +8,9 @@ public class Arcs : MonoBehaviour
     [SerializeField] private Material _arcMaterial;
     [SerializeField] private float _arcThickness = 0.02f;
     [SerializeField] private Color _arcColor = Color.green;
+
+    [SerializeField] private float _popupSize = 0.005f;
+    [SerializeField] private Material _popupMaterial;
 
     /*
      * SYSTEM DESIGN
@@ -20,6 +25,15 @@ public class Arcs : MonoBehaviour
     private float _arcPositionRatio = 0.3f;
 
     private List<GameObject> _arcs = new List<GameObject>();
+    private List<GameObject> _popups = new List<GameObject>();
+
+    private void LateUpdate()
+    {
+        foreach (GameObject popup in _popups)
+        {
+            popup.transform.forward = Camera.main.transform.forward;
+        }
+    }
 
     public void CreateArcs(List<Vector3> points)
     {
@@ -59,6 +73,31 @@ public class Arcs : MonoBehaviour
             Vector3 bezierPoint = GetQuadraticBezierPoint(t, startPoint, endPoint, controlPoint);
             arcRenderer.SetPosition(seg, bezierPoint);
         }
+
+        CreatePopup(arcObject, pointA, vertex, pointB);
+    }
+    private void CreatePopup(GameObject line, Vector3 pointA, Vector3 vertex, Vector3 pointB)
+    {
+        GameObject popup = new GameObject("MeasurementTool:Visualiser:LinePopup");
+        popup.transform.SetParent(line.transform);
+        _popups.Add(popup);
+
+        RectTransform rect = popup.AddComponent<RectTransform>();
+        rect.transform.localPosition = vertex;
+        rect.localScale = new Vector3(_popupSize, _popupSize, _popupSize);
+
+        Canvas popupCanvas = popup.AddComponent<Canvas>();
+        popupCanvas.sortingOrder = 100;
+        popupCanvas.renderMode = RenderMode.WorldSpace;
+        popupCanvas.worldCamera = Camera.main;
+
+        TextMeshProUGUI text = popupCanvas.AddComponent<TextMeshProUGUI>();
+        text.fontSize = 20;
+        text.alignment = TextAlignmentOptions.Center;
+        text.color = Color.white;
+        float measurement = Calculator.MeasureAngle(pointA, vertex, pointB);
+        text.text = $"{measurement:F1}°";
+        text.fontSharedMaterial = _popupMaterial;
     }
     public void Clear()
     {
@@ -67,6 +106,11 @@ public class Arcs : MonoBehaviour
             Destroy(arc);
         }
         _arcs.Clear();
+        foreach (GameObject popup in _popups)
+        {
+            Destroy(popup);
+        }
+        _popups.Clear();
     }
 
     private void SetLineAppearance(LineRenderer lineRenderer)
