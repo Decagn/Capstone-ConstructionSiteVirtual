@@ -9,6 +9,7 @@ public class PlayerManager : MonoBehaviour
     //Array of player prefabs that can be spawned in the scene. This allows for easy switching between different player controllers (e.g. first person, third person, etc.) without changing code.
     [Header("Player Prefabs")]
     [SerializeField] private GameObject[] playerPrefabs;
+    [SerializeField] private Camera playerCamera;
 
     private GameObject currentPlayer;
     private int currentPlayerIndex = 0;
@@ -26,9 +27,8 @@ public class PlayerManager : MonoBehaviour
     // Switches to the next player prefab in array after destroying current player prefab.
     public void SwitchPlayer()
     {
-        GameObject player = GameObject.FindWithTag("MainCamera");
         Destroy(currentPlayer);
         currentPlayerIndex = (currentPlayerIndex + 1) % playerPrefabs.Length;
-        currentPlayer = Instantiate(playerPrefabs[currentPlayerIndex], player.transform.position, Quaternion.identity);
+        currentPlayer = Instantiate(playerPrefabs[currentPlayerIndex], playerCamera.transform.position, Quaternion.identity);
     }
 }
