@@ -69,7 +69,7 @@ public class MeasurementToolHandler : MonoBehaviour
 
     private void TrySelectPoint(Vector2 pointOnScreen)
     {
-        Vector3 point = PointSelector.TrySelectPoint(pointOnScreen, _selectedPoints, _enableSnapping, _snapDistance);
+        Vector3 point = PointSelectorL.TrySelectPoint(pointOnScreen, _selectedPoints, _enableSnapping, _snapDistance);
 
         bool invalidPoint = (point == null || point == Vector3.zero);
         if (invalidPoint) return;

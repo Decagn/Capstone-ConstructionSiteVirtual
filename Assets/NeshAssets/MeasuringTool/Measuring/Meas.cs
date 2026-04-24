@@ -2,6 +2,7 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
+using System;
 
 /*
  * [SYSTEM DESIGN]
@@ -37,6 +38,14 @@ public struct Meas : IMeas
         return true;
     }
 
+    public bool RemoveLastQuantity()
+    {
+        if (_quantities == null || _quantities.Count < 1) return false;
+
+        _quantities.RemoveAt(_quantities.Count - 1);
+        return true;
+    }
+
     public bool AddPoint (Vector3 point)
     {
         if (_points == null) return false;
@@ -44,4 +53,16 @@ public struct Meas : IMeas
         _points.Add(point);
         return true;
     }
+
+    public bool RemoveLastPoint()
+    {
+        if (_points == null || _points.Count < 1) return false;
+
+        _points.RemoveAt(_points.Count - 1);
+        return true;
+    }
+
+    public Type GetToolType() => _tool.GetType();
+    public List<Vector3> GetPoints() => _points;
+    public List<IQuantity> GetQuantities() => _quantities;
 }

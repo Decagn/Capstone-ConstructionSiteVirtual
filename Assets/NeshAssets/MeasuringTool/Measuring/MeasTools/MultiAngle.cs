@@ -1,31 +1,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MultiAngle : IMeasTool
+public class MultiAngle : MonoBehaviour, IMeasTool
 {
+    [SerializeField] Sprite icon;
     public string Name
     {
         get => "MultiAngle";
     }
-    public Sprite ToolIcon { get; }
+    public Sprite ToolIcon { get; set; }
     public List<Vector3> SelecPoints { get; private set; }
 
-    private Meas multiMeas;
-    private bool multiMeasInit = false;
+    private Meas _multiMeas;
+    private bool _multiMeasInit = false;
+
+    private void Awake()
+    {
+        SetIcon();
+    }
 
     public Meas TakeMeas()
     {
-        if (!multiMeasInit)
+        if (!_multiMeasInit)
         {
             Length length = MeasLength();
-            multiMeas = new Meas(this, SelecPoints, length);
-            return multiMeas;
+            _multiMeas = new Meas(this, SelecPoints, length);
+            _multiMeasInit = true;
+            return _multiMeas;
         }
 
-        multiMeas.AddPoint(SelecPoints[SelecPoints.Count - 1]);
-        multiMeas.AddQuantity(MeasLength());
-        multiMeas.AddQuantity(MeasAngle());
-        return multiMeas;
+        _multiMeas.AddPoint(SelecPoints[SelecPoints.Count - 1]);
+        _multiMeas.AddQuantity(MeasLength());
+        _multiMeas.AddQuantity(MeasAngle());
+        return _multiMeas;
     }
 
     private Length MeasLength()
@@ -58,5 +65,21 @@ public class MultiAngle : IMeasTool
         else SelecPoints.RemoveRange(0, SelecPoints.Count - 3);
 
         return meas;
+    }
+
+    public bool ResetAllPoints()
+    {
+        if (SelecPoints == null || SelecPoints.Count == 0) return false;
+
+        SelecPoints.Clear();
+
+        _multiMeasInit = false;
+
+        return true;
+    }
+
+    public void SetIcon()
+    {
+        ToolIcon = icon;
     }
 }

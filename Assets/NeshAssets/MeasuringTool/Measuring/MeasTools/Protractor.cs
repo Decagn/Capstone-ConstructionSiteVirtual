@@ -1,14 +1,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Protractor : IMeasTool
+public class Protractor : MonoBehaviour, IMeasTool
 {
+    [SerializeField] Sprite icon;
     public string Name
     {
         get => "Protractor";
     }
-    public Sprite ToolIcon { get; }
+    public Sprite ToolIcon { get; set; }
     public List<Vector3> SelecPoints { get; private set; }
+
+    private void Awake()
+    {
+        SetIcon();
+    }
 
     public Meas TakeMeas()
     {
@@ -31,5 +37,10 @@ public class Protractor : IMeasTool
         Meas meas = TakeMeas();
         SelecPoints.Clear();
         return meas;
+    }
+
+    public void SetIcon()
+    {
+        ToolIcon = icon;
     }
 }

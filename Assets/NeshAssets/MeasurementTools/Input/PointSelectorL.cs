@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
 
-public static class PointSelector
+public static class PointSelectorL
 {
     /*
      * [SYSTEM DESIGN]

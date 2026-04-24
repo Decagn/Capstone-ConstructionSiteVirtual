@@ -6,32 +6,32 @@ public class InputListener : MonoBehaviour
 {
     public event Action<Vector2> OnSelectPoint;
     public event Action OnDeselectLastPoint;
-    public event Action OnResetSelectedPoints;
-    public event Action OnSwitchNextTool;
-    public event Action OnSwitchPrevTool;
+    public event Action OnResetAllPoints;
+    public event Action OnNextTool;
+    public event Action OnPrevTool;
 
     [SerializeField] private InputAction _selectPoint;
     [SerializeField] private InputAction _deselectLastPoint;
-    [SerializeField] private InputAction _resetSelectedPoints;
-    [SerializeField] private InputAction _switchNextTool;
-    [SerializeField] private InputAction _switchPrevTool;
+    [SerializeField] private InputAction _resetAllPoints;
+    [SerializeField] private InputAction _nextTool;
+    [SerializeField] private InputAction _prevTool;
 
     private void OnEnable()
     {
         _selectPoint.Enable();
         _deselectLastPoint.Enable();
-        _resetSelectedPoints.Enable();
-        _switchNextTool.Enable();
-        _switchPrevTool.Enable();
+        _resetAllPoints.Enable();
+        _nextTool.Enable();
+        _prevTool.Enable();
     }
 
     private void OnDisable()
     {
         _selectPoint.Disable();
         _deselectLastPoint.Disable();
-        _resetSelectedPoints.Disable();
-        _switchNextTool.Disable();
-        _switchPrevTool.Disable();
+        _resetAllPoints.Disable();
+        _nextTool.Disable();
+        _prevTool.Disable();
     }
 
     private void Awake()
@@ -43,9 +43,9 @@ public class InputListener : MonoBehaviour
     {
         if (_selectPoint.WasPressedThisFrame()) OnSelectPoint?.Invoke(GetClickPostion());
         else if (_deselectLastPoint.WasPressedThisFrame()) OnDeselectLastPoint?.Invoke();
-        else if (_resetSelectedPoints.WasPressedThisFrame()) OnResetSelectedPoints?.Invoke();
-        else if (_switchNextTool.WasPressedThisFrame()) OnSwitchNextTool?.Invoke();
-        else if (_switchPrevTool.WasPressedThisFrame()) OnSwitchPrevTool?.Invoke();
+        else if (_resetAllPoints.WasPressedThisFrame()) OnResetAllPoints?.Invoke();
+        else if (_nextTool.WasPressedThisFrame()) OnNextTool?.Invoke();
+        else if (_prevTool.WasPressedThisFrame()) OnPrevTool?.Invoke();
     }
 
     private Vector2 GetClickPostion() => Mouse.current.position.ReadValue();
@@ -58,8 +58,8 @@ public class InputListener : MonoBehaviour
     {
         AddDefaultBinding(_selectPoint, "<Mouse>/leftButton");
         AddDefaultBinding(_deselectLastPoint, "<Mouse>/rightButton");
-        AddDefaultBinding(_resetSelectedPoints, "<Keyboard>/r");
-        AddDefaultBinding(_switchNextTool, "<Mouse>/scroll/up");
-        AddDefaultBinding(_switchPrevTool, "<Mouse>/scroll/down");
+        AddDefaultBinding(_resetAllPoints, "<Keyboard>/r");
+        AddDefaultBinding(_nextTool, "<Mouse>/scroll/up");
+        AddDefaultBinding(_prevTool, "<Mouse>/scroll/down");
     }
 }
