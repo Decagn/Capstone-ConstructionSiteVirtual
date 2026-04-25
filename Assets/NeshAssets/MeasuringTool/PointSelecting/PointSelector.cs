@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class PointSelector : MonoBehaviour
 {
-    [SerializeField] float _furthestPoint = Mathf.Infinity;
+    [SerializeField] private float _furthestPoint = Mathf.Infinity;
 
-    [SerializeField] bool _snapping = true;
-    [SerializeField] float _snapDist = 0.5f;
-    [SerializeField] bool _inlineSnapping = true;
+    [SerializeField] private bool _snapping = true;
+
+    [SerializeField] private bool _snapToPreviousPoint = true;
+    [SerializeField] private float _snapToPreviousPointDistance = 0.5f;
+
+    [SerializeField] private bool _snapToInlinePoint = true;
+    [SerializeField] private float _snapToInlinePointDistance = 0.5f;
 
     public Vector3 GetPoint(Vector2 screenPoint, List<Vector3> selecPoints)
     {
@@ -29,15 +33,22 @@ public class PointSelector : MonoBehaviour
 
     private Vector3 GetSnapPoint(Vector3 point, List<Vector3> prevSelecPoints)
     {
-        List<Vector3> snapPoints = new List<Vector3>();
+        if (_snapToPreviousPoint)
+        {
+            Vector3 prevPoint = FindClosestPoint(point, prevSelecPoints);
+            bool inPrevSnapRange = Vector3.Distance(prevPoint, point) < _snapToPreviousPointDistance;
+            if (inPrevSnapRange) return prevPoint;
+        }
 
-        List<Vector3> inlinePoints = InlineSnapping.GetPoint(point, prevSelecPoints);
-        snapPoints.AddRange(inlinePoints);
+        if (_snapToInlinePoint)
+        {
+            List<Vector3> inlinePoints = InlineSnapping.GetPoints(point, prevSelecPoints);
+            Vector3 inlinePoint = FindClosestPoint(point, inlinePoints);
+            bool inInlineSnapRange = Vector3.Distance(inlinePoint, point) < _snapToInlinePointDistance;
+            if (inInlineSnapRange) return inlinePoint;
+        }
 
-        Vector3 snapPoint = FindClosestPoint(point, snapPoints);
-        bool inSnappingRange = Vector3.Distance(point, snapPoint) <= _snapDist;
-
-        return inSnappingRange ? snapPoint : point;
+        return point;
     }
 
     public static Vector3 FindClosestPoint(Vector3 point, List<Vector3> candidatePoints)
@@ -47,10 +58,11 @@ public class PointSelector : MonoBehaviour
 
         foreach (Vector3 candidate in candidatePoints)
         {
-            float candidateDisance = Vector3.Distance(candidate, point);
-            if (candidateDisance < distance)
+            float candidateDistance = Vector3.Distance(candidate, point);
+            Debug.Log($"Candidate poing: {candidate} --> {candidateDistance}");
+            if (candidateDistance < distance)
             {
-                distance = candidateDisance;
+                distance = candidateDistance;
                 closest = candidate;
             }
         }

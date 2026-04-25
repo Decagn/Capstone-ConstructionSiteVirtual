@@ -27,6 +27,7 @@ public class MeasManager : MonoBehaviour
     private List<IMeasTool> _tools = new List<IMeasTool>();
     private IMeasTool _activeTool;
     private int _activeToolIdx = -1;
+    private List<Vector3> empty = new List<Vector3>();
 
     public event Action OnToolSwitch;
 
@@ -70,6 +71,7 @@ public class MeasManager : MonoBehaviour
 
         _activeToolIdx = toolIdx;
         _activeTool = _tools[toolIdx];
+        ResetAllPoints();
         OnToolSwitch?.Invoke();
 
         if (_debugMode) MeasDebug.Log($"Active tool switched --> {_activeTool.Name}", "MeasManager");
@@ -80,6 +82,8 @@ public class MeasManager : MonoBehaviour
     #region Point Selecting
     [SerializeField] private PointSelector _selector;
 
+    public event Action<List<Vector3>> OnSelecPoint;
+
     private void SelectPoint(Vector2 screenPoint)
     {
         if (_selector == null || _activeTool == null) return;
@@ -89,6 +93,8 @@ public class MeasManager : MonoBehaviour
         if (_debugMode) MeasDebug.Log($"Point selected {point}", "MeasManager");
 
         IMeas meas = _activeTool.TakePoint(point);
+        OnSelecPoint?.Invoke(_activeTool.GetPoints());
+
         HandleMeas(meas);
     }
     private void DeselectLastPoint()
@@ -96,12 +102,15 @@ public class MeasManager : MonoBehaviour
         if (_activeTool == null) return;
 
         _activeTool.RemoveLastPoint();
+        OnSelecPoint?.Invoke(_activeTool.GetPoints());
     }
     private void ResetAllPoints()
     {
         if (_activeTool == null) return;
 
+        HandleMeas(new InvalidMeas());
         _activeTool.ResetAllPoints();
+        OnSelecPoint?.Invoke(_activeTool.GetPoints());
     }
     #endregion
 
@@ -109,11 +118,19 @@ public class MeasManager : MonoBehaviour
     private MeasLogBook _logBook = new MeasLogBook();
     private IMeas _currMeas = new InvalidMeas();
 
+    public event Action<List<Vector3>> OnMeasCreated;
+
     private void HandleMeas(IMeas meas)
     {
-        if (meas is InvalidMeas) return;
-
         _currMeas = meas;
+
+        if (meas is InvalidMeas)
+        {
+            OnMeasCreated?.Invoke(empty);
+            return;
+        }
+
+        OnMeasCreated?.Invoke(((Meas)_currMeas).GetPoints());
         _logBook.Add((Meas)meas);
     }
     #endregion
@@ -149,5 +166,6 @@ public class MeasManager : MonoBehaviour
 
     #region Getters
     public Sprite GetActiveToolIcon() => _activeTool.ToolIcon;
+    public Meas GetCurrMeas() => (Meas)_currMeas;
     #endregion
 }

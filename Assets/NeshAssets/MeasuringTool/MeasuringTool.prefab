@@ -185,6 +185,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3758496067436006675}
+  - component: {fileID: 5690539300345493789}
+  - component: {fileID: 6950847621728583363}
+  - component: {fileID: 4407354015636283721}
   m_Layer: 0
   m_Name: UserInterface
   m_TagString: Untagged
@@ -207,6 +210,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5593440744876338489}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5690539300345493789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3390134912461505672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 580bea204bd945a4a9b7f6dbbfc47867, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MeasInterface
+  _manager: {fileID: 5642809437804885357}
+  _icons: {fileID: 4407354015636283721}
+  _crosshairs: {fileID: 6950847621728583363}
+--- !u!114 &6950847621728583363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3390134912461505672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93a70ee6f0d983c4799b509a7eead3eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MeasCrosshairs
+  _size: 64
+  _sprite: {fileID: 1499295055, guid: 63aa897335b03ea418ca34123d32497e, type: 3}
+--- !u!114 &4407354015636283721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3390134912461505672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2de6d62dabaa28a48af2e004937a7a7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MeasToolIcons
+  _size: 64
+  _horizontalPosition: -40
+  _verticalPosition: 40
 --- !u!1 &4039446924187318823
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,6 +372,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PointSelector
   _furthestPoint: Infinity
+  _snapping: 1
+  _snapDist: 0.5
+  _inlineSnapping: 1
 --- !u!1 &8916388793641693610
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,6 +384,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3123098165376888324}
+  - component: {fileID: 1709133683589038613}
   m_Layer: 0
   m_Name: MeasurementVisualising
   m_TagString: Untagged
@@ -356,3 +407,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5593440744876338489}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1709133683589038613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8916388793641693610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62f568f562f369a4eb91dcc7d092e5bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MeasVisualiser
+  _manager: {fileID: 5642809437804885357}
+  _markerPrefab: {fileID: 2292414266416149384, guid: 9de8aecfc65b7fe41b9b84c42bd28e87, type: 3}
+  _markerNewPrefab: {fileID: 2292414266416149384, guid: 75993325fcb240146a626d6b1022703d, type: 3}
+  _markerSize: 0.075
+  _lineMaterial: {fileID: 2100000, guid: a09a1b35d577cc548bbcac869f621dc7, type: 2}
+  _lineWidth: 0.02
+  _arcMaterial: {fileID: 2100000, guid: a09a1b35d577cc548bbcac869f621dc7, type: 2}
+  _arcWidth: 0.02
+  _popupMaterial: {fileID: 2100000, guid: 7025e01c3fae449498ad1b8fc427d17e, type: 2}
+  _popupSize: 0.005

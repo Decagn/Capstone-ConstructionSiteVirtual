@@ -257,55 +257,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0271df749728104eac22c3d897fd8ce, type: 3}
---- !u!1 &815955122 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3390134912461505672, guid: e065d4ebd90bde440b86126e18992f2d, type: 3}
-  m_PrefabInstance: {fileID: 1084669144}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &815955124
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 815955122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 580bea204bd945a4a9b7f6dbbfc47867, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MeasInterface
-  _manager: {fileID: 2062588540}
-  _icons: {fileID: 815955125}
-  _crosshairs: {fileID: 815955126}
---- !u!114 &815955125
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 815955122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2de6d62dabaa28a48af2e004937a7a7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MeasToolIcons
-  _size: 64
-  _horizontalPosition: -40
-  _verticalPosition: 40
---- !u!114 &815955126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 815955122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93a70ee6f0d983c4799b509a7eead3eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MeasCrosshairs
-  _size: 64
-  _sprite: {fileID: 1499295055, guid: 63aa897335b03ea418ca34123d32497e, type: 3}
 --- !u!1 &874605735
 GameObject:
   m_ObjectHideFlags: 0
@@ -650,6 +601,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MeasuringTool
       objectReference: {fileID: 0}
+    - target: {fileID: 2288648364338387633, guid: e065d4ebd90bde440b86126e18992f2d, type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 988880166, guid: 38f0d88dd3aa19541940a172589478e6, type: 3}
     - target: {fileID: 5593440744876338489, guid: e065d4ebd90bde440b86126e18992f2d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.05121
@@ -690,19 +645,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8426167649295053671, guid: e065d4ebd90bde440b86126e18992f2d, type: 3}
+      propertyPath: _snapDist
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8426167649295053671, guid: e065d4ebd90bde440b86126e18992f2d, type: 3}
+      propertyPath: _inlineSnapping
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3390134912461505672, guid: e065d4ebd90bde440b86126e18992f2d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 815955124}
-    - targetCorrespondingSourceObject: {fileID: 3390134912461505672, guid: e065d4ebd90bde440b86126e18992f2d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 815955126}
-    - targetCorrespondingSourceObject: {fileID: 3390134912461505672, guid: e065d4ebd90bde440b86126e18992f2d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 815955125}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e065d4ebd90bde440b86126e18992f2d, type: 3}
 --- !u!1 &1660830617 stripped
 GameObject:
@@ -946,17 +900,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2062588540 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5642809437804885357, guid: e065d4ebd90bde440b86126e18992f2d, type: 3}
-  m_PrefabInstance: {fileID: 1084669144}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20781286a1209734288a647f1b0d4c6b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MeasManager
 --- !u!1001 &2084445384
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -979,7 +922,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8345070699079395522, guid: 09aade0ecefd01e4b8f7661acf64f5c2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -9.49
       objectReference: {fileID: 0}
     - target: {fileID: 8345070699079395522, guid: 09aade0ecefd01e4b8f7661acf64f5c2, type: 3}
       propertyPath: m_LocalRotation.w

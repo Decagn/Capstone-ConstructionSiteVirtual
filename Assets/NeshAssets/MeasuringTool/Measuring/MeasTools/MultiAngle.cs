@@ -62,8 +62,8 @@ public class MultiAngle : MonoBehaviour, IMeasTool
 
         Meas meas = TakeMeas();
 
-        if (SelecPoints.Count < 3) SelecPoints.RemoveRange(0, SelecPoints.Count - 2);
-        else SelecPoints.RemoveRange(0, SelecPoints.Count - 3);
+        //if (SelecPoints.Count < 3) SelecPoints.RemoveRange(0, SelecPoints.Count - 2);
+        //else SelecPoints.RemoveRange(0, SelecPoints.Count - 3);
 
         return meas;
     }
