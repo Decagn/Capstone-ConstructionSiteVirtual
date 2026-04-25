@@ -84,7 +84,7 @@ public class MeasManager : MonoBehaviour
     {
         if (_selector == null || _activeTool == null) return;
 
-        Vector3 point = _selector.GetPoint(screenPoint);
+        Vector3 point = _selector.GetPoint(screenPoint, _activeTool.GetPoints());
         if (point == null || point == Vector3.zero) return;
         if (_debugMode) MeasDebug.Log($"Point selected {point}", "MeasManager");
 

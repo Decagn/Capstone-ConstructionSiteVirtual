@@ -17,6 +17,7 @@ public class MultiAngle : MonoBehaviour, IMeasTool
     private void Awake()
     {
         SetIcon();
+        SelecPoints = new List<Vector3>();
     }
 
     public Meas TakeMeas()

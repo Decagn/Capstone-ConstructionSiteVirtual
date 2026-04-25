@@ -7,6 +7,7 @@ public interface IMeasTool
     string Name { get; }
     Sprite ToolIcon { get; set; }
     List<Vector3> SelecPoints { get; }
+
     Meas TakeMeas();
     IMeas TakePoint(Vector3 point);
     bool RemoveLastPoint()
@@ -24,4 +25,5 @@ public interface IMeasTool
         return true;
     }
     void SetIcon();
+    List<Vector3> GetPoints() => SelecPoints;
 }
