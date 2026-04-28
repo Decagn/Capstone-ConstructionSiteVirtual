@@ -170,10 +170,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20781286a1209734288a647f1b0d4c6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeasManager
+  _lessonCreationMode: 1
   _debugMode: 1
   _tapeMeasure: {fileID: 831246951141306700}
   _protractor: {fileID: 677553937851382220}
   _multiTool: {fileID: 2288648364338387633}
+  _laser: {fileID: 2800773507086650687}
   _selector: {fileID: 8426167649295053671}
   _listener: {fileID: 1639801139679357197}
 --- !u!1 &3390134912461505672
@@ -266,6 +268,7 @@ GameObject:
   - component: {fileID: 831246951141306700}
   - component: {fileID: 677553937851382220}
   - component: {fileID: 2288648364338387633}
+  - component: {fileID: 2800773507086650687}
   m_Layer: 0
   m_Name: Tools
   m_TagString: Untagged
@@ -326,7 +329,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e77824371b030c142bc924cdfe40dbed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MultiAngle
-  icon: {fileID: 0}
+  icon: {fileID: 988880166, guid: 38f0d88dd3aa19541940a172589478e6, type: 3}
+--- !u!114 &2800773507086650687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4039446924187318823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7ae62cd85e7c254097846b4120983f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::POILaser
+  icon: {fileID: -1790785179, guid: 7a3db8f121982c24aaffbe4a6fbbd2ad, type: 3}
 --- !u!1 &5257160936050389001
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,8 +389,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PointSelector
   _furthestPoint: Infinity
   _snapping: 1
-  _snapDist: 0.5
-  _inlineSnapping: 1
+  _snapToPreviousPoint: 1
+  _snapToPreviousPointDistance: 0.5
+  _snapToInlinePoint: 1
+  _snapToInlinePointDistance: 0.5
 --- !u!1 &8916388793641693610
 GameObject:
   m_ObjectHideFlags: 0

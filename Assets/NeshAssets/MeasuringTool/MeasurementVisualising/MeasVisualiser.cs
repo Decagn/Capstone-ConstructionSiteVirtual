@@ -42,31 +42,32 @@ public class MeasVisualiser : MonoBehaviour
         foreach (GameObject marker in _markers) Destroy(marker);
         _markers.Clear();
 
-        foreach (Vector3 point in points) _markers.Add(CreateMarker(point, _markerPrefab));
+        foreach (Vector3 point in points) _markers.Add(CreateMarker(point, _markerPrefab, _markerSize));
     }
     private void CreateNewMarkers(List<Vector3> points)
     {
         foreach (GameObject marker in _markersNew) Destroy(marker);
         _markersNew.Clear();
 
-        foreach (Vector3 point in points) _markersNew.Add(CreateMarker(point, _markerNewPrefab));
+        foreach (Vector3 point in points) _markersNew.Add(CreateMarker(point, _markerNewPrefab, _markerSize * 0.99f));
     }
-    private GameObject CreateMarker(Vector3 point, GameObject markerPrefab)
+    private GameObject CreateMarker(Vector3 point, GameObject markerPrefab, float size)
     {
         GameObject marker = Instantiate(markerPrefab);
+        marker.transform.SetParent(transform);
         marker.transform.position = point;
-        marker.transform.localScale = new Vector3(_markerSize, _markerSize, _markerSize);
+        marker.transform.localScale = new Vector3(size, size, size);
         return marker;
     }
     private void ReadPointUpdates()
     {
-        _manager.OnMeasCreated += CreateMarkers;
         _manager.OnSelecPoint += CreateNewMarkers;
+        _manager.OnMeasCreated += CreateMarkers;
     }
     private void StopPointUpdates()
     {
-        _manager.OnMeasCreated -= CreateMarkers;
         _manager.OnSelecPoint -= CreateNewMarkers;
+        _manager.OnMeasCreated -= CreateMarkers;
     }
     #endregion
 
@@ -87,10 +88,10 @@ public class MeasVisualiser : MonoBehaviour
 
         for (int line = 0; line < points.Count - 1; line++)
         {
-            _lines.Add(CreateLine(points[line], points[line + 1], line));
+            _lines.Add(CreateLine(points[line], points[line + 1]));
         }
     }
-    private GameObject CreateLine(Vector3 pointA, Vector3 pointB, int lineNo)
+    private GameObject CreateLine(Vector3 pointA, Vector3 pointB)
     {
         GameObject lineObject = new GameObject($"MeasuringTool:line");
         lineObject.transform.SetParent(transform);

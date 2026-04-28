@@ -5,6 +5,7 @@ using System;
 
 public class MeasManager : MonoBehaviour
 {
+    [SerializeField] bool _lessonCreationMode = true;
     [SerializeField] bool _debugMode = true;
 
     #region Unity Lifecycle Events
@@ -23,6 +24,7 @@ public class MeasManager : MonoBehaviour
     [SerializeField] private TapeMeasure _tapeMeasure;
     [SerializeField] private Protractor _protractor;
     [SerializeField] private MultiAngle _multiTool;
+    [SerializeField] private POILaser _laser;
 
     private List<IMeasTool> _tools = new List<IMeasTool>();
     private IMeasTool _activeTool;
@@ -42,6 +44,8 @@ public class MeasManager : MonoBehaviour
         _tools.Add(_tapeMeasure);
         _tools.Add(_protractor);
         _tools.Add(_multiTool);
+        
+        if (_lessonCreationMode && _laser != null) _tools.Add(_laser);
 
         _activeToolIdx = _tools.IndexOf(_tapeMeasure);
         SwitchToolIdx(_activeToolIdx);
@@ -92,9 +96,8 @@ public class MeasManager : MonoBehaviour
         if (point == null || point == Vector3.zero) return;
         if (_debugMode) MeasDebug.Log($"Point selected {point}", "MeasManager");
 
-        IMeas meas = _activeTool.TakePoint(point);
+        IMeas meas = _activeTool.TakePoint(point); 
         OnSelecPoint?.Invoke(_activeTool.GetPoints());
-
         HandleMeas(meas);
     }
     private void DeselectLastPoint()
