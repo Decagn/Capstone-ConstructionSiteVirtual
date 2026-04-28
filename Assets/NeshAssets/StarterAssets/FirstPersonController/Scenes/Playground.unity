@@ -641,6 +641,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8426167649295053671, guid: e065d4ebd90bde440b86126e18992f2d, type: 3}
+      propertyPath: _previewPointSize
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 8426167649295053671, guid: e065d4ebd90bde440b86126e18992f2d, type: 3}
+      propertyPath: _previewGridPrefab
+      value: 
+      objectReference: {fileID: 2292414266416149384, guid: 4b4f14d06662b1b46b8938d085870c59, type: 3}
+    - target: {fileID: 8426167649295053671, guid: e065d4ebd90bde440b86126e18992f2d, type: 3}
+      propertyPath: _previewPointPrefab
+      value: 
+      objectReference: {fileID: 2292414266416149384, guid: b920f623919d77b44b59c084370450c2, type: 3}
+    - target: {fileID: 8426167649295053671, guid: e065d4ebd90bde440b86126e18992f2d, type: 3}
+      propertyPath: _snapToInlinePointDistance
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8426167649295053671, guid: e065d4ebd90bde440b86126e18992f2d, type: 3}
+      propertyPath: _snapToPreviousPointDistance
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

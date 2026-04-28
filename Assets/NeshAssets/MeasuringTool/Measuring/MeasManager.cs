@@ -170,5 +170,6 @@ public class MeasManager : MonoBehaviour
     #region Getters
     public Sprite GetActiveToolIcon() => _activeTool.ToolIcon;
     public Meas GetCurrMeas() => (Meas)_currMeas;
+    public List<Vector3> GetSelectedPoints() => _activeTool.GetPoints();
     #endregion
 }

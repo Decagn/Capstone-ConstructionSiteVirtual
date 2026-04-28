@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9216326220209799770}
   - component: {fileID: 670033302551451457}
   m_Layer: 0
-  m_Name: Marker
+  m_Name: previewPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
