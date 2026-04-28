@@ -390,13 +390,14 @@ MonoBehaviour:
   _furthestPoint: Infinity
   _snapping: 1
   _snapToPreviousPoint: 1
-  _snapToPreviousPointDistance: 0.5
+  _snapToPreviousPointDistance: 0.1
   _snapToInlinePoint: 1
-  _snapToInlinePointDistance: 0.5
+  _snapToInlinePointDistance: 0.1
   _measManager: {fileID: 5642809437804885357}
   previewPoint: 1
-  _previewPointPrefab: {fileID: 2292414266416149384, guid: 9de8aecfc65b7fe41b9b84c42bd28e87, type: 3}
-  _previewPointSize: 0.05
+  _previewGridPrefab: {fileID: 2292414266416149384, guid: 4b4f14d06662b1b46b8938d085870c59, type: 3}
+  _previewPointPrefab: {fileID: 2292414266416149384, guid: b920f623919d77b44b59c084370450c2, type: 3}
+  _previewPointSize: 0.03
 --- !u!1 &8916388793641693610
 GameObject:
   m_ObjectHideFlags: 0
