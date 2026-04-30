@@ -42,7 +42,6 @@ public class MeasInterface : MonoBehaviour
     }
     private void UpdateToolIcon()
     {
-        //if (!_iconsDrawn) DrawToolIcons();
         _icons.UpdateIcon(_manager.GetActiveToolIcon());
     }
     private void ReadToolSwitch()

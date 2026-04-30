@@ -25,5 +25,4 @@ public interface IMeasTool
         return true;
     }
     void SetIcon();
-    List<Vector3> GetPoints() => SelecPoints;
 }

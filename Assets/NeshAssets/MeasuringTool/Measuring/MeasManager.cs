@@ -92,12 +92,12 @@ public class MeasManager : MonoBehaviour
     {
         if (_selector == null || _activeTool == null) return;
 
-        Vector3 point = _selector.GetPoint(screenPoint, _activeTool.GetPoints());
+        Vector3 point = _selector.GetPoint(screenPoint, _activeTool.SelecPoints);
         if (point == null || point == Vector3.zero) return;
         if (_debugMode) MeasDebug.Log($"Point selected {point}", "MeasManager");
 
         IMeas meas = _activeTool.TakePoint(point); 
-        OnSelecPoint?.Invoke(_activeTool.GetPoints());
+        OnSelecPoint?.Invoke(_activeTool.SelecPoints);
         HandleMeas(meas);
     }
     private void DeselectLastPoint()
@@ -105,7 +105,7 @@ public class MeasManager : MonoBehaviour
         if (_activeTool == null) return;
 
         _activeTool.RemoveLastPoint();
-        OnSelecPoint?.Invoke(_activeTool.GetPoints());
+        OnSelecPoint?.Invoke(_activeTool.SelecPoints);
     }
     private void ResetAllPoints()
     {
@@ -113,7 +113,7 @@ public class MeasManager : MonoBehaviour
 
         HandleMeas(new InvalidMeas());
         _activeTool.ResetAllPoints();
-        OnSelecPoint?.Invoke(_activeTool.GetPoints());
+        OnSelecPoint?.Invoke(_activeTool.SelecPoints);
     }
     #endregion
 
@@ -170,6 +170,6 @@ public class MeasManager : MonoBehaviour
     #region Getters
     public Sprite GetActiveToolIcon() => _activeTool.ToolIcon;
     public Meas GetCurrMeas() => (Meas)_currMeas;
-    public List<Vector3> GetSelectedPoints() => _activeTool.GetPoints();
+    public List<Vector3> GetSelectedPoints() => _activeTool.SelecPoints;
     #endregion
 }
