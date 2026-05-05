@@ -112,7 +112,7 @@ public class PointSelector : MonoBehaviour
         foreach (Vector3 candidate in candidatePoints)
         {
             float candidateDistance = Vector3.Distance(candidate, point);
-            Debug.Log($"Candidate poing: {candidate} --> {candidateDistance}");
+            //Debug.Log($"Candidate point: {candidate} --> {candidateDistance}");
             if (candidateDistance < distance)
             {
                 distance = candidateDistance;

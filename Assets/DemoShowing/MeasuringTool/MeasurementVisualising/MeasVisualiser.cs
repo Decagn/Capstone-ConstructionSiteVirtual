@@ -48,7 +48,7 @@ public class MeasVisualiser : MonoBehaviour
     {
         foreach (GameObject marker in _markersNew) Destroy(marker);
         _markersNew.Clear();
-
+        if (points == null) return;
         foreach (Vector3 point in points) _markersNew.Add(CreateMarker(point, _markerNewPrefab, _markerSize * 0.99f));
     }
     private GameObject CreateMarker(Vector3 point, GameObject markerPrefab, float size)

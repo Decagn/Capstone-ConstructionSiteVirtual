@@ -556,6 +556,62 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 727f78c802393be4aab8eb5e8389b109, type: 3}
   m_PrefabInstance: {fileID: 757415039}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &255690889
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 255690891}
+  - component: {fileID: 255690890}
+  m_Layer: 0
+  m_Name: SceneSwitcher
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &255690890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 255690889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a2684066e2566740a9941b638986d01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneSwitcher
+  _sceneNames:
+  - DemoScene1
+  - DemoScene2
+  _switchScene:
+    m_Name: Switch Scene
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 0becdcce-c0ea-4e3b-97a8-25dd0db2b23c
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+--- !u!4 &255690891
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 255690889}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -155.4075, y: -39.49293, z: 338.69412}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &257052403
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -570,7 +626,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8583980819994353316, guid: 7c83f6e3f0b4a8142b9abcdadaf4729c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -182.72
+      value: -177.23
       objectReference: {fileID: 0}
     - target: {fileID: 8583980819994353316, guid: 7c83f6e3f0b4a8142b9abcdadaf4729c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -578,7 +634,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8583980819994353316, guid: 7c83f6e3f0b4a8142b9abcdadaf4729c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 313.45
+      value: 318.49
       objectReference: {fileID: 0}
     - target: {fileID: 8583980819994353316, guid: 7c83f6e3f0b4a8142b9abcdadaf4729c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3360,62 +3416,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 1770991870707850404, guid: 727f78c802393be4aab8eb5e8389b109, type: 3}
---- !u!1 &992763237
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 992763239}
-  - component: {fileID: 992763238}
-  m_Layer: 0
-  m_Name: SceneSwitcher
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &992763238
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 992763237}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2684066e2566740a9941b638986d01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SceneSwitcher
-  _sceneNames:
-  - DemoScene1
-  - DemoScene2
-  _switchScene:
-    m_Name: Switch Scene
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 8145a4d5-cb6f-4b06-a61a-6a4fc0dcefd4
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
---- !u!4 &992763239
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 992763237}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -153.89365, y: -39.99998, z: 346.152}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &995498903 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5316861831344923552, guid: 727f78c802393be4aab8eb5e8389b109, type: 3}
@@ -5687,4 +5687,4 @@ SceneRoots:
   - {fileID: 319400780}
   - {fileID: 1716299032}
   - {fileID: 1646215984}
-  - {fileID: 992763239}
+  - {fileID: 255690891}
