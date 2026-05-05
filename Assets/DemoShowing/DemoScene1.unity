@@ -5371,7 +5371,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8939579867590811620, guid: cd2c840af702cc84792bae6a9a393102, type: 3}
       propertyPath: m_Name
-      value: AustraliaAmbientSound
+      value: AmbientSoundNature
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
