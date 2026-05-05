@@ -655,7 +655,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8455921280631740844}
   m_Layer: 0
-  m_Name: AustraliaAmbientSound
+  m_Name: AmbientSoundNature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

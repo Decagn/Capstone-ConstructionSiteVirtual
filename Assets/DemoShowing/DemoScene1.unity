@@ -5321,6 +5321,63 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4442924138870357007, guid: 727f78c802393be4aab8eb5e8389b109, type: 3}
+--- !u!1001 &8507660652542406032
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8455921280631740844, guid: cd2c840af702cc84792bae6a9a393102, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10.3716
+      objectReference: {fileID: 0}
+    - target: {fileID: 8455921280631740844, guid: cd2c840af702cc84792bae6a9a393102, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.74929
+      objectReference: {fileID: 0}
+    - target: {fileID: 8455921280631740844, guid: cd2c840af702cc84792bae6a9a393102, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -11.02354
+      objectReference: {fileID: 0}
+    - target: {fileID: 8455921280631740844, guid: cd2c840af702cc84792bae6a9a393102, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8455921280631740844, guid: cd2c840af702cc84792bae6a9a393102, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8455921280631740844, guid: cd2c840af702cc84792bae6a9a393102, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8455921280631740844, guid: cd2c840af702cc84792bae6a9a393102, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8455921280631740844, guid: cd2c840af702cc84792bae6a9a393102, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8455921280631740844, guid: cd2c840af702cc84792bae6a9a393102, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8455921280631740844, guid: cd2c840af702cc84792bae6a9a393102, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8939579867590811620, guid: cd2c840af702cc84792bae6a9a393102, type: 3}
+      propertyPath: m_Name
+      value: AustraliaAmbientSound
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cd2c840af702cc84792bae6a9a393102, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -5328,5 +5385,6 @@ SceneRoots:
   - {fileID: 757415039}
   - {fileID: 257052403}
   - {fileID: 1251334230}
+  - {fileID: 8507660652542406032}
   - {fileID: 319400780}
   - {fileID: 2101423474}
