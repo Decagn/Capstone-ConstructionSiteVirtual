@@ -21,7 +21,7 @@ public class RenderText : MonoBehaviour
             Debug.Log("Could not locate scene Canvas during label generation");
         }
 
-        TextAsset txtData = (TextAsset)Resources.Load("MyText");
+        TextAsset txtData = (TextAsset)Resources.Load("Lesson Plans/MyText");
         LessonLabels labels = LessonLabels.CreateFromJSON(txtData.text);
         
         Debug.Log($"Model file: {labels.model}");
