@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -28,6 +29,13 @@ public class LoadModel : MonoBehaviour
         foreach (GameObject model in houseModels)
         {
             GameObject newModel = Instantiate<GameObject>(model, Vector3.zero, Quaternion.identity);
+
+            // Add collisions to all GameObjects in model
+            foreach (Transform child in newModel.transform)
+            {
+                child.AddComponent<BoxCollider>();
+            }
+
             houseModels.Append(newModel);
         }
 

@@ -19,7 +19,7 @@ public class TempMove : MonoBehaviour
 
         if (moveVal != Vector2.zero)
         {
-            this.transform.position += new Vector3(moveVal.x * Time.deltaTime, 0, moveVal.y * Time.deltaTime);
+            this.transform.Translate(new Vector3(moveVal.x * Time.deltaTime, 0, moveVal.y * Time.deltaTime), Space.World);
         }
     }
 }
