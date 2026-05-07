@@ -123,6 +123,7 @@ Transform:
   - {fileID: 3758496067436006675}
   - {fileID: 7365873022808702611}
   - {fileID: 3123098165376888324}
+  - {fileID: 5403498260457687358}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2510324775758055925
@@ -398,6 +399,68 @@ MonoBehaviour:
   _previewGridPrefab: {fileID: 2292414266416149384, guid: e6ac9e919ead683468053d2af5cf65d5, type: 3}
   _previewPointPrefab: {fileID: 2292414266416149384, guid: d0924105ef5ede846a3b200427c5b22b, type: 3}
   _previewPointSize: 0.03
+--- !u!1 &7151328860931948636
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5403498260457687358}
+  - component: {fileID: 2068044550451968841}
+  - component: {fileID: 4441627033369219689}
+  m_Layer: 0
+  m_Name: LessonSnapping
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5403498260457687358
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7151328860931948636}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5593440744876338489}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2068044550451968841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7151328860931948636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf3b466b875244a49b6fe2de383182f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LessonSnapManager
+  _visualiser: {fileID: 4441627033369219689}
+--- !u!114 &4441627033369219689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7151328860931948636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d95d92b50c8d90a448f3b16444c614ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LessonSnapVisualiser
+  _snapMarkerPrefab: {fileID: 2292414266416149384, guid: b12ef52fb7de95649b5d6241d47753a6, type: 3}
+  _markerSize: 0.075
+  _snapLineMaterial: {fileID: 2100000, guid: ded42c0ee93647347a90637de1cae7be, type: 2}
+  _lineWidth: 0.02
 --- !u!1 &8916388793641693610
 GameObject:
   m_ObjectHideFlags: 0

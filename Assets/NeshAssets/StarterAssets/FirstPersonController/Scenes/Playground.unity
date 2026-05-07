@@ -601,6 +601,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MeasuringTool
       objectReference: {fileID: 0}
+    - target: {fileID: 2068044550451968841, guid: 533eef8347a6f31449a9caa30a5d2245, type: 3}
+      propertyPath: _fileName
+      value: LessonSnapObjects
+      objectReference: {fileID: 0}
     - target: {fileID: 5593440744876338489, guid: 533eef8347a6f31449a9caa30a5d2245, type: 3}
       propertyPath: m_LocalPosition.x
       value: -166.46416
@@ -1151,6 +1155,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8616685848737228371, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+      propertyPath: GroundLayers.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8616685848737228372, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
       propertyPath: m_Name
       value: PlayerCapsule

@@ -12,6 +12,10 @@ public class PointSelector : MonoBehaviour
 
     [SerializeField] private bool _snapping = true;
 
+    [SerializeField] private LessonSnapManager _lessonSnapManager;
+    [SerializeField] private bool _snapToLessonPoint = true;
+    [SerializeField] private float _snapToLessonPointDistance = 0.5f;
+
     [SerializeField] private bool _snapToPreviousPoint = true;
     [SerializeField] private float _snapToPreviousPointDistance = 0.5f;
 
@@ -86,6 +90,14 @@ public class PointSelector : MonoBehaviour
 
     private Vector3 GetSnapPoint(Vector3 point, List<Vector3> prevSelecPoints)
     {
+        if (_snapToLessonPoint)
+        {
+            List<Vector3> LessonPoints = _lessonSnapManager.GetPoints();
+            Vector3 lessonPoint = FindClosestPoint(point, LessonPoints);
+            bool inLessonSnappingRange = Vector3.Distance(point, lessonPoint) < _snapToLessonPointDistance;
+            if (inLessonSnappingRange) return lessonPoint;
+        }
+
         if (_snapToPreviousPoint)
         {
             Vector3 prevPoint = FindClosestPoint(point, prevSelecPoints);
