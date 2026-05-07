@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -6,10 +5,11 @@ using UnityEngine;
 public class LoadModel : MonoBehaviour
 {
     GameObject[] houseModels;
+    Camera mainCamera;
 
-    void Start()
+    public GameObject[] loadModel()
     {
-        Camera mainCamera = Camera.main;
+        mainCamera = Camera.main;
 
         houseModels = Resources.LoadAll<GameObject>("House Models/");
 
@@ -23,12 +23,13 @@ public class LoadModel : MonoBehaviour
                 Debug.Log("Error: no house models found in expected location");
             }
 
-            return;
+            return houseModels;
         }
 
         foreach (GameObject model in houseModels)
         {
             GameObject newModel = Instantiate<GameObject>(model, Vector3.zero, Quaternion.identity);
+            newModel.SetActive(false);
 
             // Add collisions to all GameObjects in model
             foreach (Transform child in newModel.transform)
@@ -38,6 +39,13 @@ public class LoadModel : MonoBehaviour
 
             houseModels.Append(newModel);
         }
+
+        return houseModels;
+    }
+
+    private void EnableModel(GameObject model)
+    {
+        model.SetActive(true);
 
         // Disable all additional cameras within FBX models
         Camera[] allCameras = Camera.allCameras;
@@ -51,5 +59,21 @@ public class LoadModel : MonoBehaviour
         }
 
         mainCamera.enabled = true;
+    }
+
+   public void DisplayModel(string modelName)
+    {
+        // Enable correct model
+        GameObject currentModel = houseModels.Where(model => model.name == modelName).SingleOrDefault();
+
+        if (currentModel != null)
+        {
+            currentModel.SetActive(true);
+
+            EnableModel(currentModel);
+        } else
+        {
+            Debug.Log($"Selected model {modelName} not found");
+        }
     }
 }
