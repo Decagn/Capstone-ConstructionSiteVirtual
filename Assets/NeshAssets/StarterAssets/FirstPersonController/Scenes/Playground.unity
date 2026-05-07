@@ -605,6 +605,10 @@ PrefabInstance:
       propertyPath: _fileName
       value: LessonSnapObjects
       objectReference: {fileID: 0}
+    - target: {fileID: 4441627033369219689, guid: 533eef8347a6f31449a9caa30a5d2245, type: 3}
+      propertyPath: _markerSize
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 5593440744876338489, guid: 533eef8347a6f31449a9caa30a5d2245, type: 3}
       propertyPath: m_LocalPosition.x
       value: -166.46416
@@ -645,11 +649,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8426167649295053671, guid: 533eef8347a6f31449a9caa30a5d2245, type: 3}
+      propertyPath: _lessonSnapManager
+      value: 
+      objectReference: {fileID: 1528602491}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 533eef8347a6f31449a9caa30a5d2245, type: 3}
+--- !u!114 &1528602491 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2068044550451968841, guid: 533eef8347a6f31449a9caa30a5d2245, type: 3}
+  m_PrefabInstance: {fileID: 1422133395}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf3b466b875244a49b6fe2de383182f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LessonSnapManager
 --- !u!1 &1764214107
 GameObject:
   m_ObjectHideFlags: 0

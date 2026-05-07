@@ -4,7 +4,7 @@ using UnityEngine;
 public class LessonSnapVisualiser : MonoBehaviour
 {
     [SerializeField] private GameObject _snapMarkerPrefab;
-    [SerializeField] private float _markerSize = 0.075f;
+    [SerializeField] private float _markerSize = 0.05f;
 
     [SerializeField] private Material _snapLineMaterial;
     [SerializeField] float _lineWidth = 0.02f;
