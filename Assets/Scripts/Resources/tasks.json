@@ -1,0 +1,21 @@
+{
+  "lessonTitle": "Construction Inspection",
+  "tasks": [
+    {
+      "id": "task_001",
+      "title": "Inspect the Cube",
+      "description": "Click on the cube to inspect it.",
+      "targetElementId": "Cube_01",
+      "feedbackText": "Good job! You inspected the cube.",
+      "isRequired": true
+    },
+    {
+      "id": "task_002",
+      "title": "Inspect the Plane",
+      "description": "Click on the plane to inspect it.",
+      "targetElementId": "Plane_01",
+      "feedbackText": "Good job! You inspected the plane.",
+      "isRequired": true
+    }
+  ]
+}

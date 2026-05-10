@@ -19,6 +19,9 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> mike
     m_TexEnvs:
     - _MainTex:
         m_Texture: {fileID: 28684132378477856}
@@ -60,6 +63,7 @@ Material:
     - _FaceColor: {r: 1, g: 1, b: 1, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _UnderlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+<<<<<<< HEAD
 =======
     m_TexEnvs: []
     m_Ints: []
@@ -70,6 +74,8 @@ Material:
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 >>>>>>> nesh
+=======
+>>>>>>> mike
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
