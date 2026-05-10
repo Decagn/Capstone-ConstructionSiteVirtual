@@ -21,7 +21,11 @@ public class InputListener : MonoBehaviour
     private void OnEnable()
     {
         EnableAllActions();
-        if (_isMobile) EnhancedTouchSupport.Enable();
+        if (_isMobile)
+        {
+            MeasDebug.Log("Enhanced touch support enabled", "InputListener");
+            EnhancedTouchSupport.Enable();
+        }
     }
 
     private void OnDisable()
@@ -33,13 +37,15 @@ public class InputListener : MonoBehaviour
     private void Awake()
     {
         SetupActions();
+        if (_isMobile) MeasDebug.Log("MOBILE controls activated for measuring tools", "InputListener");
+        else MeasDebug.Log("DESKTOP controls activated for measuring tools", "InputListener");
     }
 
     private void Update()
     {
         if (_isMobile)
         {
-            HandleMobileInput();
+            HandleMobileInput();  
         }
         else
         {
@@ -109,7 +115,7 @@ public class InputListener : MonoBehaviour
      * Two finger swipe up: switch to next tool
      * Two finger swip donw: switch to prev tool
      */
-    private bool _isMobile = Application.isMobilePlatform;
+    private bool _isMobile = Application.isMobilePlatform || UnityEngine.Device.Application.isMobilePlatform;
     private Vector2 _touchStartPos;
     private float _touchStartTime;
     [SerializeField] private float _holdThreshold = 0.4f;
@@ -118,6 +124,7 @@ public class InputListener : MonoBehaviour
 
     private void HandleSingleTouchGestures(Touch touch)
     {
+        Debug.Log($"Phase: {touch.phase}");
         if (touch.phase == UnityEngine.InputSystem.TouchPhase.Began)
         {
             _touchStartPos = touch.screenPosition;
@@ -134,7 +141,7 @@ public class InputListener : MonoBehaviour
             if (heldLongEnough && notMovedMuch && !_holdFired)
             {
                 _holdFired = true;
-                OnDeselectLastPoint?.Invoke();
+                OnSelectPoint?.Invoke(touch.screenPosition);
             }
         }
 

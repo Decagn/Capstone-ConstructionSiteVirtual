@@ -1,10 +1,6 @@
-using NUnit.Framework;
 using System.Collections.Generic;
-using System.Drawing;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Timeline;
 
 public class PointSelector : MonoBehaviour
 {
@@ -42,7 +38,18 @@ public class PointSelector : MonoBehaviour
     }
     private void ShowPointOnScreen()
     {
-        Vector2 screenPoint = Mouse.current.position.ReadValue();
+        bool _isMobile = Application.isMobilePlatform || UnityEngine.Device.Application.isMobilePlatform;
+        Vector2 screenPoint = new Vector2();
+        if (_isMobile)
+        {
+            var touches = UnityEngine.InputSystem.EnhancedTouch.Touch.activeTouches;
+            screenPoint = touches[0].screenPosition;
+        }
+        else
+        {
+            screenPoint = Mouse.current.position.ReadValue();
+        }
+
         Vector3 pointInWorld = GetPoint(screenPoint, _measManager.GetSelectedPoints());
 
         if (_previewGrid == null)
