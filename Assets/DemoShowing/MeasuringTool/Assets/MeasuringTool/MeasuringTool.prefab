@@ -44,51 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 193daae9787b4d8448ca46a9daa7e6d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputListener
-  _selectPoint:
-    m_Name: Select Point
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 54de0fa1-e6df-42e8-92b0-164236f6aac5
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  _deselectLastPoint:
-    m_Name: Deselect Last Point
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 5f720149-f395-43ba-b9a2-b62ed17c4b30
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  _resetAllPoints:
-    m_Name: Reset All Points
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: b3c061b1-b69e-4985-bc7d-7b61faf5969b
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  _nextTool:
-    m_Name: Next Tool
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 81f7ae1d-da2f-48ab-bec4-ad60e261ceed
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  _prevTool:
-    m_Name: Prev Tool
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 4eb8ddc8-fc01-4cd8-97c9-141b96bdd75f
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
+  _holdThreshold: 0.4
+  _swipeThreshold: 50
 --- !u!1 &1869249091226006641
 GameObject:
   m_ObjectHideFlags: 0
@@ -304,7 +261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aedf192b7719544285b7fa880054438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TapeMeasure
-  icon: {fileID: -1202046436, guid: ed4d20aefbb69244585d28782f4a9b58, type: 3}
+  icon: {fileID: 988880166, guid: 535753de359280945a16b0809e0c841b, type: 3}
 --- !u!114 &677553937851382220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -390,6 +347,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PointSelector
   _furthestPoint: Infinity
   _snapping: 1
+  _lessonSnapManager: {fileID: 2068044550451968841}
+  _snapToLessonPoint: 1
+  _snapToLessonPointDistance: 0.5
   _snapToPreviousPoint: 1
   _snapToPreviousPointDistance: 0.5
   _snapToInlinePoint: 1
@@ -445,6 +405,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LessonSnapManager
   _visualiser: {fileID: 4441627033369219689}
+  _fileName: LessonSnapObjects
 --- !u!114 &4441627033369219689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -457,9 +418,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d95d92b50c8d90a448f3b16444c614ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LessonSnapVisualiser
-  _snapMarkerPrefab: {fileID: 2292414266416149384, guid: b12ef52fb7de95649b5d6241d47753a6, type: 3}
+  _snapMarkerPrefab: {fileID: 2292414266416149384, guid: 9de8aecfc65b7fe41b9b84c42bd28e87, type: 3}
   _markerSize: 0.075
-  _snapLineMaterial: {fileID: 2100000, guid: ded42c0ee93647347a90637de1cae7be, type: 2}
+  _snapLineMaterial: {fileID: 2100000, guid: 192799d2962ad6d4e897d879231122fd, type: 2}
   _lineWidth: 0.02
 --- !u!1 &8916388793641693610
 GameObject:
