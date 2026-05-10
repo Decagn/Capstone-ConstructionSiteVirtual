@@ -1,0 +1,7 @@
+{
+   "model": "blah",
+   "labels": [
+      { "xyz_pos": { "x" : 0, "y" : 10, "z" : 0 },
+        "text": "DEMO SCENE" }
+   ]
+}

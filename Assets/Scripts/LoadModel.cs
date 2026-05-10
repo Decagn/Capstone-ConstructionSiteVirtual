@@ -29,12 +29,11 @@ public class LoadModel : MonoBehaviour
         foreach (GameObject model in houseModels)
         {
             GameObject newModel = Instantiate<GameObject>(model, Vector3.zero, Quaternion.identity);
-            newModel.SetActive(false);
 
             // Add collisions to all GameObjects in model
             foreach (Transform child in newModel.transform)
             {
-                child.AddComponent<BoxCollider>();
+                child.AddComponent<MeshCollider>();
             }
 
             houseModels.Append(newModel);
