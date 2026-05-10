@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b562ea19af8454a478dd5ab38872cf4d
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 335682
+  packageName: Grid Shader(URP)
+  packageVersion: 1.0.0
+  assetPath: Assets/CodeWee/cwGridShader(URP)/Demo/Scenes/Demo-01.unity
+  uploadId: 850838

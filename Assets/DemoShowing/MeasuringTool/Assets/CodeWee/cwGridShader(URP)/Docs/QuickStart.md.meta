@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ae12d5a18dbb52f41bba7d37cfaa7fa9
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 335682
+  packageName: Grid Shader(URP)
+  packageVersion: 1.0.0
+  assetPath: Assets/CodeWee/cwGridShader(URP)/Docs/QuickStart.md
+  uploadId: 850838

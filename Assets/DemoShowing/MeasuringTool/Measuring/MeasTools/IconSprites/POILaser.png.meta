@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/DemoShowing/MeasuringTool/Measuring/MeasTools/IconSprites/POILaser.png.meta
 guid: 7a3db8f121982c24aaffbe4a6fbbd2ad
+========
+guid: f1344924e8ae7fa4f807e098ea5c7bfe
+>>>>>>>> nesh:Assets/DemoShowing/MeasuringTool/Assets/MeasuringTool/Measuring/MeasTools/IconSprites/POILaser.png.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}

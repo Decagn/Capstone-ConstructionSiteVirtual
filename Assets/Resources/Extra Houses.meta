@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Resources/Extra Houses.meta
 guid: 7e93d087a33fe9f4c9fd2f4bbc6ca216
+========
+guid: 1b497d3b7ac964841b8eabe840feba1d
+>>>>>>>> nesh:Assets/DemoShowing/MeasuringTool/Assets/StarterAssets/TutorialInfo/Scripts/Editor.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

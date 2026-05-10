@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/DemoShowing.meta
 guid: c6178abac16a42445ab1df14dae17848
+========
+guid: 6985a379541ee1947a0e1077d6c05568
+>>>>>>>> nesh:Assets/Audio.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 849b7e49a28c3bd4389f290f52c49c4e
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 335682
+  packageName: Grid Shader(URP)
+  packageVersion: 1.0.0
+  assetPath: Assets/CodeWee/Resources/Materials/RoomSpace(URP).mat
+  uploadId: 850838

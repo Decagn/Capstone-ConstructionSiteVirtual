@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 776244806f6e17c42baf7f073f577af1
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 335682
+  packageName: Grid Shader(URP)
+  packageVersion: 1.0.0
+  assetPath: Assets/CodeWee/cwGridShader(URP)/Materials/cwGrid(URP)-Sample-03.mat
+  uploadId: 850838

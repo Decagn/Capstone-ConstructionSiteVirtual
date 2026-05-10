@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Resources/Lesson Plans.meta
 guid: 0410f0c9d9fbea4419857e225551edb8
+========
+guid: d18b3689f14314b4ea6795311c31c686
+>>>>>>>> nesh:Assets/DemoShowing/MeasuringTool/Assets/CodeWee.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

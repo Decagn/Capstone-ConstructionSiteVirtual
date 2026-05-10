@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/DemoShowing/MeasuringTool/Measuring/MeasTools/IconSprites/tapeMeasureIcon.png.meta
 guid: e334571f5d0a08d45addd1622da670d2
+========
+guid: ed4d20aefbb69244585d28782f4a9b58
+>>>>>>>> nesh:Assets/DemoShowing/MeasuringTool/Assets/MeasuringTool/Measuring/MeasTools/IconSprites/tapeMeasureIcon.png.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/DemoShowing/AmbientSounds/AmbientSoundNature.prefab.meta
 guid: cd2c840af702cc84792bae6a9a393102
+========
+guid: 1f4454e61785eca49836a34291b81fe0
+>>>>>>>> nesh:Assets/DemoShowing/MeasuringTool/Assets/MeasuringTool/MeasurementVisualising/MarkerNew.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 

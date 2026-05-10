@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/TerrainDemoScene_URP/Prefabs/UI/Sprites.meta
 guid: 5f8b8fbb4be8746118168d63a9a10595
+========
+guid: f1812f48a15aa4146b751252ebd90b2b
+>>>>>>>> nesh:Assets/TextMesh Pro/Examples & Extras/Sprites.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

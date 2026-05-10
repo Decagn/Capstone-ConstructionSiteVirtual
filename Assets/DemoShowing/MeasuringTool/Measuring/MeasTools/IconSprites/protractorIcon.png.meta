@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/DemoShowing/MeasuringTool/Measuring/MeasTools/IconSprites/protractorIcon.png.meta
 guid: 677ece00467056648b767e1e97e5a4ac
+========
+guid: 8cfa744e03f048743afc32ed9071a33e
+>>>>>>>> nesh:Assets/DemoShowing/MeasuringTool/Assets/MeasuringTool/Measuring/MeasTools/IconSprites/protractorIcon.png.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}

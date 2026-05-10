@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/TerrainDemoScene_URP/Prefabs.meta
 guid: 96d928f51cac350499225a93778e20cf
+========
+guid: d7e5f603515fd3044b85b8f6172b31c3
+>>>>>>>> nesh:Assets/DemoShowing/MeasuringTool/Assets/CodeWee/Resources/Prefabs.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

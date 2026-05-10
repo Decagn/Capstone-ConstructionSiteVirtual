@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/DemoShowing/MeasuringTool/MeasurementVisualising/MeasMat.mat.meta
 guid: a09a1b35d577cc548bbcac869f621dc7
+========
+guid: 3f597beb7f7f08d4e968b9a55f1c4fce
+>>>>>>>> nesh:Assets/DemoShowing/MeasuringTool/Assets/MeasuringTool/MeasurementVisualising/MeasMat.mat.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 2100000
