@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -6,11 +5,11 @@ using UnityEngine.UI;
 
 public class RenderText : MonoBehaviour
 {
+    public string modelName;
     public List<GameObject> modelLabels;
     public Canvas gameCanvas;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void renderText(string lessonFile)
     {
         GameObject canvasObj = GameObject.Find("Canvas");
         if (canvasObj != null)
@@ -21,10 +20,17 @@ public class RenderText : MonoBehaviour
             Debug.Log("Could not locate scene Canvas during label generation");
         }
 
-        TextAsset txtData = (TextAsset)Resources.Load("MyText");
+        TextAsset txtData = (TextAsset)Resources.Load($"Lesson Plans/{lessonFile}");
+
+        if (txtData == null)
+        {
+            Debug.Log("Could not locate lesson plan");
+            return;
+        }
+
         LessonLabels labels = LessonLabels.CreateFromJSON(txtData.text);
         
-        Debug.Log($"Model file: {labels.model}");
+        modelName = labels.model;
 
         int i = 1;
         foreach (TextLabel label in labels.labels)
