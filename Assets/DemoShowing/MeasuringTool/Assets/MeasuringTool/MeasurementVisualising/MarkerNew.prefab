@@ -66,11 +66,6 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-<<<<<<<< HEAD:Assets/DemoShowing/MeasuringTool/MeasurementVisualising/MarkerNew.prefab
-  - {fileID: 2100000, guid: 23b0eef8985ddc04eacdf5ae1eb7fa94, type: 2}
-========
-  - {fileID: 2100000, guid: b78f6f606924e4a4bbbaa61ada9b1c6a, type: 2}
->>>>>>>> nesh:Assets/DemoShowing/MeasuringTool/Assets/MeasuringTool/MeasurementVisualising/MarkerNew.prefab
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
