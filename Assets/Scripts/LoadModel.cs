@@ -30,10 +30,14 @@ public class LoadModel : MonoBehaviour
         {
             GameObject newModel = Instantiate<GameObject>(model, Vector3.zero, Quaternion.identity);
 
+            newModel.AddComponent<MeshCollider>();
             // Add collisions to all GameObjects in model
-            foreach (Transform child in newModel.transform)
+            foreach (Transform layer in newModel.transform)
             {
-                child.AddComponent<MeshCollider>();
+                foreach (Transform child in layer.transform)
+                {
+                    MeshCollider mesh = child.AddComponent<MeshCollider>();
+                }
             }
 
             houseModels.Append(newModel);
