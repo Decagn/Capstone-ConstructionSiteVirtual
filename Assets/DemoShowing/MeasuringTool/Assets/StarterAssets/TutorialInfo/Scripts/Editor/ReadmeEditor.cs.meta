@@ -10,19 +10,3 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-<<<<<<< HEAD:Assets/TutorialInfo/Scripts/Editor/ReadmeEditor.cs.meta
-  productId: 213197
-  packageName: Unity Terrain - URP Demo Scene
-  packageVersion: 1.0.3
-  assetPath: Assets/TutorialInfo/Scripts/Editor/ReadmeEditor.cs
-  uploadId: 727820
-=======
-  productId: 196525
-  packageName: Starter Assets - FirstPerson | Updates in new CharacterController
-    package
-  packageVersion: 1.3.1
-  assetPath: Assets/StarterAssets/TutorialInfo/Scripts/Editor/ReadmeEditor.cs
-  uploadId: 880468
->>>>>>> nesh:Assets/NeshAssets/StarterAssets/TutorialInfo/Scripts/Editor/ReadmeEditor.cs.meta

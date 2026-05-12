@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 /// <summary>
@@ -42,8 +42,6 @@ public class FirstPersonController : MonoBehaviour
     // Tracks the current vertical rotation (pitch) of the camera in degrees.
     // Clamped to prevent the player from rotating past straight up or straight down.
     private float _xRotation = 0f;
-
-    private float verticalInput = 0f;
 
     /// <summary>
     /// Called once when the script is first enabled, before the first Update.
