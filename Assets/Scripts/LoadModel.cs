@@ -30,13 +30,16 @@ public class LoadModel : MonoBehaviour
         {
             GameObject newModel = Instantiate<GameObject>(model, Vector3.zero, Quaternion.identity);
 
-            newModel.AddComponent<MeshCollider>();
             // Add collisions to all GameObjects in model
             foreach (Transform layer in newModel.transform)
             {
-                foreach (Transform child in layer.transform)
+                if (!(layer.name.Contains("Door") || layer.name.Contains("Window")))
                 {
-                    MeshCollider mesh = child.AddComponent<MeshCollider>();
+                    foreach (Transform child in layer.transform)
+                    {
+                        child.AddComponent<MeshFilter>();
+                        MeshCollider mesh = child.AddComponent<MeshCollider>();   
+                    }
                 }
             }
 
