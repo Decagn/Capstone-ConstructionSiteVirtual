@@ -57,7 +57,7 @@ public class CTrainerInteraction : MonoBehaviour
         if (Mouse.current != null)
             screenPoint = Mouse.current.position.ReadValue();
         else
-            screenPoint = new Vector3(Screen.width / 2f, Screen.height / 2f, 0);
+            screenPoint = new Vector2(Screen.width / 2f, Screen.height / 2);
 #else
     screenPoint = new Vector3(Screen.width / 2f, Screen.height / 2f, 0);
 #endif
