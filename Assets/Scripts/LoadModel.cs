@@ -38,6 +38,8 @@ public class LoadModel : MonoBehaviour
                     foreach (Transform child in layer.transform)
                     {
                         child.AddComponent<MeshFilter>();
+
+                        // Create mesh to match object shape
                         MeshCollider mesh = child.AddComponent<MeshCollider>();   
                     }
                 }
