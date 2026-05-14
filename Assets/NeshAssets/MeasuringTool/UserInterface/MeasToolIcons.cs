@@ -8,6 +8,7 @@ public class MeasToolIcons : MonoBehaviour
     [SerializeField, UnityEngine.Range(0f, 100f)] private float _size = 64;
     [SerializeField, UnityEngine.Range(-100f, 100f)] private float _horizontalPosition = -40f;
     [SerializeField, UnityEngine.Range(-100f, 100f)] private float _verticalPosition = 40f;
+    [SerializeField] private Sprite _defaultToolIcon;
 
     Image _image;
 
@@ -17,6 +18,7 @@ public class MeasToolIcons : MonoBehaviour
         iconObject.transform.SetParent(canvas.transform, false);
 
         _image = iconObject.AddComponent<Image>();
+        _image.sprite = _defaultToolIcon;
 
         RectTransform rect = iconObject.GetComponent<RectTransform>();
         rect.anchorMin = new Vector2(0.5f, 0.5f);
