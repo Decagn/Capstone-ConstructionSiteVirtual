@@ -23,7 +23,6 @@ public class InputListener : MonoBehaviour
         EnableAllActions();
         if (_isMobile)
         {
-            MeasDebug.Log("Enhanced touch support enabled", "InputListener");
             EnhancedTouchSupport.Enable();
         }
     }
@@ -124,7 +123,6 @@ public class InputListener : MonoBehaviour
 
     private void HandleSingleTouchGestures(Touch touch)
     {
-        Debug.Log($"Phase: {touch.phase}");
         if (touch.phase == UnityEngine.InputSystem.TouchPhase.Began)
         {
             _touchStartPos = touch.screenPosition;
@@ -141,7 +139,8 @@ public class InputListener : MonoBehaviour
             if (heldLongEnough && notMovedMuch && !_holdFired)
             {
                 _holdFired = true;
-                OnSelectPoint?.Invoke(touch.screenPosition);
+                OnDeselectLastPoint?.Invoke();
+                MeasDebug.Log("MOBILE: Point deselected", "InputListener");
             }
         }
 
@@ -152,8 +151,16 @@ public class InputListener : MonoBehaviour
 
             if (wasQuickTap && notMovedMuch && !_holdFired)
             {
-                if (touch.tapCount == 2) OnResetAllPoints?.Invoke();
-                else OnSelectPoint?.Invoke(touch.screenPosition);
+                if (touch.tapCount == 2)
+                {
+                    OnResetAllPoints?.Invoke();
+                    MeasDebug.Log("MOBILE: Points reset", "InputListener");
+                }
+                else
+                {
+                    OnSelectPoint?.Invoke(touch.screenPosition);
+                    MeasDebug.Log("MOBILE: Point selected", "InputListener");
+                }
             }
         }
     }
@@ -169,9 +176,15 @@ public class InputListener : MonoBehaviour
             if (Mathf.Abs(averageDelta) > _swipeThreshold)
             {
                 if (averageDelta > 0)
+                {
                     OnNextTool?.Invoke();
+                    MeasDebug.Log("MOBILE: next tool", "InputListener");
+                }
                 else
+                {
                     OnPrevTool?.Invoke();
+                    MeasDebug.Log("MOBILE: prev tool", "InputListener");
+                }
             }
         }
     }

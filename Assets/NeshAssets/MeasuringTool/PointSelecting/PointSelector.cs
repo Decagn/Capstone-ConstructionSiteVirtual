@@ -43,7 +43,7 @@ public class PointSelector : MonoBehaviour
         if (_isMobile)
         {
             var touches = UnityEngine.InputSystem.EnhancedTouch.Touch.activeTouches;
-            screenPoint = touches[0].screenPosition;
+            if (touches.Count > 0 ) screenPoint = touches[0].screenPosition;
         }
         else
         {
