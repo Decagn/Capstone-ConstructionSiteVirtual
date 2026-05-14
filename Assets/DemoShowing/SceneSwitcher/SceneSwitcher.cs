@@ -40,7 +40,7 @@ public class SceneSwitcher : MonoBehaviour
         }
     }
 
-    private void SwitchToNextScene()
+    public void SwitchToNextScene()
     {
         _currentSceneIndex = (_currentSceneIndex + 1) % _sceneNames.Length;
         string nextScene = _sceneNames[_currentSceneIndex];
