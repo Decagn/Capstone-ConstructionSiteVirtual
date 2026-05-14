@@ -11,9 +11,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SimpleDemoScene.unity
     guid: 5185766ff7a71df44911cff0cbce4abe
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SimpleDemoScene v2.unity
     guid: e31ef939eba26a14cbfd246215b2646f
+  - enabled: 1
+    path: Assets/NeshAssets/StarterAssets/FirstPersonController/Scenes/Playground.unity
+    guid: 707acc8dffb72b144bb1ffbe1c965f3d
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
