@@ -1,0 +1,32 @@
+{
+  "lessonTitle": "Construction Site Learning",
+  "tasks": [
+    {
+      "id": "task_livingroom_sofa",
+      "title": "Inspect Sofa",
+      "description": "Click on the living room sofa to inspect its structure.",
+      "targetElementId": "Sofa_LivingRoom",
+      "roomId": "LivingRoom",
+      "feedbackText": "Great! You inspected the sofa. Notice the upholstered design and sturdy frame.",
+      "isRequired": true
+    },
+    {
+      "id": "task_livingroom_table",
+      "title": "Inspect Dining Table",
+      "description": "Click on the dining table to examine it.",
+      "targetElementId": "DiningTable_LivingRoom",
+      "roomId": "LivingRoom",
+      "feedbackText": "Well done! This is a wooden dining table designed for family meals.",
+      "isRequired": true
+    },
+    {
+      "id": "task_outside_cube",
+      "title": "Inspect Test Object",
+      "description": "Click on the test cube outside.",
+      "targetElementId": "Cube_Outside",
+      "roomId": "Outside",
+      "feedbackText": "Excellent! You inspected the demonstration object.",
+      "isRequired": true
+    }
+  ]
+}
