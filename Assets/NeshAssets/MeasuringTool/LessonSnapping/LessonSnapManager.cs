@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LessonSnapManager : MonoBehaviour
 {
@@ -11,7 +12,9 @@ public class LessonSnapManager : MonoBehaviour
 
     private void Awake()
     {
-        _objectVertices = LessonSnapFileParser.GetVertices(_fileName);
+        string _currentScene = SceneManager.GetActiveScene().name;
+        string _fullFileName = _currentScene + "-" + _fileName;
+        _objectVertices = LessonSnapFileParser.GetVertices(_fullFileName);
         _visualiser.DrawLessonSnapObjects(_objectVertices);
     }
 

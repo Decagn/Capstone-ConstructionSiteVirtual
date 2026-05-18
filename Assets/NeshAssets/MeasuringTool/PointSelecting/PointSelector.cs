@@ -99,19 +99,21 @@ public class PointSelector : MonoBehaviour
 
     private Vector3 GetSnapPoint(Vector3 point, List<Vector3> prevSelecPoints)
     {
+        List<Vector3> snapPoints = new List<Vector3>();
+
         if (_snapToLessonPoint)
         {
             List<Vector3> LessonPoints = _lessonSnapManager.GetPoints();
             Vector3 lessonPoint = FindClosestPoint(point, LessonPoints);
             bool inLessonSnappingRange = Vector3.Distance(point, lessonPoint) < _snapToLessonPointDistance;
-            if (inLessonSnappingRange) return lessonPoint;
+            if (inLessonSnappingRange) snapPoints.Add(lessonPoint);
         }
 
         if (_snapToPreviousPoint)
         {
             Vector3 prevPoint = FindClosestPoint(point, prevSelecPoints);
             bool inPrevSnapRange = Vector3.Distance(prevPoint, point) < _snapToPreviousPointDistance;
-            if (inPrevSnapRange) return prevPoint;
+            if (inPrevSnapRange) snapPoints.Add(prevPoint);
         }
 
         if (_snapToInlinePoint)
@@ -119,10 +121,14 @@ public class PointSelector : MonoBehaviour
             List<Vector3> inlinePoints = InlineSnapping.GetPoints(point, prevSelecPoints);
             Vector3 inlinePoint = FindClosestPoint(point, inlinePoints);
             bool inInlineSnapRange = Vector3.Distance(inlinePoint, point) < _snapToInlinePointDistance;
-            if (inInlineSnapRange) return inlinePoint;
+            if (inInlineSnapRange) snapPoints.Add(inlinePoint);
         }
 
-        return point;
+        if (snapPoints.Count > 0)
+        {
+            return FindClosestPoint(point, snapPoints);
+        }
+            return point;
     }
 
     public static Vector3 FindClosestPoint(Vector3 point, List<Vector3> candidatePoints)
