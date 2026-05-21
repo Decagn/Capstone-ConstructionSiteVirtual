@@ -4,18 +4,13 @@ using System.Linq;
 
 /// <summary>
 /// RoomDetector monitors the player's position and determines which room they are currently in.
-/// Uses distance-based detection: each room has a center point and detection radius.
-/// When the player enters a new room, it notifies the TaskManager to update the task display.
+/// 
+/// NEW: Room configurations can now be loaded from JSON via TaskManager.
+/// Supports both manual Inspector configuration and automatic file loading.
 ///
-/// Setup in Unity Editor:
-///   1. Attach this script to the Player GameObject (or TaskManager GameObject).
-///   2. Assign the playerTransform field to the Player's Transform.
-///   3. Room data is configured in the Inspector via the 'rooms' list.
-///   4. Alternatively, rooms can be defined in code (see InitializeRoomsFromCode example).
-///
-/// Room detection priority:
-///   - If the player is within multiple room radii, the closest room center wins.
-///   - If the player is outside all room radii, currentRoom becomes "Outside" or null.
+/// Usage modes:
+///   1. Manual: Configure rooms in the Inspector (original behavior)
+///   2. Automatic: Rooms are loaded from lesson_config.json via TaskManager
 /// </summary>
 public class RoomDetector : MonoBehaviour
 {
@@ -28,7 +23,7 @@ public class RoomDetector : MonoBehaviour
     public Transform playerTransform;
 
     [Header("Room Definitions")]
-    [Tooltip("List of all rooms in the scene. Each room has a center position and detection radius.")]
+    [Tooltip("List of all rooms in the scene. Can be configured manually or loaded from JSON.")]
     public List<RoomData> rooms = new List<RoomData>();
 
     [Header("Detection Settings")]
@@ -38,30 +33,24 @@ public class RoomDetector : MonoBehaviour
     [Tooltip("Room ID to use when player is outside all defined rooms. Leave empty for null.")]
     public string outsideRoomId = "Outside";
 
+    [Header("Configuration Mode")]
+    [Tooltip("If true, rooms will be loaded from JSON file via TaskManager. If false, use Inspector configuration.")]
+    public bool loadFromFile = true;
+
     // ─────────────────────────────────────────────
     // Runtime State
     // ─────────────────────────────────────────────
 
-    // The room ID the player is currently in (e.g., "LivingRoom", "Bedroom", "Outside")
     private string _currentRoomId = null;
-
-    // Timer for detection interval
     private float _detectionTimer = 0f;
+    private bool _roomsLoaded = false;
 
     // ─────────────────────────────────────────────
     // Properties
     // ─────────────────────────────────────────────
 
-    /// <summary>
-    /// The room ID the player is currently in.
-    /// Returns null if player is outside all defined rooms and outsideRoomId is empty.
-    /// </summary>
     public string CurrentRoomId => _currentRoomId;
 
-    /// <summary>
-    /// The display name of the current room (e.g., "Living Room").
-    /// Returns "Outside" or "Unknown" if currentRoomId is null/empty.
-    /// </summary>
     public string CurrentRoomName
     {
         get
@@ -90,21 +79,29 @@ public class RoomDetector : MonoBehaviour
                 Debug.LogError("[RoomDetector] No playerTransform assigned and no GameObject with 'Player' tag found.");
         }
 
-        // Initialize rooms from code if the Inspector list is empty
-        // Comment this out if you prefer to configure rooms in the Inspector
-        if (rooms.Count == 0)
+        // If not loading from file, rooms should already be configured in Inspector
+        if (!loadFromFile && rooms.Count > 0)
         {
-            InitializeRoomsFromCode();
+            _roomsLoaded = true;
+            Debug.Log($"[RoomDetector] Using {rooms.Count} rooms from Inspector configuration.");
+            DetectCurrentRoom();
         }
-
-        // Perform initial room detection
-        DetectCurrentRoom();
+        // If loading from file, wait for TaskManager to call LoadRoomsFromConfig()
+        else if (loadFromFile)
+        {
+            Debug.Log("[RoomDetector] Waiting for room configuration from TaskManager...");
+        }
+        // No rooms configured and not loading from file
+        else
+        {
+            Debug.LogWarning("[RoomDetector] No rooms configured and loadFromFile is false.");
+        }
     }
 
     private void Update()
     {
-        // Skip detection if player reference is missing
-        if (playerTransform == null)
+        // Skip detection if rooms haven't been loaded yet
+        if (!_roomsLoaded || playerTransform == null)
             return;
 
         // Update detection timer
@@ -119,14 +116,51 @@ public class RoomDetector : MonoBehaviour
     }
 
     // ─────────────────────────────────────────────
-    // Room Detection Logic
+    // Public API
     // ─────────────────────────────────────────────
 
     /// <summary>
-    /// Checks the player's current position against all defined rooms.
-    /// Updates currentRoomId if the player has entered a new room.
-    /// Notifies TaskManager when the room changes.
+    /// Load room configurations from TaskManager.
+    /// This is called automatically by TaskManager after loading lesson_config.json.
     /// </summary>
+    /// <param name="roomDataList">List of room configurations from JSON</param>
+    public void LoadRoomsFromConfig(List<RoomData> roomDataList)
+    {
+        if (roomDataList == null || roomDataList.Count == 0)
+        {
+            Debug.LogWarning("[RoomDetector] LoadRoomsFromConfig called with empty room list.");
+            return;
+        }
+
+        rooms = roomDataList;
+        _roomsLoaded = true;
+
+        Debug.Log($"[RoomDetector] Loaded {rooms.Count} rooms from configuration file.");
+
+        // Perform initial room detection
+        DetectCurrentRoom();
+    }
+
+    /// <summary>
+    /// Manually force a room detection check.
+    /// </summary>
+    public void ForceDetection()
+    {
+        DetectCurrentRoom();
+    }
+
+    /// <summary>
+    /// Get the RoomData for a specific room ID.
+    /// </summary>
+    public RoomData GetRoomData(string roomId)
+    {
+        return rooms.FirstOrDefault(r => r.roomId == roomId);
+    }
+
+    // ─────────────────────────────────────────────
+    // Room Detection Logic
+    // ─────────────────────────────────────────────
+
     private void DetectCurrentRoom()
     {
         Vector3 playerPos = playerTransform.position;
@@ -173,70 +207,10 @@ public class RoomDetector : MonoBehaviour
     }
 
     // ─────────────────────────────────────────────
-    // Room Configuration
-    // ─────────────────────────────────────────────
-
-    /// <summary>
-    /// Example: Initialize rooms from code instead of the Inspector.
-    /// You can replace this with your actual room positions and radii.
-    /// Uncomment the Start() call to use this.
-    /// </summary>
-    private void InitializeRoomsFromCode()
-    {
-        rooms.Clear();
-
-        // Living Room
-        rooms.Add(new RoomData
-        {
-            roomId = "LivingRoom",
-            roomName = "Living Room",
-            centerPosition = new Vector3(164f, -37f, 336f),
-            detectionRadius = 100f
-        });
-
-        // Outside
-        rooms.Add(new RoomData
-        {
-            roomId = "Outside",
-            roomName = "Outside",
-            centerPosition = new Vector3(-176f, -37f, 318f),
-            detectionRadius = 150f
-        });
-
-        Debug.Log($"[RoomDetector] Initialized {rooms.Count} rooms from code.");
-    }
-
-    // ─────────────────────────────────────────────
-    // Public API
-    // ─────────────────────────────────────────────
-
-    /// <summary>
-    /// Manually force a room detection check.
-    /// Useful for debugging or when teleporting the player.
-    /// </summary>
-    public void ForceDetection()
-    {
-        DetectCurrentRoom();
-    }
-
-    /// <summary>
-    /// Get the RoomData for a specific room ID.
-    /// Returns null if the room is not found.
-    /// </summary>
-    public RoomData GetRoomData(string roomId)
-    {
-        return rooms.FirstOrDefault(r => r.roomId == roomId);
-    }
-
-    // ─────────────────────────────────────────────
     // Debug Visualization (Editor Only)
     // ─────────────────────────────────────────────
 
 #if UNITY_EDITOR
-    /// <summary>
-    /// Draw room detection radii in the Scene view for debugging.
-    /// Each room is shown as a green wireframe sphere.
-    /// </summary>
     private void OnDrawGizmos()
     {
         if (rooms == null || rooms.Count == 0)
@@ -265,7 +239,6 @@ public class RoomDetector : MonoBehaviour
 
 /// <summary>
 /// RoomData defines a single room's detection zone.
-/// Each room has a unique ID, display name, center position, and detection radius.
 /// </summary>
 [System.Serializable]
 public class RoomData
