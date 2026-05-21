@@ -1,5 +1,5 @@
 {
-   "model" : "MyModel.fbx",
+   "model" : "House1BIMModel-3DView-{3D}",
    "labels" : [
       { "xyz_pos" : { "x" : 0, "y" : 1, "z" : 2},
         "text" : "placeholder #1"
