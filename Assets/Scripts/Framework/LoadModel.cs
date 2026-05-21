@@ -1,32 +1,25 @@
+using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class LoadModel : MonoBehaviour
 {
-    GameObject[] houseModels;
-    Camera mainCamera;
+    List<GameObject> houseModels;
 
-    public GameObject[] loadModel()
+    public List<GameObject> loadModel()
     {
-        mainCamera = Camera.main;
-
-        houseModels = Resources.LoadAll<GameObject>("House Models/");
+        houseModels = new List<GameObject>();
+        GameObject[] houseFiles = Resources.LoadAll<GameObject>("House Models/");
 
         // Display error message if no house models found
-        if (houseModels.Length == 0)
+        if (houseFiles.Length == 0)
         {
-            GameObject canvasObj = GameObject.Find("Canvas");
-
-            if (canvasObj != null)
-            {
-                Debug.Log("Error: no house models found in expected location");
-            }
-
+            Debug.Log("Error: no house models found in expected location");
             return houseModels;
         }
 
-        foreach (GameObject model in houseModels)
+        foreach (GameObject model in houseFiles)
         {
             GameObject newModel = Instantiate<GameObject>(model, Vector3.zero, Quaternion.identity);
             newModel.SetActive(false);
@@ -37,7 +30,7 @@ public class LoadModel : MonoBehaviour
                 child.AddComponent<MeshCollider>();
             }
 
-            houseModels.Append(newModel);
+            houseModels.Add(newModel);
         }
 
         return houseModels;
@@ -47,21 +40,19 @@ public class LoadModel : MonoBehaviour
     {
         model.SetActive(true);
 
-        // Disable all additional cameras within FBX models
-        Camera[] allCameras = Camera.allCameras;
-
-        if (allCameras != null)
+        // Disable all extra cameras within model
+        foreach (Transform child in model.transform)
         {
-            foreach (Camera camera in allCameras)
+            Camera extraCam = child.GetComponent<Camera>();
+
+            if (extraCam != null)
             {
-                camera.enabled = false;
+                extraCam.enabled = false;
             }
         }
-
-        mainCamera.enabled = true;
     }
 
-   public void DisplayModel(string modelName)
+   public GameObject DisplayModel(string modelName)
     {
         // Enable correct model
         GameObject currentModel = houseModels.Where(model => model.name == modelName).SingleOrDefault();
@@ -75,5 +66,7 @@ public class LoadModel : MonoBehaviour
         {
             Debug.Log($"Selected model {modelName} not found");
         }
+
+        return currentModel;
     }
 }
