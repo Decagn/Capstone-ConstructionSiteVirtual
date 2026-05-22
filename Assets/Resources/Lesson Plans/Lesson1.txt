@@ -1,4 +1,5 @@
 {
    "model" : "House1BIMModel-3DView-{3D}(Clone)",
+   "player_pos" : { "x" : 3, "y" : 1, "z" : 1 },
    "labels" : []
 }

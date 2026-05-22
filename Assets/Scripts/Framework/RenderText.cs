@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class RenderText : MonoBehaviour
 {
     public string modelName;
+    public Vector3 playerPos;
     public List<GameObject> modelLabels;
 
     public void renderText(string lessonFile)
@@ -21,6 +22,7 @@ public class RenderText : MonoBehaviour
         LessonLabels labels = LessonLabels.CreateFromJSON(txtData.text);
         
         modelName = labels.model;
+        playerPos = labels.player_pos;
 
         int i = 1;
         foreach (TextLabel label in labels.labels)
@@ -58,6 +60,7 @@ public class RenderText : MonoBehaviour
 public class LessonLabels
 {
     public string model;
+    public Vector3 player_pos;
     public List<TextLabel> labels;
 
     public static LessonLabels CreateFromJSON(string jsonStr)
