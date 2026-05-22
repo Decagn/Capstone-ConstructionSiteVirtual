@@ -84,7 +84,7 @@ public class PointSelector : MonoBehaviour
     {
         (Vector3 point, RaycastHit hit) = TryGetPoint(screenPoint);
 
-        if (!_snapping || selecPoints.Count < 0 ) return point;
+        if (!_snapping) return point;
 
         Vector3 snapPoint = GetSnapPoint(point, selecPoints);
         return snapPoint;
@@ -99,21 +99,19 @@ public class PointSelector : MonoBehaviour
 
     private Vector3 GetSnapPoint(Vector3 point, List<Vector3> prevSelecPoints)
     {
-        List<Vector3> snapPoints = new List<Vector3>();
-
         if (_snapToLessonPoint)
         {
             List<Vector3> LessonPoints = _lessonSnapManager.GetPoints();
             Vector3 lessonPoint = FindClosestPoint(point, LessonPoints);
             bool inLessonSnappingRange = Vector3.Distance(point, lessonPoint) < _snapToLessonPointDistance;
-            if (inLessonSnappingRange) snapPoints.Add(lessonPoint);
+            if (inLessonSnappingRange) return lessonPoint;
         }
 
-        if (_snapToPreviousPoint)
+        if (_snapToPreviousPoint && prevSelecPoints.Count > 0)
         {
             Vector3 prevPoint = FindClosestPoint(point, prevSelecPoints);
             bool inPrevSnapRange = Vector3.Distance(prevPoint, point) < _snapToPreviousPointDistance;
-            if (inPrevSnapRange) snapPoints.Add(prevPoint);
+            if (inPrevSnapRange) return prevPoint;
         }
 
         if (_snapToInlinePoint)
@@ -121,14 +119,10 @@ public class PointSelector : MonoBehaviour
             List<Vector3> inlinePoints = InlineSnapping.GetPoints(point, prevSelecPoints);
             Vector3 inlinePoint = FindClosestPoint(point, inlinePoints);
             bool inInlineSnapRange = Vector3.Distance(inlinePoint, point) < _snapToInlinePointDistance;
-            if (inInlineSnapRange) snapPoints.Add(inlinePoint);
+            if (inInlineSnapRange) return inlinePoint;
         }
 
-        if (snapPoints.Count > 0)
-        {
-            return FindClosestPoint(point, snapPoints);
-        }
-            return point;
+        return point;
     }
 
     public static Vector3 FindClosestPoint(Vector3 point, List<Vector3> candidatePoints)
