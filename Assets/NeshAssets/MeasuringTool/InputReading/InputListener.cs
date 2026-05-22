@@ -98,7 +98,7 @@ public class InputListener : MonoBehaviour
     private void BindDesktopKeys()
     {
         AddBinding(_selectPoint, "<Mouse>/leftButton");
-        AddBinding(_deselectLastPoint, "<Mouse>/rightButton");
+        AddBinding(_deselectLastPoint, "<Keyboard>/x");
         AddBinding(_resetAllPoints, "<Keyboard>/r");
         AddBinding(_nextTool, "<Mouse>/scroll/up");
         AddBinding(_prevTool, "<Mouse>/scroll/down");
