@@ -1,0 +1,4 @@
+{
+   "model" : "House1BIMModel-3DView-{3D}(Clone)",
+   "labels" : []
+}
