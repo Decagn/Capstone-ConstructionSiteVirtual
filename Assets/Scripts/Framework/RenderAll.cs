@@ -9,6 +9,7 @@ public class RenderAll : MonoBehaviour
     public List<GameObject> houseModels;
     int currentLevel = 0;
     GameObject currentModel;
+    GameObject player;
 
     LoadModel loadModel;
     RenderText renderText;
@@ -16,6 +17,8 @@ public class RenderAll : MonoBehaviour
     {
         loadModel = this.GetComponent<LoadModel>();
         renderText = this.GetComponent<RenderText>();
+
+        player = GameObject.Find("PlayerController");
 
         houseModels = loadModel.loadModel();
 
@@ -51,5 +54,11 @@ public class RenderAll : MonoBehaviour
         // Load correct model for level
         renderText.renderText($"Lesson{currentLevel}");
         currentModel = loadModel.DisplayModel(renderText.modelName);
+
+        // Move player to expected start position
+        Debug.Log($"Moving player to position {renderText.playerPos}");
+        player.SetActive(false);
+        player.transform.position = renderText.playerPos;
+        player.SetActive(true);
     }
 }
