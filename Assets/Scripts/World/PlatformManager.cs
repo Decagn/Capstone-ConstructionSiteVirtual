@@ -32,7 +32,7 @@ public class PlatformManager : MonoBehaviour
         else
             SetupDesktop();
 
-        Debug.Log($"[PlatformManager] Running as {(isMobile ? "Mobile" : "Desktop")}");
+        //Debug.Log($"[PlatformManager] Running as {(isMobile ? "Mobile" : "Desktop")}");
     }
 
     /// <summary>

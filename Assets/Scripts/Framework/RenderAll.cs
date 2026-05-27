@@ -13,6 +13,7 @@ public class RenderAll : MonoBehaviour
 
     LoadModel loadModel;
     RenderText renderText;
+
     void Start()
     {
         loadModel = this.GetComponent<LoadModel>();
@@ -28,7 +29,7 @@ public class RenderAll : MonoBehaviour
     void Update()
     {
         // Check if next level requested
-        if (Keyboard.current.tKey.wasPressedThisFrame)
+        if (Keyboard.current.mKey.wasPressedThisFrame)
         {
             NextLevel();
         }
@@ -44,7 +45,8 @@ public class RenderAll : MonoBehaviour
             currentModel.SetActive(false);
         }
 
-        if (!File.Exists($"Assets/Resources/Lesson Plans/Lesson{currentLevel}.txt"))
+        TextAsset lessonFile = Resources.Load<TextAsset>($"LessonPlans/Lesson{currentLevel}");
+        if (lessonFile == null)
         {
             currentLevel = 1;
         }

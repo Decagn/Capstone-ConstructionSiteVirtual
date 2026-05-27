@@ -10,7 +10,7 @@ public class LoadModel : MonoBehaviour
     public List<GameObject> loadModel()
     {
         houseModels = new List<GameObject>();
-        GameObject[] houseFiles = Resources.LoadAll<GameObject>("House Models/");
+        GameObject[] houseFiles = Resources.LoadAll<GameObject>("HouseModels/");
 
         // Display error message if no house models found
         if (houseFiles.Length == 0)

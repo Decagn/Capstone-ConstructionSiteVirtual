@@ -21,6 +21,6 @@ public class UIAudio : MonoBehaviour
             });
         }
 
-        Debug.Log($"[UIAudio] Added click sound to {buttons.Length} buttons under {gameObject.name}.");
+        //Debug.Log($"[UIAudio] Added click sound to {buttons.Length} buttons under {gameObject.name}.");
     }
 }

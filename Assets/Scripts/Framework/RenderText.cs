@@ -11,7 +11,7 @@ public class RenderText : MonoBehaviour
 
     public void renderText(string lessonFile)
     {
-        TextAsset txtData = (TextAsset)Resources.Load($"Lesson Plans/{lessonFile}");
+        TextAsset txtData = (TextAsset)Resources.Load($"LessonPlans/{lessonFile}");
 
         if (txtData == null)
         {
