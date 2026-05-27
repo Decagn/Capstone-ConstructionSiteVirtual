@@ -12,6 +12,9 @@ using TMPro;
 ///   2. Progress Bar  — Shows X/TotalTasks completed with a fill bar.
 ///   3. Feedback Panel — Brief pop-up after clicking a task element.
 ///   4. Results Screen — Shown when all tasks are complete, auto-hides after delay.
+///
+/// MODIFICATION: Now supports room-based task filtering.
+/// Only displays tasks for the current room when room filtering is enabled.
 /// </summary>
 public class TaskUI : MonoBehaviour
 {
@@ -84,6 +87,7 @@ public class TaskUI : MonoBehaviour
     /// <summary>
     /// Rebuilds the task list panel and updates the progress bar.
     /// Called by TaskManager after loading JSON and after each task completion.
+    /// MODIFIED: Now uses CurrentRoomTasks instead of all tasks when room filtering is enabled.
     /// </summary>
     public void RefreshTaskPanel()
     {
@@ -133,6 +137,10 @@ public class TaskUI : MonoBehaviour
     // Internal Helpers
     // ─────────────────────────────────────────────
 
+    /// <summary>
+    /// Rebuilds the task list UI.
+    /// MODIFIED: Uses CurrentRoomTasks to only show tasks for the current room.
+    /// </summary>
     private void RebuildTaskList()
     {
         if (taskListContent == null || taskRowPrefab == null) return;
@@ -142,7 +150,9 @@ public class TaskUI : MonoBehaviour
             Destroy(row);
         _taskRows.Clear();
 
-        var tasks = TaskManager.Instance.Tasks;
+        // CHANGE 1: Use CurrentRoomTasks instead of Tasks
+        // This ensures only tasks for the current room are displayed
+        var tasks = TaskManager.Instance.CurrentRoomTasks;
         if (tasks == null) return;
 
         float yOffset = 0f;
@@ -180,10 +190,16 @@ public class TaskUI : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Updates the progress bar fill and text.
+    /// MODIFIED: Uses CurrentRoomCompletedCount and CurrentRoomTaskCount for room-based progress.
+    /// </summary>
     private void UpdateProgressBar()
     {
-        int completed = TaskManager.Instance.CompletedTaskCount;
-        int total = TaskManager.Instance.TotalTaskCount;
+        // CHANGE 2: Use current room task counts instead of total counts
+        // This shows progress only for the current room
+        int completed = TaskManager.Instance.CurrentRoomCompletedCount;
+        int total = TaskManager.Instance.CurrentRoomTaskCount;
 
         if (progressBarFill != null)
             progressBarFill.fillAmount = total > 0 ? (float)completed / total : 0f;
