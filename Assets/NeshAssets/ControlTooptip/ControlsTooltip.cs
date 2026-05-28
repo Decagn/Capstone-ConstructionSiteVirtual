@@ -38,9 +38,9 @@ public class ControlsTooltip : MonoBehaviour
         background.color = _backgroundColour;
 
         RectTransform rect = panel.GetComponent<RectTransform>();
-        rect.anchorMin = new Vector2(1f, 0.9f);
-        rect.anchorMax = new Vector2(1f, 0.9f);
-        rect.pivot = new Vector2(1f, 0.9f);
+        rect.anchorMin = new Vector2(1f, 1f);
+        rect.anchorMax = new Vector2(1f, 1f);
+        rect.pivot = new Vector2(1f, 1f);
         rect.anchoredPosition = new Vector2(-20f, -20f);
         rect.sizeDelta = new Vector2(400f, 350f);
 
