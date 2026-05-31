@@ -41,10 +41,9 @@ public class PointSelector : MonoBehaviour
     {
         bool _isMobile = Application.isMobilePlatform || UnityEngine.Device.Application.isMobilePlatform;
         Vector2 screenPoint = new Vector2();
+    
         if (_isMobile)
         {
-            //var touches = UnityEngine.InputSystem.EnhancedTouch.Touch.activeTouches;
-            //if (touches.Count > 0 ) screenPoint = touches[0].screenPosition;
             screenPoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
         }
         else
@@ -58,25 +57,27 @@ public class PointSelector : MonoBehaviour
         {
             GameObject previewGrid = GameObject.Instantiate(_previewGridPrefab);
             previewGrid.transform.position = pointInWorld;
-            previewGrid.transform.localScale = new Vector3(_previewGridSize, _previewGridSize, _previewGridSize);
+            Scaler.ScaleObject(_camera, previewGrid, _previewGridSize);
             _previewGrid = previewGrid;
         }
         else
         {
             _previewGrid.transform.position = pointInWorld;
-            _previewGrid.transform.Rotate(Vector3.up * _gridRotationSpeed * Time.deltaTime); ;
+            _previewGrid.transform.Rotate(Vector3.up * _gridRotationSpeed * Time.deltaTime);
+            Scaler.ScaleObject(_camera, _previewGrid, _previewGridSize);
         }
 
         if (_previewPoint == null)
         {
             GameObject previewPoint = GameObject.Instantiate(_previewPointPrefab);
             previewPoint.transform.position = pointInWorld;
-            previewPoint.transform.localScale = new Vector3(_previewPointSize, _previewPointSize, _previewPointSize);
+            Scaler.ScaleObject(_camera, previewPoint, _previewPointSize);
             _previewPoint = previewPoint;
         }
         else
         {
             _previewPoint.transform.position = pointInWorld;
+            Scaler.ScaleObject(_camera, _previewPoint, _previewPointSize);
         }
     }
 

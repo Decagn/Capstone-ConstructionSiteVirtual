@@ -1,16 +1,31 @@
+using GLTFast.Schema;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class LessonSnapVisualiser : MonoBehaviour
 {
+    [SerializeField] private UnityEngine.Camera _camera;
+
     [SerializeField] private GameObject _snapMarkerPrefab;
     [SerializeField] private float _markerSize = 0.05f;
 
-    [SerializeField] private Material _snapLineMaterial;
-    [SerializeField] float _lineWidth = 0.02f;
+    [SerializeField] private UnityEngine.Material _snapLineMaterial;
+    [SerializeField] float _lineWidth = 0.015f;
 
     private List<GameObject> _markers = new List<GameObject>();
     private List<GameObject> _lines = new List<GameObject>();
+
+    private void Update()
+    {
+        foreach(GameObject marker in _markers)
+        {
+            if (marker != null) Scaler.ScaleObject(_camera, marker, _markerSize);
+        }
+        foreach (GameObject line in _lines)
+        {
+            if (line != null) Scaler.ScaleLine(_camera, line, _lineWidth);
+        }
+    }
 
     private GameObject CreateMarker(Vector3 point, float size)
     {

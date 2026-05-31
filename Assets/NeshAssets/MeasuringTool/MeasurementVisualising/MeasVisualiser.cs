@@ -1,10 +1,8 @@
-using NUnit.Framework;
 using System.Collections.Generic;
-using System.Security.Cryptography;
+using System.Drawing;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class MeasVisualiser : MonoBehaviour
 {
@@ -21,6 +19,9 @@ public class MeasVisualiser : MonoBehaviour
     private void LateUpdate()
     {
         UpdatePopups();
+        UpdateLines();
+        UpdateArcs();
+        UpdateMarkers();
     }
     private void OnDisable()
     {
@@ -59,6 +60,23 @@ public class MeasVisualiser : MonoBehaviour
         marker.transform.position = point;
         marker.transform.localScale = new Vector3(size, size, size);
         return marker;
+    }
+    private void UpdateMarkers()
+    {
+        foreach (GameObject marker in _markers)
+        {
+            if (marker != null)
+            {
+                Scaler.ScaleObject(_camera, marker, _markerSize);
+            }
+        }
+        foreach (GameObject marker in _markersNew)
+        {
+            if (marker != null)
+            {
+                Scaler.ScaleObject(_camera, marker, _markerSize);
+            }
+        }
     }
     private void ReadPointUpdates()
     {
@@ -114,7 +132,16 @@ public class MeasVisualiser : MonoBehaviour
         lineRenderer.startWidth = _lineWidth;
         lineRenderer.endWidth = _lineWidth;
     }
-
+    private void UpdateLines()
+    {
+        foreach (GameObject line in _lines)
+        {
+            if (line != null)
+            {
+                Scaler.ScaleLine(_camera, line, _arcWidth);
+            }
+        }
+    }
     private void ReadLineUpdates() { _manager.OnMeasCreated += CreateLines; }
     private void StopLineUpdates() { _manager.OnMeasCreated -= CreateLines; }
     #endregion
@@ -184,6 +211,16 @@ public class MeasVisualiser : MonoBehaviour
         arcRenderer.startWidth = _arcWidth;
         arcRenderer.endWidth = _arcWidth;
     }
+    private void UpdateArcs()
+    {
+        foreach (GameObject arc in _arcs)
+        {
+            if (arc != null)
+            {
+                Scaler.ScaleObject(_camera, arc, _arcWidth);
+            }
+        }
+    }
     private void ReadArcUpdates() { _manager.OnMeasCreated += CreateArcs; }
     private void StopArcUpdates() { _manager.OnMeasCreated -= CreateArcs; }
     #endregion
@@ -192,6 +229,7 @@ public class MeasVisualiser : MonoBehaviour
     [Header("Measurement Popups")]
     [SerializeField] Material _popupMaterial;
     [SerializeField] float _popupSize = 0.005f;
+    [SerializeField] float _fontSize = 20f;
 
     private GameObject CreatePopup(GameObject obj, Vector3 position, string measText)
     {
@@ -207,9 +245,9 @@ public class MeasVisualiser : MonoBehaviour
         popupCanvas.worldCamera = Camera.main;
 
         TextMeshProUGUI text = popupCanvas.AddComponent<TextMeshProUGUI>();
-        text.fontSize = 20;
+        text.fontSize = _fontSize;
         text.alignment = TextAlignmentOptions.Center;
-        text.color = Color.white;
+        text.color = UnityEngine.Color.white;
         text.fontSharedMaterial = _popupMaterial;
         text.text = measText;
 
@@ -245,11 +283,19 @@ public class MeasVisualiser : MonoBehaviour
     {
         foreach (GameObject popup in _linePopups) 
         {
-            if (popup != null) popup.transform.forward = _camera.transform.forward;
+            if (popup != null)
+            {
+                popup.transform.forward = _camera.transform.forward;
+                Scaler.ScaleText(_camera, popup, _fontSize);
+            }
         }
         foreach (GameObject popup in _arcPopups)
         {
-            if (popup != null) popup.transform.forward = _camera.transform.forward;
+            if (popup != null)
+            {
+                popup.transform.forward = _camera.transform.forward;
+                Scaler.ScaleText(_camera, popup, _fontSize);
+            }
         }
     }
     #endregion
