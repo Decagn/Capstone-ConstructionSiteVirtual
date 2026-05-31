@@ -217,7 +217,7 @@ public class MeasVisualiser : MonoBehaviour
         {
             if (arc != null)
             {
-                Scaler.ScaleObject(_camera, arc, _arcWidth);
+                Scaler.ScaleLine(_camera, arc, _arcWidth);
             }
         }
     }
