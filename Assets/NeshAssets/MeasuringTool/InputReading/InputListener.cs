@@ -15,12 +15,14 @@ public class InputListener : MonoBehaviour
     public event Action OnResetAllPoints;
     public event Action OnNextTool;
     public event Action OnPrevTool;
+    public event Action OnToggleSnapping;
 
     private InputAction _selectPoint;
     private InputAction _deselectLastPoint;
     private InputAction _resetAllPoints;
     private InputAction _nextTool;
     private InputAction _prevTool;
+    private InputAction _toggleSnapping;
 
     private bool _platformIsMobile = Application.isMobilePlatform 
         || UnityEngine.Device.Application.isMobilePlatform;
@@ -49,6 +51,7 @@ public class InputListener : MonoBehaviour
         _resetAllPoints?.Enable();
         _nextTool?.Enable();
         _prevTool?.Enable();
+        _toggleSnapping?.Enable();
     }
     private void DisableAllActions()
     {
@@ -57,6 +60,7 @@ public class InputListener : MonoBehaviour
         _resetAllPoints?.Disable();
         _nextTool?.Disable();
         _prevTool?.Disable();
+        _toggleSnapping?.Disable();
     }
     private void SetupActions()
     {
@@ -65,6 +69,7 @@ public class InputListener : MonoBehaviour
         _resetAllPoints = new InputAction("ResetAllPoints");
         _nextTool = new InputAction("NextTool");
         _prevTool = new InputAction("PrevTool");
+        _toggleSnapping = new InputAction("ToggleSnapping");
 
         if (!_platformIsMobile)
             BindDesktopKeys();
@@ -88,6 +93,9 @@ public class InputListener : MonoBehaviour
 
         else if (_prevTool.WasPressedThisFrame()) 
             OnPrevTool?.Invoke();
+
+        else if (_toggleSnapping.WasPressedThisFrame())
+            OnToggleSnapping?.Invoke();
     }
     private Vector2 GetClickPostion() => Mouse.current.position.ReadValue();
     private void AddBinding(InputAction action, string binding)
@@ -101,6 +109,7 @@ public class InputListener : MonoBehaviour
         AddBinding(_resetAllPoints, "<Keyboard>/r");
         AddBinding(_nextTool, "<Mouse>/scroll/up");
         AddBinding(_prevTool, "<Mouse>/scroll/down");
+        AddBinding(_toggleSnapping, "<Keyboard>/z");
     }
 
     /*
@@ -114,4 +123,5 @@ public class InputListener : MonoBehaviour
     public void ResetPoints() { OnResetAllPoints?.Invoke(); }
     public void SwitchNextTool() { OnNextTool?.Invoke(); }
     public void SwitchPrevTool() { OnPrevTool?.Invoke(); }
+    public void ToggleSnapping() { OnToggleSnapping?.Invoke(); }
 }

@@ -10,7 +10,7 @@ public class PointSelector : MonoBehaviour
     // How far in the scene points can be selected from.
     [SerializeField] private float _furthestPoint = Mathf.Infinity;
 
-    [SerializeField] public bool _snapping = true;
+    [SerializeField] private bool _snapping = true;
 
     // Snapping to points placed in the lesson plan.
     [SerializeField] private LessonSnapManager _lessonSnapManager;
@@ -26,6 +26,7 @@ public class PointSelector : MonoBehaviour
     [SerializeField] private float _snapToInlinePointDistance = 0.2f;
 
     [SerializeField] private MeasManager _measManager;
+    [SerializeField] private InputListener _inputListener;
 
     bool _platformIsMobile = Application.isMobilePlatform 
         || UnityEngine.Device.Application.isMobilePlatform;
@@ -48,9 +49,10 @@ public class PointSelector : MonoBehaviour
     private GameObject _previewGrid;
 
     // Dynamically scale the grid to the preview point size.
-    private void Awake() { _previewGridSize = _previewPointSize * 4f; }
-        
+    private void Awake() { _previewGridSize = _previewPointSize * 4f; } 
     private void Update() { ShowPreviewPoint(); }
+    private void OnEnable() { _inputListener.OnToggleSnapping += ToggleSnapping; }
+    private void OnDisable() { _inputListener.OnToggleSnapping -= ToggleSnapping; }
 
     private Vector3 TryGetPoint(Vector2 screenPoint)
     {
@@ -151,4 +153,6 @@ public class PointSelector : MonoBehaviour
 
         UpdatePreview(pointInWorld);
     }
+
+    public void ToggleSnapping() { _snapping = !_snapping; }
 }

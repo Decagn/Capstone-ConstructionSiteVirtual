@@ -13,7 +13,8 @@ public class ControlsTooltipInitialiser : MonoBehaviour
         "Deselect Point\n" +
         "Reset All Points\n" +
         "Switch Tool\n" +
-        "Switch Models";
+        "Switch Models\n" +
+        "Toggle Snapping";
 
     private const string _keys =
         "[ F ] - \n" +
@@ -26,7 +27,8 @@ public class ControlsTooltipInitialiser : MonoBehaviour
         "[ X ] - \n" +
         "[ R ] - \n" +
         "[ Scroll ] - \n" +
-        "[ M ] - ";
+        "[ M ] - \n" +
+        "[ Z ] - ";
 
     private void Awake()
     {
