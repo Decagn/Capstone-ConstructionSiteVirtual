@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class MeasLogBook
 {
-    private List<Meas> _measurements = new List<Meas>();
+    private List<Measurement> _measurements = new List<Measurement>();
 
-    public bool Add(Meas measurement)
+    public bool Add(Measurement measurement)
     {
         if (_measurements == null) return false;
 
@@ -15,7 +15,7 @@ public class MeasLogBook
         return true;
     }
 
-    private void announceMeas(Meas meas)
+    private void announceMeas(Measurement meas)
     {
         string tool = $"{meas.GetToolType()}";
 

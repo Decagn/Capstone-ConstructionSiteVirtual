@@ -33,7 +33,7 @@ public class MeasInterface : MonoBehaviour
     #endregion
 
     #region Tool Icon 
-    [SerializeField] MeasManager _manager;
+    [SerializeField] MeasurementToolManager _manager;
     [SerializeField] MeasToolIcons _icons;
 
     private void DrawToolIcons()

@@ -25,7 +25,7 @@ public class PointSelector : MonoBehaviour
     [SerializeField] private bool _inlinePointSnapping = true;
     [SerializeField] private float _snapToInlinePointDistance = 0.2f;
 
-    [SerializeField] private MeasManager _measManager;
+    [SerializeField] private MeasurementToolManager _measManager;
     [SerializeField] private InputListener _inputListener;
 
     bool _platformIsMobile = Application.isMobilePlatform 

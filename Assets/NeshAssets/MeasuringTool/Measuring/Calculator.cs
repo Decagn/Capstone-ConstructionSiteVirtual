@@ -1,7 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class MeasCalc
+/*
+ * Calculator
+ * A static class that performs calculations needed for the measurement tools.
+ */
+public static class Calculator
 {
     public static float GetLength(Vector3 pointA, Vector3 pointB) => Vector3.Distance(pointA, pointB);
 
@@ -20,9 +24,10 @@ public static class MeasCalc
         return Vector3.Cross(lineA, lineC).magnitude * 0.5f;
     }
 
+    // This function can be used for future implementation where areas are calculated and displayed.
     public static float GetAreaOfPolygon(List<Vector3> points)
     {
-        if (points.Count < 3) MeasDebug.Log("Not enough points to form polygon", "MeasCalc");
+        if (points.Count < 3) MeasDebug.Log("Not enough points to form polygon", "Calculator");
         float area = 0;
 
         Vector3 firstVertex = points[0];

@@ -44,8 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 193daae9787b4d8448ca46a9daa7e6d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputListener
-  _holdThreshold: 0.4
-  _swipeThreshold: 50
 --- !u!1 &1869249091226006641
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,17 +123,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 2510324775758055925}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f69dce52db751d14b99cf221c89abcc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 66d9634f67908be48a0f77528a5494e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeasManager
-  _lessonCreationMode: 1
+  _devMode: 1
   _debugMode: 1
-  _tapeMeasure: {fileID: 831246951141306700}
-  _protractor: {fileID: 677553937851382220}
-  _multiTool: {fileID: 2288648364338387633}
-  _laser: {fileID: 2800773507086650687}
   _selector: {fileID: 8426167649295053671}
   _listener: {fileID: 1639801139679357197}
+  _measuringTape: {fileID: 831246951141306700}
+  _protractor: {fileID: 677553937851382220}
+  _continuousMeasurementTool: {fileID: 2288648364338387633}
+  _pointIndentifier: {fileID: 2800773507086650687}
 --- !u!1 &3390134912461505672
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,6 +197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MeasInterface
   _size: 64
   _sprite: {fileID: 1499295055, guid: c9902ed808f2fec4ab4f57b5f05fc0db, type: 3}
+  _enableCrosshairs: 1
 --- !u!114 &4407354015636283721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,10 +258,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4039446924187318823}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3aedf192b7719544285b7fa880054438, type: 3}
+  m_Script: {fileID: 11500000, guid: 7ff5681ab1c64324fb78ee6e70daf7b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TapeMeasure
-  icon: {fileID: -1202046436, guid: ed4d20aefbb69244585d28782f4a9b58, type: 3}
+  _icon: {fileID: -1202046436, guid: ed4d20aefbb69244585d28782f4a9b58, type: 3}
 --- !u!114 &677553937851382220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,7 +274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca62597021c05c045a0843da3094dc79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Protractor
-  icon: {fileID: -2050853546, guid: 8cfa744e03f048743afc32ed9071a33e, type: 3}
+  _icon: {fileID: -2050853546, guid: 8cfa744e03f048743afc32ed9071a33e, type: 3}
 --- !u!114 &2288648364338387633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -346,20 +345,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccccd29a5974f63459992916c3929d1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PointSelector
+  _playerCam: {fileID: 0}
   _furthestPoint: Infinity
   _snapping: 1
   _lessonSnapManager: {fileID: 2068044550451968841}
-  _snapToLessonPoint: 1
+  _lessonPointSnapping: 1
   _snapToLessonPointDistance: 0.5
-  _snapToPreviousPoint: 1
+  _previousPointSnapping: 1
   _snapToPreviousPointDistance: 0.5
-  _snapToInlinePoint: 1
+  _inlinePointSnapping: 1
   _snapToInlinePointDistance: 0.5
   _measManager: {fileID: 5642809437804885357}
+  _inputListener: {fileID: 1639801139679357197}
   previewPoint: 1
+  _previewPointSize: 0.03
   _previewGridPrefab: {fileID: 2292414266416149384, guid: e6ac9e919ead683468053d2af5cf65d5, type: 3}
   _previewPointPrefab: {fileID: 2292414266416149384, guid: d0924105ef5ede846a3b200427c5b22b, type: 3}
-  _previewPointSize: 0.03
 --- !u!1 &7151328860931948636
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,6 +420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d95d92b50c8d90a448f3b16444c614ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LessonSnapVisualiser
+  _camera: {fileID: 0}
   _snapMarkerPrefab: {fileID: 2292414266416149384, guid: b12ef52fb7de95649b5d6241d47753a6, type: 3}
   _markerSize: 0.075
   _snapLineMaterial: {fileID: 2100000, guid: ded42c0ee93647347a90637de1cae7be, type: 2}
@@ -468,6 +470,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeasVisualiser
   _manager: {fileID: 5642809437804885357}
+  _camera: {fileID: 0}
   _markerPrefab: {fileID: 2292414266416149384, guid: fc1a506f2a9fe324594d9f0be536e089, type: 3}
   _markerNewPrefab: {fileID: 2292414266416149384, guid: 1f4454e61785eca49836a34291b81fe0, type: 3}
   _markerSize: 0.075
@@ -477,3 +480,4 @@ MonoBehaviour:
   _arcWidth: 0.02
   _popupMaterial: {fileID: 2100000, guid: dbe35eca695d06f458ea1d343019f120, type: 2}
   _popupSize: 0.005
+  _fontSize: 20

@@ -38,14 +38,14 @@ public class MeasToolIcons : MonoBehaviour
     private int _activeToolIdx = -1;
     private bool _toolBeltInit = false;
 
-    public void DrawToolBelt(Canvas canvas, List<IMeasTool> _tools)
+    public void DrawToolBelt(Canvas canvas, List<IMeasurementTool> _tools)
     {
         if (!_toolBeltInit) InitialiseToolBelt(_tools);
     }
 
-    private void InitialiseToolBelt(List<IMeasTool> _tools)
+    private void InitialiseToolBelt(List<IMeasurementTool> _tools)
     {
-        foreach (IMeasTool tool in _tools)
+        foreach (IMeasurementTool tool in _tools)
         {
             _toolIcons.Add(tool.ToolIcon);
         }

@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/*
+ * [Quantity] Length
+ * The length between two points in 3D space.
+ */
 public struct Length : IQuantity
 {
     public float Value { get; }
@@ -10,7 +14,7 @@ public struct Length : IQuantity
 
     public Length(Vector3 pointA, Vector3 pointB)
     {
-        this.Value = MeasCalc.GetLength(pointA, pointB);
+        this.Value = Calculator.GetLength(pointA, pointB);
         this.Unit = "m";
         this.DecimalPlaces = 2;
         _pointA = pointA;

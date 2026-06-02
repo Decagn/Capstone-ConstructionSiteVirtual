@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class MeasVisualiser : MonoBehaviour
 {
-    [SerializeField] MeasManager _manager;
+    [SerializeField] MeasurementToolManager _manager;
     [SerializeField] Camera _camera;
 
     #region Unity Lifecycle Events
@@ -80,13 +80,13 @@ public class MeasVisualiser : MonoBehaviour
     }
     private void ReadPointUpdates()
     {
-        _manager.OnSelecPoint += CreateNewMarkers;
-        _manager.OnMeasCreated += CreateMarkers;
+        _manager.OnSelectPoint += CreateNewMarkers;
+        _manager.OnMeasurementCreated += CreateMarkers;
     }
     private void StopPointUpdates()
     {
-        _manager.OnSelecPoint -= CreateNewMarkers;
-        _manager.OnMeasCreated -= CreateMarkers;
+        _manager.OnSelectPoint -= CreateNewMarkers;
+        _manager.OnMeasurementCreated -= CreateMarkers;
     }
     #endregion
 
@@ -142,8 +142,8 @@ public class MeasVisualiser : MonoBehaviour
             }
         }
     }
-    private void ReadLineUpdates() { _manager.OnMeasCreated += CreateLines; }
-    private void StopLineUpdates() { _manager.OnMeasCreated -= CreateLines; }
+    private void ReadLineUpdates() { _manager.OnMeasurementCreated += CreateLines; }
+    private void StopLineUpdates() { _manager.OnMeasurementCreated -= CreateLines; }
     #endregion
 
     #region Arcs
@@ -221,8 +221,8 @@ public class MeasVisualiser : MonoBehaviour
             }
         }
     }
-    private void ReadArcUpdates() { _manager.OnMeasCreated += CreateArcs; }
-    private void StopArcUpdates() { _manager.OnMeasCreated -= CreateArcs; }
+    private void ReadArcUpdates() { _manager.OnMeasurementCreated += CreateArcs; }
+    private void StopArcUpdates() { _manager.OnMeasurementCreated -= CreateArcs; }
     #endregion
 
     #region Popups
@@ -256,7 +256,7 @@ public class MeasVisualiser : MonoBehaviour
     private GameObject CreateLinePopup(GameObject line, Vector3 pointA, Vector3 pointB)
     {
         Vector3 popupPosition = (pointA + pointB) / 2;
-        float val = MeasCalc.GetLength(pointA, pointB);
+        float val = Calculator.GetLength(pointA, pointB);
         string measText = $"{val:F2}m";
         GameObject popup = CreatePopup(line, popupPosition, measText);
         return popup;
@@ -269,7 +269,7 @@ public class MeasVisualiser : MonoBehaviour
     private GameObject CreateArcPopup(GameObject arc, Vector3 pointA, Vector3 vertex, Vector3 pointB)
     {
         Vector3 popupPosition = vertex;
-        float val = MeasCalc.GetAngle(pointA, vertex, pointB);
+        float val = Calculator.GetAngle(pointA, vertex, pointB);
         string measText = $"{val:F1}°";
         GameObject popup = CreatePopup(arc, popupPosition, measText);
         return popup;
