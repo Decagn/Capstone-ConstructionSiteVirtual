@@ -33,9 +33,9 @@ public class InputListener : MonoBehaviour
     {
         SetupActions();
         if (_platformIsMobile) 
-            MeasDebug.Log("Mobile mode", "InputListener");
+            DebugMeasurementTools.Log("Mobile mode", "InputListener");
         else 
-            MeasDebug.Log("Desktop mode", "InputListener");
+            DebugMeasurementTools.Log("Desktop mode", "InputListener");
     }
     private void Update()
     {

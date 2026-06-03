@@ -27,7 +27,7 @@ public static class Calculator
     // This function can be used for future implementation where areas are calculated and displayed.
     public static float GetAreaOfPolygon(List<Vector3> points)
     {
-        if (points.Count < 3) MeasDebug.Log("Not enough points to form polygon", "Calculator");
+        if (points.Count < 3) DebugMeasurementTools.Log("Not enough points to form polygon", "Calculator");
         float area = 0;
 
         Vector3 firstVertex = points[0];

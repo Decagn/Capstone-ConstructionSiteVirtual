@@ -33,6 +33,6 @@ public class MeasLogBook
             listQuantities += $"\n{quant.Value} {quant.Unit}";
         }
 
-        MeasDebug.Log($"Measurement created: \n{tool}{listPoints}{listQuantities}", "MeasLogBook");
+        DebugMeasurementTools.Log($"Measurement created: \n{tool}{listPoints}{listQuantities}", "MeasLogBook");
     }
 }

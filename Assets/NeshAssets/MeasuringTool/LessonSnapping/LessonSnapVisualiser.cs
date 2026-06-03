@@ -80,7 +80,7 @@ public class LessonSnapVisualiser : MonoBehaviour
 
         foreach (List<Vector3> objectVertices in objects)
         {
-            if (objectVertices.Count == 0) MeasDebug.Log("Object has no vertices, therefore not drawn", "LessonSnapVisualiser");
+            if (objectVertices.Count == 0) DebugMeasurementTools.Log("Object has no vertices, therefore not drawn", "LessonSnapVisualiser");
             CreateMarkers(objectVertices);
             CreateLines(objectVertices);
         }

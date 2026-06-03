@@ -77,7 +77,7 @@ public class MeasurementToolManager : MonoBehaviour
         OnToolSwitch?.Invoke();
 
         if (_debugMode) 
-            MeasDebug.Log($"Active tool switched --> {_activeTool.Name}", "MeasManager");
+            DebugMeasurementTools.Log($"Active tool switched --> {_activeTool.Name}", "MeasManager");
 
         return true;
     }
@@ -114,7 +114,7 @@ public class MeasurementToolManager : MonoBehaviour
             return;
 
         if (_debugMode) 
-            MeasDebug.Log($"Point selected {point}", "MeasManager");
+            DebugMeasurementTools.Log($"Point selected {point}", "MeasManager");
 
         IMeasurement measurement = _activeTool.TakePoint(point); 
         OnSelectPoint?.Invoke(_activeTool.SelectedPoints);

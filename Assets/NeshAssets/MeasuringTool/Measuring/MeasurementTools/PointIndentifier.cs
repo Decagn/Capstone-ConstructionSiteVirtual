@@ -32,7 +32,7 @@ public class PointIndentifier : MonoBehaviour, IMeasurementTool
             SelectedPoints = new List<Vector3>();
 
         SelectedPoints.Add(point);
-        MeasDebug.Log($"({point.x}, {point.y}, {point.z})", "PointIndentifier");
+        DebugMeasurementTools.Log($"({point.x}, {point.y}, {point.z})", "PointIndentifier");
 
         return new InvalidMeasurement();
     }

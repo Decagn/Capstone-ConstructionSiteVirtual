@@ -64,7 +64,7 @@ public class LessonSnapFileParser
 
         if (file == null )
         {
-            MeasDebug.Log("Lesson snap file could not be loaded", "LessonSnapFileParser");
+            DebugMeasurementTools.Log("Lesson snap file could not be loaded", "LessonSnapFileParser");
             return new List<List<Vector3>>();
         }
 
