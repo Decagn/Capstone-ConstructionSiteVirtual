@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeasCrosshairs
   _manager: {fileID: 5642809437804885357}
-  _icons: {fileID: 4407354015636283721}
+  _toolIcon: {fileID: 4407354015636283721}
   _crosshairs: {fileID: 5690539300345493789}
 --- !u!114 &5690539300345493789
 MonoBehaviour:
@@ -192,12 +192,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3390134912461505672}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e174194777426dd45b62fb1dc9774316, type: 3}
+  m_Script: {fileID: 11500000, guid: 97ffb3f3060e9b542841a90cb91b3a3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeasInterface
-  _size: 64
-  _sprite: {fileID: 1499295055, guid: c9902ed808f2fec4ab4f57b5f05fc0db, type: 3}
+  _crosshairsSprite: {fileID: 1499295055, guid: c9902ed808f2fec4ab4f57b5f05fc0db, type: 3}
   _enableCrosshairs: 1
+  _crosshairsSize: 64
 --- !u!114 &4407354015636283721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -435,6 +435,11 @@ GameObject:
   m_Component:
   - component: {fileID: 3123098165376888324}
   - component: {fileID: 1709133683589038613}
+  - component: {fileID: 1887045729246941629}
+  - component: {fileID: 7175668111884577292}
+  - component: {fileID: 2528771615700008099}
+  - component: {fileID: 2665257341542683127}
+  - component: {fileID: 3917938373371356413}
   m_Layer: 0
   m_Name: MeasurementVisualising
   m_TagString: Untagged
@@ -471,13 +476,79 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MeasVisualiser
   _manager: {fileID: 5642809437804885357}
   _camera: {fileID: 0}
-  _markerPrefab: {fileID: 2292414266416149384, guid: fc1a506f2a9fe324594d9f0be536e089, type: 3}
-  _markerNewPrefab: {fileID: 2292414266416149384, guid: 1f4454e61785eca49836a34291b81fe0, type: 3}
-  _markerSize: 0.075
+  _newPointMarkerVisualiser: {fileID: 1887045729246941629}
+  _pointMarkerVisualiser: {fileID: 7175668111884577292}
+  _lineVisualiser: {fileID: 2528771615700008099}
+  _arcVisualiser: {fileID: 2665257341542683127}
+  _popupTextsVisualiser: {fileID: 3917938373371356413}
+--- !u!114 &1887045729246941629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8916388793641693610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c16a0514d3b9f7488c96d55b2580354, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NewPointMarkerVisualiser
+  _newPointMarkerPrefab: {fileID: 2292414266416149384, guid: 1f4454e61785eca49836a34291b81fe0, type: 3}
+  _newPointMarkerSize: 0.075
+--- !u!114 &7175668111884577292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8916388793641693610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 837d4badd21236048bd7514dcce1ecb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PointMarkerVisualiser
+  _pointMarkerPrefab: {fileID: 2292414266416149384, guid: fc1a506f2a9fe324594d9f0be536e089, type: 3}
+  _pointMarkerSize: 0.075
+--- !u!114 &2528771615700008099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8916388793641693610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e7e1c71d6cb14f4eadb496f045106fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LineVisualiser
   _lineMaterial: {fileID: 2100000, guid: 3f597beb7f7f08d4e968b9a55f1c4fce, type: 2}
   _lineWidth: 0.02
+--- !u!114 &2665257341542683127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8916388793641693610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88799612e07b22b4b97d00f7f4b63b2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ArcVisualiser
   _arcMaterial: {fileID: 2100000, guid: 3f597beb7f7f08d4e968b9a55f1c4fce, type: 2}
   _arcWidth: 0.02
+--- !u!114 &3917938373371356413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8916388793641693610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b6b54c2127da1b47adf948ec465a1f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PopupTextVisualiser
   _popupMaterial: {fileID: 2100000, guid: dbe35eca695d06f458ea1d343019f120, type: 2}
   _popupSize: 0.005
   _fontSize: 20

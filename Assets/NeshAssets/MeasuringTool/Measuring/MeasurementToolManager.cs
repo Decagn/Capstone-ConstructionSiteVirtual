@@ -144,10 +144,7 @@ public class MeasurementToolManager : MonoBehaviour
         _currMeasurement = measurement;
 
         if (measurement is InvalidMeasurement)
-        {
-            OnMeasurementCreated?.Invoke(new List<Vector3>());
             return;
-        }
 
         OnMeasurementCreated?.Invoke(((Measurement)_currMeasurement).GetPoints());
     }

@@ -2721,50 +2721,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 569979013}
   m_CullTransparentMesh: 1
---- !u!114 &603046942 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2800773507086650687, guid: 533eef8347a6f31449a9caa30a5d2245, type: 3}
-  m_PrefabInstance: {fileID: 1656512306}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3cc1b27795fc6340a21018d4df04957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::POILaser
---- !u!114 &603046944 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2288648364338387633, guid: 533eef8347a6f31449a9caa30a5d2245, type: 3}
-  m_PrefabInstance: {fileID: 1656512306}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 895c8891d84461a4d97f7e42559d3c53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MultiAngle
---- !u!114 &603046945 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 677553937851382220, guid: 533eef8347a6f31449a9caa30a5d2245, type: 3}
-  m_PrefabInstance: {fileID: 1656512306}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca62597021c05c045a0843da3094dc79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Protractor
---- !u!114 &603046946 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 831246951141306700, guid: 533eef8347a6f31449a9caa30a5d2245, type: 3}
-  m_PrefabInstance: {fileID: 1656512306}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ff5681ab1c64324fb78ee6e70daf7b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TapeMeasure
 --- !u!1 &608257835
 GameObject:
   m_ObjectHideFlags: 0
@@ -3071,7 +3027,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 668127588}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.999987
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3572,31 +3528,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!1 &694884335 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2510324775758055925, guid: 533eef8347a6f31449a9caa30a5d2245, type: 3}
-  m_PrefabInstance: {fileID: 1656512306}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &694884338
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 694884335}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66d9634f67908be48a0f77528a5494e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MeasurementToolManager
-  _devMode: 0
-  _debugMode: 0
-  _selector: {fileID: 2138682444}
-  _listener: {fileID: 126870160}
-  _measuringTape: {fileID: 603046946}
-  _protractor: {fileID: 603046945}
-  _continuousMeasurementTool: {fileID: 603046944}
-  _pointIndentifier: {fileID: 603046942}
 --- !u!1 &718788412
 GameObject:
   m_ObjectHideFlags: 0
@@ -4952,7 +4883,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00039784718}
+  m_AnchoredPosition: {x: 0, y: 0.00043008354}
   m_SizeDelta: {x: 200, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1173590848
@@ -6877,10 +6808,6 @@ PrefabInstance:
       propertyPath: _camera
       value: 
       objectReference: {fileID: 999787015}
-    - target: {fileID: 1709133683589038613, guid: 533eef8347a6f31449a9caa30a5d2245, type: 3}
-      propertyPath: _manager
-      value: 
-      objectReference: {fileID: 694884338}
     - target: {fileID: 1869249091226006641, guid: 533eef8347a6f31449a9caa30a5d2245, type: 3}
       propertyPath: m_Name
       value: MeasuringTool
@@ -6929,30 +6856,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6950847621728583363, guid: 533eef8347a6f31449a9caa30a5d2245, type: 3}
-      propertyPath: _manager
-      value: 
-      objectReference: {fileID: 694884338}
+    - target: {fileID: 5642809437804885357, guid: 533eef8347a6f31449a9caa30a5d2245, type: 3}
+      propertyPath: _devMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5642809437804885357, guid: 533eef8347a6f31449a9caa30a5d2245, type: 3}
+      propertyPath: _debugMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8426167649295053671, guid: 533eef8347a6f31449a9caa30a5d2245, type: 3}
       propertyPath: _playerCam
       value: 
       objectReference: {fileID: 999787015}
-    - target: {fileID: 8426167649295053671, guid: 533eef8347a6f31449a9caa30a5d2245, type: 3}
-      propertyPath: _measManager
-      value: 
-      objectReference: {fileID: 694884338}
-    - target: {fileID: 8426167649295053671, guid: 533eef8347a6f31449a9caa30a5d2245, type: 3}
-      propertyPath: _inputListener
-      value: 
-      objectReference: {fileID: 126870160}
-    m_RemovedComponents:
-    - {fileID: 5642809437804885357, guid: 533eef8347a6f31449a9caa30a5d2245, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2510324775758055925, guid: 533eef8347a6f31449a9caa30a5d2245, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 694884338}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 533eef8347a6f31449a9caa30a5d2245, type: 3}
 --- !u!1 &1659779534
 GameObject:
@@ -7967,17 +7886,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 685a8df03fb88434480ce41eabd9c7a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ControlsTooltipInitialiser
---- !u!114 &2138682444 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8426167649295053671, guid: 533eef8347a6f31449a9caa30a5d2245, type: 3}
-  m_PrefabInstance: {fileID: 1656512306}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ccccd29a5974f63459992916c3929d1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PointSelector
 --- !u!1 &2142170601
 GameObject:
   m_ObjectHideFlags: 0
