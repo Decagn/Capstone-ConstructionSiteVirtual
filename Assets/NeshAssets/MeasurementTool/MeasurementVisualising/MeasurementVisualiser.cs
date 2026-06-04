@@ -26,12 +26,14 @@ public class MeasurementVisualiser : MonoBehaviour
     {
         _manager.OnSelectPoint += CreateNewPointMarkers;
         _manager.OnMeasurementCreated += CreateVisuals;
+        _manager.OnMeasurementCleared += ClearVisuals;
     }
     
     private void OnDisable()
     {
         _manager.OnSelectPoint -= CreateNewPointMarkers;
         _manager.OnMeasurementCreated -= CreateVisuals;
+        _manager.OnMeasurementCleared -= ClearVisuals;
     }
    
     private void LateUpdate() { ScaleVisuals(); }
@@ -45,10 +47,7 @@ public class MeasurementVisualiser : MonoBehaviour
 
     private void CreateVisuals(List<Vector3> points)
     {
-        // Delete current visualised objects
-        foreach (IVisualisedObject obj in _visualisedObjects)
-            Destroy(obj.obj);
-        _visualisedObjects.Clear();
+        ClearVisuals();
 
         _visualisedObjects.AddRange(_pointMarkerVisualiser.Create(points));
         _visualisedObjects.AddRange(_lineVisualiser.Create(points));
@@ -68,6 +67,13 @@ public class MeasurementVisualiser : MonoBehaviour
 
         Measurement currConitnuousMeasurement = ((ContinuousMeasurementTool)activeTool).GetContinuousMeasurement();
         _visualisedObjects.AddRange(_popupTextsVisualiser.CreateAreaTextPopups(currConitnuousMeasurement));
+    }
+
+    private void ClearVisuals()
+    {
+        foreach (IVisualisedObject obj in _visualisedObjects)
+            Destroy(obj.obj);
+        _visualisedObjects.Clear();
     }
 
     // Scales the visualised objects based on how far they are from the player/camera.

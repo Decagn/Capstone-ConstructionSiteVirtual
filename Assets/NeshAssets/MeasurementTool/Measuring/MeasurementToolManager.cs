@@ -29,6 +29,7 @@ public class MeasurementToolManager : MonoBehaviour
 
     public event Action<List<Vector3>> OnSelectPoint;
     public event Action<List<Vector3>> OnMeasurementCreated;
+    public event Action OnMeasurementCleared;
     public event Action OnToolSwitch;
 
     private IMeasurement _currMeasurement = new InvalidMeasurement();
@@ -134,10 +135,9 @@ public class MeasurementToolManager : MonoBehaviour
         if (_activeTool == null) 
             return;
 
-        HandleMeasurement(new InvalidMeasurement());
-
         _activeTool.ResetAllSelectedPoints();
         OnSelectPoint?.Invoke(_activeTool.SelectedPoints);
+        OnMeasurementCleared?.Invoke();
     }
     private void HandleMeasurement(IMeasurement measurement)
     {
