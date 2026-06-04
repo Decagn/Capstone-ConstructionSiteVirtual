@@ -4883,7 +4883,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00043008354}
+  m_AnchoredPosition: {x: 0, y: 0.0004896431}
   m_SizeDelta: {x: 200, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1173590848
@@ -6812,10 +6812,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MeasuringTool
       objectReference: {fileID: 0}
-    - target: {fileID: 4441627033369219689, guid: 533eef8347a6f31449a9caa30a5d2245, type: 3}
-      propertyPath: _camera
-      value: 
-      objectReference: {fileID: 999787015}
+    - target: {fileID: 3990318353644771777, guid: 533eef8347a6f31449a9caa30a5d2245, type: 3}
+      propertyPath: _fileName
+      value: LessonMeasurements
+      objectReference: {fileID: 0}
     - target: {fileID: 5593440744876338489, guid: 533eef8347a6f31449a9caa30a5d2245, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.4247
@@ -6856,14 +6856,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5642809437804885357, guid: 533eef8347a6f31449a9caa30a5d2245, type: 3}
-      propertyPath: _devMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5642809437804885357, guid: 533eef8347a6f31449a9caa30a5d2245, type: 3}
-      propertyPath: _debugMode
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 6245077488686265659, guid: 533eef8347a6f31449a9caa30a5d2245, type: 3}
+      propertyPath: _camera
+      value: 
+      objectReference: {fileID: 999787015}
+    - target: {fileID: 6245077488686265659, guid: 533eef8347a6f31449a9caa30a5d2245, type: 3}
+      propertyPath: _lineVisualiser
+      value: 
+      objectReference: {fileID: 1656512307}
+    - target: {fileID: 6245077488686265659, guid: 533eef8347a6f31449a9caa30a5d2245, type: 3}
+      propertyPath: _markerVisualiser
+      value: 
+      objectReference: {fileID: 1656512308}
+    - target: {fileID: 6245077488686265659, guid: 533eef8347a6f31449a9caa30a5d2245, type: 3}
+      propertyPath: _lessonPointMarkerPrefab
+      value: 
+      objectReference: {fileID: 2292414266416149384, guid: b12ef52fb7de95649b5d6241d47753a6, type: 3}
+    - target: {fileID: 6245077488686265659, guid: 533eef8347a6f31449a9caa30a5d2245, type: 3}
+      propertyPath: _lessonMeasurementLineMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: ded42c0ee93647347a90637de1cae7be, type: 2}
     - target: {fileID: 8426167649295053671, guid: 533eef8347a6f31449a9caa30a5d2245, type: 3}
       propertyPath: _playerCam
       value: 
@@ -6873,6 +6885,28 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 533eef8347a6f31449a9caa30a5d2245, type: 3}
+--- !u!114 &1656512307 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2528771615700008099, guid: 533eef8347a6f31449a9caa30a5d2245, type: 3}
+  m_PrefabInstance: {fileID: 1656512306}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e7e1c71d6cb14f4eadb496f045106fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LineVisualiser
+--- !u!114 &1656512308 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7175668111884577292, guid: 533eef8347a6f31449a9caa30a5d2245, type: 3}
+  m_PrefabInstance: {fileID: 1656512306}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 837d4badd21236048bd7514dcce1ecb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PointMarkerVisualiser
 --- !u!1 &1659779534
 GameObject:
   m_ObjectHideFlags: 0

@@ -46,6 +46,26 @@ public class LineVisualiser : MonoBehaviour, IVisualiser
         return lines;
     }
 
+    // Makes lines with a different material.
+    // Used by the lesson measurements manager to create custom lines.
+    public List<IVisualisedObject> CreateCustom(List<Vector3> points, UnityEngine.Material lineMaterial)
+    {
+        List<IVisualisedObject> lines = new List<IVisualisedObject>();
+
+        if (points.Count < 2)
+            return lines;
+
+        for (int l = 0; l < points.Count - 1; l++)
+        {
+            GameObject lineObj = CreateLine(points[l], points[l + 1]);
+            lineObj.GetComponent<LineRenderer>().material = lineMaterial;
+            IVisualisedObject line = new IVisualisedObject(VisualType.Line, lineObj, new List<Vector3> { points[l], points[l + 1] });
+            lines.Add(line);
+        }
+
+        return lines;
+    }
+
     public void Scale(IVisualisedObject obj, UnityEngine.Camera camera)
     { Scaler.ScaleLine(camera, obj.obj, _lineWidth); }
 }

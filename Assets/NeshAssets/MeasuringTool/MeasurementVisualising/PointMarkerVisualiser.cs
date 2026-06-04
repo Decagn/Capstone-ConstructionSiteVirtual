@@ -34,6 +34,22 @@ public class PointMarkerVisualiser : MonoBehaviour, IVisualiser
         return pointMarkers;
     }
 
+    // Makes points with a different prefab.
+    // Used by the lesson measurements manager to create custom points.
+    public List<IVisualisedObject> CreateCustom(List<Vector3> points, GameObject pointPrefab)
+    {
+        List<IVisualisedObject> pointMarkers = new List<IVisualisedObject>();
+
+        foreach (Vector3 point in points)
+        {
+            GameObject pointObj = CreatePointMarker(point, pointPrefab, _pointMarkerSize);
+            IVisualisedObject pointMarker = new IVisualisedObject(VisualType.PointMarker, pointObj, new List<Vector3> { point });
+            pointMarkers.Add(pointMarker);
+        }
+
+        return pointMarkers;
+    }
+
     public void Scale(IVisualisedObject obj, UnityEngine.Camera camera) 
     { Scaler.ScaleObject(camera, obj.obj, _pointMarkerSize); }
 }

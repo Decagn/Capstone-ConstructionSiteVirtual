@@ -78,9 +78,75 @@ Transform:
   - {fileID: 3758496067436006675}
   - {fileID: 7365873022808702611}
   - {fileID: 3123098165376888324}
-  - {fileID: 5403498260457687358}
+  - {fileID: 6473017104587773507}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2048999945818907560
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6473017104587773507}
+  - component: {fileID: 3990318353644771777}
+  - component: {fileID: 6245077488686265659}
+  m_Layer: 0
+  m_Name: LessonMeasurements
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6473017104587773507
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2048999945818907560}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5593440744876338489}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3990318353644771777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2048999945818907560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1c0c29e4177c2641bca048477d1e040, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LessonMeasurementsManager
+  _visualiser: {fileID: 6245077488686265659}
+  _filePrefix: LessonMeasurements
+--- !u!114 &6245077488686265659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2048999945818907560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d95d92b50c8d90a448f3b16444c614ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LessonMeasurementsPointsVisualiser
+  _camera: {fileID: 0}
+  _markerVisualiser: {fileID: 7175668111884577292}
+  _lineVisualiser: {fileID: 2528771615700008099}
+  _lessonPointMarkerPrefab: {fileID: 2292414266416149384, guid: b12ef52fb7de95649b5d6241d47753a6, type: 3}
+  _lessonPointMarkerSize: 0.05
+  _lessonMeasurementLineMaterial: {fileID: 2100000, guid: ded42c0ee93647347a90637de1cae7be, type: 2}
+  _lessonMeasurementLineWidth: 0.015
 --- !u!1 &2510324775758055925
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,8 +192,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66d9634f67908be48a0f77528a5494e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeasManager
-  _devMode: 1
-  _debugMode: 1
+  _devMode: 0
+  _debugMode: 0
   _selector: {fileID: 8426167649295053671}
   _listener: {fileID: 1639801139679357197}
   _measuringTape: {fileID: 831246951141306700}
@@ -348,7 +414,7 @@ MonoBehaviour:
   _playerCam: {fileID: 0}
   _furthestPoint: Infinity
   _snapping: 1
-  _lessonSnapManager: {fileID: 2068044550451968841}
+  _lessonSnapManager: {fileID: 3990318353644771777}
   _lessonPointSnapping: 1
   _snapToLessonPointDistance: 0.5
   _previousPointSnapping: 1
@@ -361,70 +427,6 @@ MonoBehaviour:
   _previewPointSize: 0.03
   _previewGridPrefab: {fileID: 2292414266416149384, guid: e6ac9e919ead683468053d2af5cf65d5, type: 3}
   _previewPointPrefab: {fileID: 2292414266416149384, guid: d0924105ef5ede846a3b200427c5b22b, type: 3}
---- !u!1 &7151328860931948636
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5403498260457687358}
-  - component: {fileID: 2068044550451968841}
-  - component: {fileID: 4441627033369219689}
-  m_Layer: 0
-  m_Name: LessonSnapping
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5403498260457687358
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7151328860931948636}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5593440744876338489}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2068044550451968841
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7151328860931948636}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf3b466b875244a49b6fe2de383182f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LessonSnapManager
-  _visualiser: {fileID: 4441627033369219689}
-  _fileName: LessonSnapObjects
---- !u!114 &4441627033369219689
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7151328860931948636}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d95d92b50c8d90a448f3b16444c614ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LessonSnapVisualiser
-  _camera: {fileID: 0}
-  _snapMarkerPrefab: {fileID: 2292414266416149384, guid: b12ef52fb7de95649b5d6241d47753a6, type: 3}
-  _markerSize: 0.075
-  _snapLineMaterial: {fileID: 2100000, guid: ded42c0ee93647347a90637de1cae7be, type: 2}
-  _lineWidth: 0.02
 --- !u!1 &8916388793641693610
 GameObject:
   m_ObjectHideFlags: 0
