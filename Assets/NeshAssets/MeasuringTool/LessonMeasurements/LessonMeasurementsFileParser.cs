@@ -7,6 +7,21 @@ using UnityEngine;
  * This class finds the pre-defined/lesson measurement points within a file in /Resources
  * and is used by the Lesson Measurements Manager.
  */
+
+/*
+ * Lesson Measurements File Struture (file type: .txt)
+ * -------------------------------------------------------------------------------
+ * | # Table Counter                                                                <-- Comments are ignored automatically when file is parsed.
+ * | (1.00, 0.92, -2.65),(1.89, 0.92, -2.65),(1.89, 0.92, -0.15),(1, 0.92, -0.15)   <-- Each line of Vector3s is one measurement.
+ * |                                                                                <-- Blank lines are also ignored automatically.
+ * | # Wall Length
+ * | (1.34, 2.70, 3.05),(1.34, 0.03, 3.05)
+ * |
+ * | # Stairs
+ * | (-0.91, 1.09, 1.95),(-2.20, 1.09, 1.95),(-0.91, 0.00, 1.95)
+ * -------------------------------------------------------------------------------
+ */
+
 public class LessonMeasurementsFileParser
 {
     // Tries to convert a string into a Vector3,
