@@ -66,7 +66,8 @@ public class MeasurementVisualiser : MonoBehaviour
             return;
 
         Measurement currConitnuousMeasurement = ((ContinuousMeasurementTool)activeTool).GetContinuousMeasurement();
-        _visualisedObjects.AddRange(_popupTextsVisualiser.CreateAreaTextPopups(currConitnuousMeasurement));
+        GameObject areaPopupsParent = new GameObject("Area Pop-up Texts");
+        _visualisedObjects.AddRange(_popupTextsVisualiser.CreateAreaTextPopups(currConitnuousMeasurement, areaPopupsParent));
     }
 
     private void ClearVisuals()

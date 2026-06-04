@@ -81,7 +81,7 @@ public class PopupTextVisualiser : MonoBehaviour, IVisualiser
         return sum / points.Count;
     }
 
-    public List<IVisualisedObject> CreateAreaTextPopups(Measurement measurement)
+    public List<IVisualisedObject> CreateAreaTextPopups(Measurement measurement, GameObject parent)
     {
         List<IQuantity> quantities = measurement.GetQuantities();
         List <IVisualisedObject> areaPopups = new List<IVisualisedObject>();
@@ -94,8 +94,7 @@ public class PopupTextVisualiser : MonoBehaviour, IVisualiser
             List<Vector3> polygonVertices = ((Area)quantity).GetPoints;
             Vector3 centroid = GetCentroid(polygonVertices);
             string measText = $"{quantity.Value:F2}m²";
-            GameObject areaPlaceholderObj = new GameObject();
-            GameObject popupObj = CreateTextPopup(areaPlaceholderObj, centroid, measText);
+            GameObject popupObj = CreateTextPopup(parent, centroid, measText);
             areaPopups.Add(new IVisualisedObject(VisualType.PopupText, popupObj, polygonVertices));
         }
 
