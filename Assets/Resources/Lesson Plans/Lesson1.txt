@@ -1,5 +1,5 @@
 {
-   "model" : "House1BIMModel-3DView-{3D}(Clone)",
-   "player_pos" : { "x" : 3, "y" : 1, "z" : 1 },
-   "labels" : []
+   "modelName" : "House1BIMModel-3DView-{3D}",
+   "playerPos" : { "x" : 3, "y" : 1, "z" : 1 },
+   "labels" : [ { "labelPos" : { "x" : 10, "y" : 0, "z" : 0 }, "text" : "Living Room" } ]
 }

@@ -1,0 +1,82 @@
+/// <summary>
+/// Loads and tracks all available house models, and manages display of model for current lesson.
+/// </summary>
+
+using System.Collections.Generic;
+using System.Linq;
+using System.IO;
+using UnityEngine;
+
+public class ModelLoader : MonoBehaviour
+{
+    Dictionary<string, GameObject> houseModels;
+    GameObject currentModel;
+
+    void Start()
+    {
+        // Initialise empty dictionary
+        Dictionary<string, GameObject> houseFiles = new Dictionary<string, GameObject>();
+
+        // Load all house models found in expected directory and store in dict
+        DirectoryInfo houseDir = new DirectoryInfo("Assets/Resources/House Models");
+        foreach (var file in houseDir.EnumerateFiles()
+            .Where(file => file.Extension == ".fbx" || file.Extension == ".skp"))
+        {
+            Debug.Log($"Attempting to load model at path: House Models/{file.Name}");
+            GameObject newModel = Resources.Load<GameObject>($"House Models/{Path.GetFileNameWithoutExtension(file.Name)}");
+            Debug.Log($"New model loaded: {newModel}");
+            houseFiles.Add(Path.GetFileNameWithoutExtension(file.Name), newModel);
+        }
+
+        // Display warning message and return if no house models found
+        if (houseFiles.Count == 0)
+        {
+            Debug.Log("No house files located, exiting");
+            return;
+        }
+
+        // Instantiate, disable and store all available house models
+        houseModels = new Dictionary<string, GameObject>();
+        foreach (var model in houseFiles)
+        {
+            GameObject newModel = Instantiate<GameObject>(model.Value, Vector3.zero, Quaternion.identity);
+            newModel.SetActive(false);
+
+            // Add collisions to model
+            foreach (Transform child in newModel.transform.GetComponentsInChildren<Transform>())
+            {
+                child.gameObject.AddComponent<MeshCollider>();
+            }
+
+            houseModels.Add(model.Key, newModel);
+        }
+    }
+
+    public void DisplayModel(string modelStr)
+    {
+        // If there is a model currently being displayed, disable it
+        currentModel?.SetActive(false);
+
+        // Locate GameObject for model selected in lesson plan
+        if (!houseModels.TryGetValue(modelStr, out currentModel))
+        {
+            // If no available model with requested name, log warning and return
+            Debug.Log($"Warning: house model with name {modelStr} not found");
+            return;
+        }
+
+        // Enable selected model
+        currentModel.SetActive(true);
+
+        // Disable all extra cameras within model
+        foreach (Transform child in currentModel.transform)
+        {
+            Camera extraCam = child.GetComponent<Camera>();
+
+            if (extraCam != null)
+            {
+                extraCam.enabled = false;
+            }
+        }
+    }
+};
