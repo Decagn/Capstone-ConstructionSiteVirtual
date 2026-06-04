@@ -48,6 +48,7 @@ public class ControlsTooltip : MonoBehaviour
         BuildControlsColumn(panel, controls);
     }
 
+    // Column of keys (Q, E, W, A, S, D, etc.).
     private void BuildKeysColumn(GameObject panel, string text)
     {
         GameObject columnObject = new GameObject("ControlsTooltip:KeysColumn");
@@ -66,6 +67,7 @@ public class ControlsTooltip : MonoBehaviour
         columnRect.offsetMax = new Vector2(-5f, -10f);
     }
 
+    // Column of controls (Fly Up, Fly Down, Walk, etc.).
     private void BuildControlsColumn(GameObject panel, string text)
     {
         GameObject columnObject = new GameObject("ControlsTooltip:ControlsColumn");

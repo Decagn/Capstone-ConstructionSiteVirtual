@@ -1,5 +1,10 @@
 using UnityEngine;
 
+/*
+ * Controls Tooltip Initialiser
+ * This class initiliases the tool tips
+ * that shows the user the controls and the keys the map to.
+ */
 public class ControlsTooltipInitialiser : MonoBehaviour
 {
     private const string _controls =
@@ -33,9 +38,9 @@ public class ControlsTooltipInitialiser : MonoBehaviour
     private void Awake()
     {
         ControlsTooltip tooltip = gameObject.AddComponent<ControlsTooltip>();
+
+        // Only show the tooltip for desktop users, since mobile controls are intuitive.
         if (!(Application.isMobilePlatform || UnityEngine.Device.Application.isMobilePlatform))
-        {
             tooltip.Initialise(_controls, _keys);
-        }
     }
 }
