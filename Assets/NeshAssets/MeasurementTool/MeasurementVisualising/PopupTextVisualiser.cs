@@ -68,6 +68,40 @@ public class PopupTextVisualiser : MonoBehaviour, IVisualiser
         return new IVisualisedObject(VisualType.PopupText, popupObj, arc.points);
     }
 
+    // Finds the center of a polygon with its vertices defined by a list of Vector3s.
+    public Vector3 GetCentroid(List<Vector3> points)
+    {
+        if (points == null || points.Count == 0)
+            return Vector3.zero;
+
+        Vector3 sum = Vector3.zero;
+        for (int i = 0; i < points.Count; i++)
+            sum += points[i];
+
+        return sum / points.Count;
+    }
+
+    public List<IVisualisedObject> CreateAreaTextPopups(Measurement measurement)
+    {
+        List<IQuantity> quantities = measurement.GetQuantities();
+        List <IVisualisedObject> areaPopups = new List<IVisualisedObject>();
+
+        foreach (IQuantity quantity in quantities)
+        {
+            if (quantity.Type != QuantityType.Area)
+                continue;
+
+            List<Vector3> polygonVertices = ((Area)quantity).GetPoints;
+            Vector3 centroid = GetCentroid(polygonVertices);
+            string measText = $"{quantity.Value:F2}m²";
+            GameObject areaPlaceholderObj = new GameObject();
+            GameObject popupObj = CreateTextPopup(areaPlaceholderObj, centroid, measText);
+            areaPopups.Add(new IVisualisedObject(VisualType.PopupText, popupObj, polygonVertices));
+        }
+
+        return areaPopups;
+    }
+
     public List<IVisualisedObject> CreatePopupTexts(List<IVisualisedObject> objects)
     {
         List<IVisualisedObject> popupsTexts = new List<IVisualisedObject>();

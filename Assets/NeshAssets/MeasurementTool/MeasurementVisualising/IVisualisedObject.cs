@@ -26,5 +26,6 @@ public enum VisualType
     PointMarker,
     Line,
     Arc,
+    Area,
     PopupText
 }

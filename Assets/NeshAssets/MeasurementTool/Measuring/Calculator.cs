@@ -24,7 +24,6 @@ public static class Calculator
         return Vector3.Cross(lineA, lineC).magnitude * 0.5f;
     }
 
-    // This function can be used for future implementation where areas are calculated and displayed.
     public static float GetAreaOfPolygon(List<Vector3> points)
     {
         if (points.Count < 3) DebugMeasurementTools.Log("Not enough points to form polygon", "Calculator");

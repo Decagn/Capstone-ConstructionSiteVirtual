@@ -178,4 +178,5 @@ public class MeasurementToolManager : MonoBehaviour
 
     public Sprite GetActiveToolIcon() => _activeTool.ToolIcon;
     public List<Vector3> GetSelectedPoints() => _activeTool.SelectedPoints;
+    public IMeasurementTool GetActiveTool => _activeTool;
 }

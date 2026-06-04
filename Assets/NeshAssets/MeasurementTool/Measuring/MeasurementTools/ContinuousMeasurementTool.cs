@@ -5,7 +5,8 @@ using UnityEngine;
  * [Measuring Tool] Continuous Measurement Tool 
  * 
  * Takes lengths every two points selected
- * and takes angles for every three points.
+ * and takes angles for every three points,
+ * and takes areas of closed polygons.
  * Allows the user to keep selecting new points
  * which connect to the previous points.
  */
@@ -35,6 +36,29 @@ public class ContinuousMeasurementTool : MonoBehaviour, IMeasurementTool
         SelectedPoints[SelectedPoints.Count - 1],
         SelectedPoints[SelectedPoints.Count - 2],
         SelectedPoints[SelectedPoints.Count - 3]);
+    private List<Area> TakeAreas()
+    {
+        List<List<Vector3>> polygons = new List<List<Vector3>>();
+        for (int p = 0; p < SelectedPoints.Count - 3; p++)
+        {
+            List<Vector3> polygon = new List<Vector3>();
+            // finds the next index where the same point was selected.
+            // the next index has to be at minimum 3 away so it can at least form a triangle.
+            for (int p2 = SelectedPoints.Count - 1; p2 > p + 2; p2--)
+            {
+                if (SelectedPoints[p2] == SelectedPoints[p])
+                {
+                    polygon.AddRange(SelectedPoints.GetRange(p, p2 - p));
+                    polygons.Add(polygon);
+                }
+            }
+        }
+
+        List<Area> areas = new List<Area>();
+         foreach (List<Vector3> polygon  in polygons)
+            areas.Add(new Area(polygon));
+         return areas;
+    }
     public IMeasurement TakeMeasurement()
     {
         if (!_continuousMeasurementInitialised)
@@ -48,6 +72,13 @@ public class ContinuousMeasurementTool : MonoBehaviour, IMeasurementTool
         _continuousMeasurement.AddPoint(SelectedPoints[SelectedPoints.Count - 1]);
         _continuousMeasurement.AddQuantity(TakeLength());
         _continuousMeasurement.AddQuantity(TakeAngle());
+
+        List<Area> areas = TakeAreas();
+        foreach (Area area in areas)
+        {
+            _continuousMeasurement.AddQuantity(area);
+            //DebugMeasurementTools.Log($"Area:{area.Value}{area.Unit}", "ContinouousMeasurementTool");
+        }
 
         return _continuousMeasurement;
     }
@@ -78,4 +109,6 @@ public class ContinuousMeasurementTool : MonoBehaviour, IMeasurementTool
     }
 
     public void SetIcon() { ToolIcon = icon; }
+    public Measurement GetContinuousMeasurement() => _continuousMeasurement;
+    public bool IsContinuousMeasurementInitialised() => _continuousMeasurementInitialised;
 }

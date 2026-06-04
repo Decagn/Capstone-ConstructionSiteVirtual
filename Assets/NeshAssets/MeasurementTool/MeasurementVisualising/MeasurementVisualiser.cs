@@ -56,6 +56,18 @@ public class MeasurementVisualiser : MonoBehaviour
 
         // Pop-up texts require the other visualised objects to be instantiated.
         _visualisedObjects.AddRange(_popupTextsVisualiser.CreatePopupTexts(_visualisedObjects));
+
+        // Area pop-up texts get the areas directly from the tool since recalculating them is costly.
+        IMeasurementTool activeTool = _manager.GetActiveTool;
+        // Area pop-ups only should be created for the continuous measurement tool.
+        if (activeTool.Name != "Continuous Measurement Tool")
+            return;
+        // Area pop-ups only should be created if the continous measurement has been initialised.
+        if (!((ContinuousMeasurementTool)activeTool).IsContinuousMeasurementInitialised())
+            return;
+
+        Measurement currConitnuousMeasurement = ((ContinuousMeasurementTool)activeTool).GetContinuousMeasurement();
+        _visualisedObjects.AddRange(_popupTextsVisualiser.CreateAreaTextPopups(currConitnuousMeasurement));
     }
 
     // Scales the visualised objects based on how far they are from the player/camera.
