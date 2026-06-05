@@ -3641,8 +3641,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1372857529}
   m_HandleRect: {fileID: 1372857528}
   m_Direction: 0
-  m_Value: 0.0000031415125
-  m_Size: 0.9149999
+  m_Value: 0.0000040390914
+  m_Size: 0.915
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4000,7 +4000,7 @@ GameObject:
   - component: {fileID: 999787013}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

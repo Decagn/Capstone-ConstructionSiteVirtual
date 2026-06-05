@@ -35,6 +35,7 @@ public class TextLabel
 {
     public Vector3 labelPos;
     public string text;
+    public float fontSize;
 
     public static TextLabel CreateFromJSON(string jsonStr)
     {

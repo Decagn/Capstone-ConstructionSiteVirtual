@@ -12,13 +12,11 @@ public class TextRenderer : MonoBehaviour
 
     void Start()
     {
-        // Initialise empty label list
         modelLabels = new List<GameObject>();
     }
 
     public void RenderText(List<TextLabel> labelData)
     {
-
         // Clear existing text labels
         modelLabels.Clear();        
 
@@ -26,14 +24,14 @@ public class TextRenderer : MonoBehaviour
         foreach(var label in labelData)
         {
             Debug.Log($"Adding label '{label.text}' at position {label.labelPos}");
-            GameObject newLabel = new GameObject();
+            GameObject newLabel = new GameObject($"Label: {label.text}");
             newLabel.transform.position = label.labelPos;
 
             TextMeshPro newText = newLabel.AddComponent<TextMeshPro>();
             newText.transform.SetParent(newLabel.transform);
             newText.text = label.text;
-            newText.fontSize = 5;
+            newText.fontSize = label.fontSize;
             modelLabels.Add(newLabel);
-        }        
+        }    
     }
 }
