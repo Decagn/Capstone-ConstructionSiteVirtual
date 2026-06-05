@@ -6,21 +6,18 @@ using UnityEngine;
 /// <summary>
 /// TaskManager - Singleton that owns the task system at runtime.
 ///
-/// NEW: Now loads room and task configuration from a unified JSON file.
-/// The JSON file contains both room coordinates and their associated tasks.
-///
 /// Responsibilities:
-///   1. Load lesson configuration from JSON (rooms + tasks).
-///   2. Pass room data to RoomDetector for automatic room detection.
-///   3. Expose methods for BuildingElement to report clicks.
-///   4. Filter tasks by current room.
-///   5. Notify TaskUI to update display after state changes.
+///   1. Receive task data from a JSON file in the Resources folder at scene start.
+///   2. Expose a method for BuildingElement to report which element was clicked.
+///   3. Match the clicked element to the correct task and mark it complete.
+///   4. Notify TaskUI to update the display after each state change.
 ///
 /// Setup in Unity Editor:
 ///   1. Create an empty GameObject named "TaskManager" in the scene.
 ///   2. Attach this script to it.
-///   3. Place lesson_config.json at: Assets/Resources/lesson_config.json
-///   4. The RoomDetector and TaskUI components will be found automatically.
+///   3. Place your tasks in a lesson JSON file in /Assets/Resources/Lesson Plans/
+///   4. The TaskUI component will be found automatically via FindObjectOfType.
+///      Alternatively, assign it manually in the Inspector for better performance.
 /// </summary>
 public class TaskManager : MonoBehaviour
 {
@@ -45,10 +42,6 @@ public class TaskManager : MonoBehaviour
     // Inspector Settings
     // ─────────────────────────────────────────────
 
-    [Header("Lesson Configuration")]
-    [Tooltip("Name of the JSON config file inside Assets/Resources/ (without extension).")]
-    public string configFileName = "lesson_config";
-
     [Header("References")]
     [Tooltip("Reference to the TaskUI component. If empty, found automatically at Start().")]
     public TaskUI taskUI;
@@ -64,7 +57,7 @@ public class TaskManager : MonoBehaviour
     // Runtime State
     // ─────────────────────────────────────────────
 
-    private LessonConfig _lessonConfig;
+    public LessonConfig lessonConfig;
     private Dictionary<string, TaskEntry> _taskLookup = new Dictionary<string, TaskEntry>();
     private Dictionary<string, RoomConfig> _roomLookup = new Dictionary<string, RoomConfig>();
 
@@ -91,7 +84,7 @@ public class TaskManager : MonoBehaviour
     {
         get
         {
-            if (!enableRoomFiltering || _lessonConfig == null)
+            if (!enableRoomFiltering || lessonConfig == null)
                 return TotalTaskCount;
 
             return GetTasksForRoom(_currentRoomId).Count;
@@ -105,11 +98,22 @@ public class TaskManager : MonoBehaviour
     {
         get
         {
-            if (!enableRoomFiltering || _lessonConfig == null)
+            if (!enableRoomFiltering || lessonConfig == null)
                 return CompletedTaskCount;
 
             return GetTasksForRoom(_currentRoomId).Count(t => t.isCompleted);
         }
+    }
+
+    /// <summary>
+    /// Get all tasks for a specific room.
+    /// </summary>
+    public List<TaskEntry> GetTasksForRoom(string roomId)
+    {
+        if (string.IsNullOrEmpty(roomId) || !_roomLookup.ContainsKey(roomId))
+            return new List<TaskEntry>();
+
+        return _roomLookup[roomId].tasks ?? new List<TaskEntry>();
     }
 
     /// <summary>True when all tasks have been completed.</summary>
@@ -122,7 +126,7 @@ public class TaskManager : MonoBehaviour
     {
         get
         {
-            if (!enableRoomFiltering || _lessonConfig == null)
+            if (!enableRoomFiltering || lessonConfig == null)
                 return _allTasks;
 
             return GetTasksForRoom(_currentRoomId);
@@ -133,7 +137,7 @@ public class TaskManager : MonoBehaviour
     public IReadOnlyList<TaskEntry> Tasks => _allTasks;
 
     /// <summary>The lesson title loaded from JSON.</summary>
-    public string LessonTitle => _lessonConfig?.lessonTitle ?? "Lesson";
+    public string LessonTitle => lessonConfig?.lessonTitle ?? "Lesson";
 
     /// <summary>The current room ID the player is in.</summary>
     public string CurrentRoomId => _currentRoomId;
@@ -163,9 +167,9 @@ public class TaskManager : MonoBehaviour
 
     private IEnumerator LoadLessonConfigCoroutine()
     {
-        // Wait one frame to ensure all Start() methods have completed
-        yield return null;
-        LoadLessonConfigFromJSON();
+        // Wait to ensure lessonConfig has been populated by LessonLoader
+        yield return new WaitUntil(() => lessonConfig != null);
+        LoadLessonConfig();
     }
 
     // ─────────────────────────────────────────────
@@ -173,24 +177,14 @@ public class TaskManager : MonoBehaviour
     // ─────────────────────────────────────────────
 
     /// <summary>
-    /// Loads the unified lesson configuration from JSON.
+    /// Loads the unified lesson configuration.
     /// This includes room definitions and all tasks.
     /// </summary>
-    private void LoadLessonConfigFromJSON()
+    private void LoadLessonConfig()
     {
-        TextAsset jsonFile = Resources.Load<TextAsset>(configFileName);
-
-        if (jsonFile == null)
+        if (lessonConfig == null || lessonConfig.rooms == null || lessonConfig.rooms.Count == 0)
         {
-            Debug.LogError($"[TaskManager] Could not find '{configFileName}.json' in Assets/Resources/.");
-            return;
-        }
-
-        _lessonConfig = JsonUtility.FromJson<LessonConfig>(jsonFile.text);
-
-        if (_lessonConfig == null || _lessonConfig.rooms == null || _lessonConfig.rooms.Count == 0)
-        {
-            Debug.LogError("[TaskManager] JSON loaded but contains no rooms.");
+            Debug.LogError("[TaskManager] JSON loaded but contains no tasks.");
             return;
         }
 
@@ -199,7 +193,7 @@ public class TaskManager : MonoBehaviour
         _roomLookup.Clear();
         _allTasks.Clear();
 
-        foreach (RoomConfig room in _lessonConfig.rooms)
+        foreach (RoomConfig room in lessonConfig.rooms)
         {
             _roomLookup[room.roomId] = room;
 
@@ -217,12 +211,12 @@ public class TaskManager : MonoBehaviour
             }
         }
 
-        Debug.Log($"[TaskManager] Loaded lesson '{_lessonConfig.lessonTitle}' with {_lessonConfig.rooms.Count} rooms and {_allTasks.Count} tasks.");
+        Debug.Log($"[TaskManager] Loaded lesson '{lessonConfig.lessonTitle}' with {lessonConfig.rooms.Count} rooms and {_allTasks.Count} tasks.");
 
         // Pass room configurations to RoomDetector
         if (roomDetector != null)
         {
-            List<RoomData> roomDataList = _lessonConfig.rooms.Select(r => r.ToRoomData()).ToList();
+            List<RoomData> roomDataList = lessonConfig.rooms.Select(r => r.ToRoomData()).ToList();
             roomDetector.LoadRoomsFromConfig(roomDataList);
         }
 
@@ -251,10 +245,12 @@ public class TaskManager : MonoBehaviour
 
     /// <summary>
     /// Called by BuildingElement.OnClick() when the player clicks an interactable object.
+    /// Plays interact sound regardless of task state.
+    /// Marks the task complete if it exists and hasn't been completed yet.
     /// </summary>
     public void OnElementClicked(string elementId, string elementName)
     {
-        // Play interact sound
+        // Always play interact sound when any interactable object is clicked
         AudioManager.Instance?.PlayInteract();
 
         if (!_taskLookup.TryGetValue(elementId, out TaskEntry task))
@@ -263,7 +259,7 @@ public class TaskManager : MonoBehaviour
             return;
         }
 
-        // Task already completed
+        // Task already completed — show reminder feedback
         if (task.isCompleted)
         {
             Debug.Log($"[TaskManager] Task '{task.title}' already completed.");
@@ -271,46 +267,19 @@ public class TaskManager : MonoBehaviour
             return;
         }
 
-        // Mark task as complete
+        // Mark the task as complete
         task.isCompleted = true;
         Debug.Log($"[TaskManager] Task completed: '{task.title}' ({CompletedTaskCount}/{TotalTaskCount})");
 
         // Play task done sound
         AudioManager.Instance?.PlayTaskDone();
 
-        // Update UI
+        // Update task panel and show feedback
         taskUI?.RefreshTaskPanel();
         taskUI?.ShowFeedback(task, alreadyCompleted: false);
 
-        // Show results if all tasks done
+        // If all tasks are now done, show the results screen
         if (AllTasksCompleted)
             taskUI?.ShowResultsScreen();
-    }
-
-    /// <summary>
-    /// Get all tasks for a specific room.
-    /// </summary>
-    public List<TaskEntry> GetTasksForRoom(string roomId)
-    {
-        if (string.IsNullOrEmpty(roomId) || !_roomLookup.ContainsKey(roomId))
-            return new List<TaskEntry>();
-
-        return _roomLookup[roomId].tasks ?? new List<TaskEntry>();
-    }
-
-    /// <summary>
-    /// Get the number of completed tasks in a specific room.
-    /// </summary>
-    public int GetCompletedTasksInRoom(string roomId)
-    {
-        return GetTasksForRoom(roomId).Count(t => t.isCompleted);
-    }
-
-    /// <summary>
-    /// Get the total number of tasks in a specific room.
-    /// </summary>
-    public int GetTotalTasksInRoom(string roomId)
-    {
-        return GetTasksForRoom(roomId).Count;
     }
 }

@@ -1,0 +1,9 @@
+{
+   "modelName" : "final House_Assessment",
+   "playerPos" : { "x" : 80, "y" : 0, "z" : 50 },
+   "labels" : [],
+   "lessonConfig" : {
+      "lessonTitle" : "Sample Lesson #2",
+      "rooms": []
+   }
+}

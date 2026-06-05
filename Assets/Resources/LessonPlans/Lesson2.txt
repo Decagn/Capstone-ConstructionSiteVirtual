@@ -1,5 +1,0 @@
-{
-   "model" : "final House_Assessment(Clone)",
-   "player_pos" : { "x" : 80, "y" : 0, "z" : 50 },
-   "labels" : []
-}

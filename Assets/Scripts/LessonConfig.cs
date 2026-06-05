@@ -63,7 +63,7 @@ public class RoomConfig
     /// World position of the room's center point in Unity coordinates.
     /// Used as the origin for distance-based room detection.
     /// </summary>
-    public Vector3Position centerPosition;
+    public Vector3 centerPosition;
 
     /// <summary>
     /// Detection radius in Unity units.
@@ -86,31 +86,9 @@ public class RoomConfig
         {
             roomId = this.roomId,
             roomName = this.roomName,
-            centerPosition = centerPosition.ToVector3(),
+            centerPosition = centerPosition,
             detectionRadius = this.detectionRadius
         };
-    }
-}
-
-/// <summary>
-/// Vector3Position is a serializable version of Unity's Vector3.
-/// Unity's JsonUtility cannot serialize Vector3 directly, so we use this wrapper.
-/// </summary>
-[Serializable]
-public class Vector3Position
-{
-    public float x;
-    public float y;
-    public float z;
-
-    public Vector3 ToVector3()
-    {
-        return new Vector3(x, y, z);
-    }
-
-    public static Vector3Position FromVector3(Vector3 v)
-    {
-        return new Vector3Position { x = v.x, y = v.y, z = v.z };
     }
 }
 
