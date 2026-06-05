@@ -17,7 +17,7 @@ public static class Scaler
 
         // multiplier formula derived from quadratic regression using Desmos Graphing Calculator.
         double multiplier = -0.003f * Mathf.Pow(distance, 2) + 0.25 * distance - 0.15;
-
+        
         // clamp multiplier so its not too big / small
         return Mathf.Clamp((float)multiplier, 0.5f, 2);
     }
