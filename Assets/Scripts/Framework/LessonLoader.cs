@@ -12,6 +12,7 @@ public class LessonLoader : MonoBehaviour
     JsonParser jsonParser;
     GameObject player;
     ModelLoader modelLoader;
+    TaskManager taskManager;
     TextRenderer textRenderer;
 
     void Start()
@@ -20,6 +21,7 @@ public class LessonLoader : MonoBehaviour
         jsonParser = this.GetComponent<JsonParser>();
         modelLoader = this.GetComponent<ModelLoader>();
         textRenderer = this.GetComponent<TextRenderer>();
+        taskManager = GameObject.Find("TaskManager").GetComponent<TaskManager>();
         player = GameObject.Find("Player");
 
         // Load first level
@@ -53,6 +55,10 @@ public class LessonLoader : MonoBehaviour
         // Display correct house model for current lesson and clear existing model
         Debug.Log($"Loading house model: {currentPlan.modelName}");
         modelLoader.DisplayModel(currentPlan.modelName);
+
+        // Set up tasks for the current lesson
+        Debug.Log($"Loading tasks with lesson title: {currentPlan.taskList.lessonTitle}");
+        taskManager.taskList = currentPlan.taskList;
         
         // Render text labels for current lesson and clear existing text
         Debug.Log($"Loading text labels for Lesson {currentLesson}");
