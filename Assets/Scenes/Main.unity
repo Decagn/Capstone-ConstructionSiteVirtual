@@ -3028,7 +3028,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 668127589}
   m_HandleRect: {fileID: 668127588}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -4621,6 +4621,7 @@ GameObject:
   - component: {fileID: 1000296374}
   - component: {fileID: 1000296373}
   - component: {fileID: 1000296372}
+  - component: {fileID: 1000296376}
   m_Layer: 0
   m_Name: HouseRenderer
   m_TagString: Untagged
@@ -4692,6 +4693,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d41ae6cfc6de334e9945d28600364c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::JsonParser
+--- !u!114 &1000296376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000296367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87080a4a980734f4b9f60143195e3580, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DynamicTextures
 --- !u!1 &1068510343
 GameObject:
   m_ObjectHideFlags: 0
@@ -4895,7 +4908,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00004711993}
+  m_AnchoredPosition: {x: 0, y: -0.000107085354}
   m_SizeDelta: {x: 200, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1173590848
@@ -5996,8 +6009,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 465519843}
   m_HandleRect: {fileID: 465519842}
   m_Direction: 0
-  m_Value: -0.000005834248
-  m_Size: 0.9150001
+  m_Value: 0.0000107709
+  m_Size: 0.9149999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

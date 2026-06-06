@@ -9,6 +9,7 @@ using UnityEngine.InputSystem;
 public class LessonLoader : MonoBehaviour
 {
     int currentLesson = 0;
+    DynamicTextures dynamicTextures;
     JsonParser jsonParser;
     GameObject player;
     ModelLoader modelLoader;
@@ -18,6 +19,7 @@ public class LessonLoader : MonoBehaviour
     void Start()
     {
         // Attaching key components to variables at runtime
+        dynamicTextures = this.GetComponent<DynamicTextures>();
         jsonParser = this.GetComponent<JsonParser>();
         modelLoader = this.GetComponent<ModelLoader>();
         textRenderer = this.GetComponent<TextRenderer>();
@@ -55,6 +57,10 @@ public class LessonLoader : MonoBehaviour
         // Display correct house model for current lesson and clear existing model
         Debug.Log($"Loading house model: {currentPlan.modelName}");
         modelLoader.DisplayModel(currentPlan.modelName);
+
+        // Allocate any dynamically-loaded textures within the model
+        Debug.Log("Allocating dynamic textures...");
+        dynamicTextures.AddTextures();
 
         // Set up tasks for the current lesson
         Debug.Log($"Loading tasks with lesson title: {currentPlan.lessonConfig.lessonTitle}");
