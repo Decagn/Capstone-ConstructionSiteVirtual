@@ -31,7 +31,7 @@ public class ModelLoader : MonoBehaviour
         // Display warning message and return if no house models found
         if (houseFiles.Count == 0)
         {
-            Debug.Log("No house files located, exiting");
+            Debug.LogError("[ModelLoader] Error: no house files located, exiting");
             return;
         }
 
@@ -61,7 +61,7 @@ public class ModelLoader : MonoBehaviour
         if (!houseModels.TryGetValue(modelStr, out currentModel))
         {
             // If no available model with requested name, log warning and return
-            Debug.Log($"Warning: house model with name {modelStr} not found");
+            Debug.LogError($"[ModelLoader] Error: house model with name {modelStr} not found");
             return;
         }
 
