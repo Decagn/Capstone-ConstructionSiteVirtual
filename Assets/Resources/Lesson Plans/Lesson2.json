@@ -1,7 +1,8 @@
 {
    "modelName" : "final House_Assessment",
-   "playerPos" : { "x" : 80, "y" : 1, "z" : 50 },
+   "playerPos" : { "x" : 80, "y" : 2, "z" : 50 },
    "labels" : [],
+   "interactiveObjects" : [],
    "lessonConfig" : {
       "lessonTitle" : "Sample Lesson #2",
       "rooms": []

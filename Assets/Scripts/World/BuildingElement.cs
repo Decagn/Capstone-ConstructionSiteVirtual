@@ -13,24 +13,25 @@ using UnityEngine;
 /// Interaction is triggered externally by CTrainerInteraction.cs (desktop)
 /// or the mobile equivalent, which calls OnClick() via Raycast hit.
 /// </summary>
+
 public class BuildingElement : MonoBehaviour
 {
     [Header("Element Info")]
     [Tooltip("Display name of this structural element. Shown in console and UI.")]
-    public string elementName = "Wall";
+    public string elementName;
 
     [Tooltip("Primary material of this element (e.g. Brick, Concrete, Timber).")]
-    public string material = "Brick";
+    public string material;
 
     [Tooltip("Longer description of this element's role in the building.")]
     [TextArea]
-    public string description = "Load-bearing exterior wall.";
+    public string description;
 
     [Header("Task System")]
     [Tooltip("Unique identifier used to match this element against tasks in tasks.json. " +
              "Must exactly match the 'targetElementId' field in the JSON task entry. " +
              "Example: 'Wall_LoadBearing', 'Roof_Truss', 'Foundation_Slab'")]
-    public string elementId = "";
+    public string elementId;
 
     /// <summary>
     /// Called by CTrainerInteraction (desktop) or the mobile interaction script

@@ -14,7 +14,7 @@ public class PointSelector : MonoBehaviour
 
     // Snapping to points placed in the lesson plan.
     [SerializeField] private LessonMeasurementsManager _lessonSnapManager;
-    [SerializeField] private bool _lessonPointSnapping = true;
+    [SerializeField] private bool _lessonPointSnapping = false;
     [SerializeField] private float _snapToLessonPointDistance = 0.2f;
 
     // Snapping to points that have previously been placed in the scene.

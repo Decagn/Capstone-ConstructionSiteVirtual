@@ -54,9 +54,20 @@ public class LessonLoader : MonoBehaviour
         TextAsset lessonFile = (TextAsset)Resources.Load($"Lesson Plans/Lesson{currentLesson}");
         LessonPlan currentPlan = jsonParser.ParseLesson(lessonFile.text);
 
+        // Temporary checking of interactive objects loaded
+        Debug.Log($"Loading {currentPlan.interactiveObjects.Count} interactive objects...");
+        foreach(var interactiveObject in currentPlan.interactiveObjects)
+        {
+            Debug.Log($"Interactive object loaded for {interactiveObject.gameObject}, with: " +
+                        $"elementName={interactiveObject.elementName}, " +
+                        $"material={interactiveObject.material}, " +
+                        $"description={interactiveObject.description}, " +
+                        $"elementId={interactiveObject.elementId}");
+        }
+
         // Display correct house model for current lesson and clear existing model
         Debug.Log($"Loading house model: {currentPlan.modelName}");
-        modelLoader.DisplayModel(currentPlan.modelName);
+        modelLoader.DisplayModel(currentPlan.modelName, currentPlan.interactiveObjects);
 
         // Allocate any dynamically-loaded textures within the model
         Debug.Log("Allocating dynamic textures...");

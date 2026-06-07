@@ -22,6 +22,7 @@ public class LessonPlan
     public string modelName;
     public Vector3 playerPos;
     public List<TextLabel> labels;
+    public List<InteractiveObject> interactiveObjects;
     public LessonConfig lessonConfig;
 
     public static LessonPlan CreateFromJSON(string jsonStr)
@@ -41,5 +42,21 @@ public class TextLabel
     public static TextLabel CreateFromJSON(string jsonStr)
     {
         return JsonUtility.FromJson<TextLabel>(jsonStr);
+    }
+};
+
+// Class holding the BuildingElement configuration to be attached to a specified GameObject
+[System.Serializable]
+public class InteractiveObject
+{
+    public string gameObject;
+    public string elementName;
+    public string material;
+    public string description;
+    public string elementId;
+
+    public static InteractiveObject CreateFromJSON(string jsonStr)
+    {
+        return JsonUtility.FromJson<InteractiveObject>(jsonStr);
     }
 };
