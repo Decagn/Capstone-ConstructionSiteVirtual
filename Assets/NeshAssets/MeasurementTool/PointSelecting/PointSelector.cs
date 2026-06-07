@@ -50,7 +50,7 @@ public class PointSelector : MonoBehaviour
 
     // Dynamically scale the grid to the preview point size.
     private void Awake() { _previewGridSize = _previewPointSize * 4f; } 
-    private void Update() { ShowPreviewPoint(); }
+    private void Update() { if(previewPoint) ShowPreviewPoint(); }
     private void OnEnable() { _inputListener.OnToggleSnapping += ToggleSnapping; }
     private void OnDisable() { _inputListener.OnToggleSnapping -= ToggleSnapping; }
 
