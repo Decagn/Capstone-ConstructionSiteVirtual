@@ -39,11 +39,12 @@ public class ModelLoader : MonoBehaviour
         houseModels = new Dictionary<string, GameObject>();
         foreach (var model in houseFiles)
         {
-            GameObject newModel = Instantiate<GameObject>(model.Value, Vector3.zero, Quaternion.identity);
+            GameObject newModel = Instantiate<GameObject>(model.Value, new Vector3(0, 1, 0), Quaternion.identity);
             newModel.SetActive(false);
 
-            // Add collisions to model
-            foreach (Transform child in newModel.transform.GetComponentsInChildren<Transform>())
+            // Add collisions to model GameObjects, excluding doors
+            foreach (Transform child in newModel.transform.GetComponentsInChildren<Transform>()
+                .Where(child => !child.name.Contains("Door")))
             {
                 child.gameObject.AddComponent<MeshCollider>();
             }

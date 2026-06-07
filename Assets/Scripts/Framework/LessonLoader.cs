@@ -60,7 +60,7 @@ public class LessonLoader : MonoBehaviour
 
         // Allocate any dynamically-loaded textures within the model
         Debug.Log("Allocating dynamic textures...");
-        dynamicTextures.AddTextures();
+        dynamicTextures.TextureAdder(currentPlan.modelName);
 
         // Set up tasks for the current lesson
         Debug.Log($"Loading tasks with lesson title: {currentPlan.lessonConfig.lessonTitle}");
