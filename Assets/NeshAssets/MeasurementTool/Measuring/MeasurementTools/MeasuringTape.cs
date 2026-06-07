@@ -23,6 +23,9 @@ public class MeasuringTape : MonoBehaviour, IMeasurementTool
 
     public IMeasurement TakePoint(Vector3 point)
     {
+        if (SelectedPoints.Count == 2)
+            SelectedPoints.Clear();
+
         if (SelectedPoints == null)
             SelectedPoints = new List<Vector3>();
 
@@ -32,10 +35,7 @@ public class MeasuringTape : MonoBehaviour, IMeasurementTool
         if (SelectedPoints.Count < 2) 
             return new InvalidMeasurement();
 
-        IMeasurement measurement = TakeMeasurement();
-
-        SelectedPoints.Clear();
-        return measurement;
+        return TakeMeasurement();
     }
     public IMeasurement TakeMeasurement()
     {

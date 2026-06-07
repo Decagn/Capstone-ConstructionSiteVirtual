@@ -28,8 +28,11 @@ public class MeasurementToolManager : MonoBehaviour
     [SerializeField] private PointIndentifier _pointIndentifier;
 
     public event Action<List<Vector3>> OnSelectPoint;
+    public event Action<List<Vector3>> OnDeSelectPoint;
     public event Action<List<Vector3>> OnMeasurementCreated;
-    public event Action OnMeasurementCleared;
+    public event Action<List<Vector3>> OnInvalidMeasurementCreated;
+    //public event Action OnMeasurementCleared;
+    public event Action OnResetPoints;
     public event Action OnToolSwitch;
 
     private IMeasurement _currMeasurement = new InvalidMeasurement();
@@ -128,7 +131,7 @@ public class MeasurementToolManager : MonoBehaviour
             return;
 
         _activeTool.RemoveLastSelectedPoint();
-        OnSelectPoint?.Invoke(_activeTool.SelectedPoints);
+        OnDeSelectPoint?.Invoke(_activeTool.SelectedPoints);
     }
     private void ResetAllPoints()
     {
@@ -136,17 +139,17 @@ public class MeasurementToolManager : MonoBehaviour
             return;
 
         _activeTool.ResetAllSelectedPoints();
-        OnSelectPoint?.Invoke(_activeTool.SelectedPoints);
-        OnMeasurementCleared?.Invoke();
+        //OnSelectPoint?.Invoke(_activeTool.SelectedPoints);
+        OnResetPoints?.Invoke();
     }
     private void HandleMeasurement(IMeasurement measurement)
     {
         _currMeasurement = measurement;
 
         if (measurement is InvalidMeasurement)
-            return;
-
-        OnMeasurementCreated?.Invoke(((Measurement)_currMeasurement).GetPoints());
+            OnInvalidMeasurementCreated?.Invoke(_activeTool.SelectedPoints);
+        else
+            OnMeasurementCreated?.Invoke(_activeTool.SelectedPoints);
     }
 
     private bool ReadInput()
@@ -179,4 +182,4 @@ public class MeasurementToolManager : MonoBehaviour
     public Sprite GetActiveToolIcon() => _activeTool.ToolIcon;
     public List<Vector3> GetSelectedPoints() => _activeTool.SelectedPoints;
     public IMeasurementTool GetActiveTool => _activeTool;
-}
+}  

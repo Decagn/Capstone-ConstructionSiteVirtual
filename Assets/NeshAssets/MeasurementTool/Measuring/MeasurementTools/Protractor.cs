@@ -23,6 +23,9 @@ public class Protractor : MonoBehaviour, IMeasurementTool
 
     public IMeasurement TakePoint(Vector3 point)
     {
+        if (SelectedPoints.Count == 3)
+            SelectedPoints.Clear();
+
         if (SelectedPoints == null)
             SelectedPoints = new List<Vector3>();
 
@@ -32,10 +35,7 @@ public class Protractor : MonoBehaviour, IMeasurementTool
         if (SelectedPoints.Count < 3)
             return new InvalidMeasurement();
 
-        IMeasurement measurement = TakeMeasurement();
-
-        SelectedPoints.Clear();
-        return measurement;
+        return TakeMeasurement();
     }
     public IMeasurement TakeMeasurement()
     {

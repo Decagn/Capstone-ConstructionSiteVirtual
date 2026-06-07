@@ -70,8 +70,13 @@ public class ContinuousMeasurementTool : MonoBehaviour, IMeasurementTool
         }
 
         _continuousMeasurement.AddPoint(SelectedPoints[SelectedPoints.Count - 1]);
-        _continuousMeasurement.AddQuantity(TakeLength());
-        _continuousMeasurement.AddQuantity(TakeAngle());
+
+        if (SelectedPoints.Count >= 2)
+            _continuousMeasurement.AddQuantity(TakeLength());
+        if (SelectedPoints.Count >= 3)
+            _continuousMeasurement.AddQuantity(TakeAngle());
+        if (SelectedPoints.Count < 4)
+            return _continuousMeasurement;
 
         List<Area> areas = TakeAreas();
         foreach (Area area in areas)
@@ -96,6 +101,15 @@ public class ContinuousMeasurementTool : MonoBehaviour, IMeasurementTool
         return TakeMeasurement();
     }
 
+    public bool RemoveLastSelectedPoint()
+    {
+        if (SelectedPoints == null || SelectedPoints.Count == 0) 
+            return false;
+
+        SelectedPoints.RemoveAt(SelectedPoints.Count - 1);
+
+        return true;
+    }
     public bool ResetAllSelectedPoints()
     {
         if (SelectedPoints == null || SelectedPoints.Count == 0) 

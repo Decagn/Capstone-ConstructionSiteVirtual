@@ -17,19 +17,26 @@ public class MeasurementVisualiser : MonoBehaviour
     [SerializeField] private PopupTextVisualiser _popupTextsVisualiser;
 
     List<IVisualisedObject> _visualisedObjects = new List<IVisualisedObject>();
+    GameObject _areaPopupsParent;
 
     private void Awake()
     {
-        _manager.OnSelectPoint += CreateNewPointMarkers;
-        _manager.OnMeasurementCreated += CreateVisuals;
-        _manager.OnMeasurementCleared += ClearVisuals;
+        _manager.OnSelectPoint += VisualisePointSelection;
+        _manager.OnDeSelectPoint += VisualisePointDeselection;
+        _manager.OnResetPoints += VisualisePointsReset;
+        _manager.OnToolSwitch += VisualisePointsReset;
+        _manager.OnMeasurementCreated += VisualiseMeasurement;
+        _manager.OnInvalidMeasurementCreated += HandleInvalidMeasurement;
     }
     
     private void OnDisable()
     {
-        _manager.OnSelectPoint -= CreateNewPointMarkers;
-        _manager.OnMeasurementCreated -= CreateVisuals;
-        _manager.OnMeasurementCleared -= ClearVisuals;
+        _manager.OnSelectPoint -= VisualisePointSelection;
+        _manager.OnDeSelectPoint -= VisualisePointDeselection;
+        _manager.OnResetPoints -= VisualisePointsReset;
+        _manager.OnToolSwitch -= VisualisePointsReset;
+        _manager.OnMeasurementCreated -= VisualiseMeasurement;
+        _manager.OnInvalidMeasurementCreated -= HandleInvalidMeasurement;
     }
    
     private void LateUpdate() { ScaleVisuals(); }
@@ -43,27 +50,15 @@ public class MeasurementVisualiser : MonoBehaviour
 
     private void CreateVisuals(List<Vector3> points)
     {
-        ClearVisuals();
-
         _visualisedObjects.AddRange(_pointMarkerVisualiser.Create(points));
         _visualisedObjects.AddRange(_lineVisualiser.Create(points));
         _visualisedObjects.AddRange(_arcVisualiser.Create(points));
 
         // Pop-up texts require the other visualised objects to be instantiated.
         _visualisedObjects.AddRange(_popupTextsVisualiser.CreatePopupTexts(_visualisedObjects));
-
-        // Area pop-up texts get the areas directly from the tool since recalculating them is costly.
-        IMeasurementTool activeTool = _manager.GetActiveTool;
-        // Area pop-ups only should be created for the continuous measurement tool.
-        if (activeTool.Name != "Continuous Measurement Tool")
-            return;
-        // Area pop-ups only should be created if the continous measurement has been initialised.
-        if (!((ContinuousMeasurementTool)activeTool).IsContinuousMeasurementInitialised())
-            return;
-
-        Measurement currConitnuousMeasurement = ((ContinuousMeasurementTool)activeTool).GetContinuousMeasurement();
-        GameObject areaPopupsParent = new GameObject("Area Pop-up Texts");
-        _visualisedObjects.AddRange(_popupTextsVisualiser.CreateAreaTextPopups(currConitnuousMeasurement, areaPopupsParent));
+        if (_areaPopupsParent == null)
+            _areaPopupsParent = new GameObject("Area Pop-up Texts");
+        _visualisedObjects.AddRange(_popupTextsVisualiser.CreateAreaTextPopups(points, _areaPopupsParent));
     }
 
     private void ClearVisuals()
@@ -98,5 +93,36 @@ public class MeasurementVisualiser : MonoBehaviour
 
             else
                 continue;
-    }       
+    }
+
+    private void VisualisePointSelection(List<Vector3> points)
+    {
+        CreateNewPointMarkers(points);
+    }
+
+    private void VisualisePointDeselection(List<Vector3> points)
+    {
+        ClearVisuals();
+        CreateNewPointMarkers(points);
+
+        if (_manager.GetActiveTool.Name == "Continuous Measurement Tool")
+            CreateVisuals(points);
+    }
+
+    private void VisualisePointsReset()
+    {
+        ClearVisuals();
+    }
+
+    private void VisualiseMeasurement(List<Vector3> points)
+    {
+        ClearVisuals();
+        CreateVisuals(points);
+    }
+
+    private void HandleInvalidMeasurement(List<Vector3> points)
+    {
+        ClearVisuals();
+        CreateNewPointMarkers(points);
+    }
 }

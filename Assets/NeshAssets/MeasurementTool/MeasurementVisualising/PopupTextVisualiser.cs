@@ -81,24 +81,44 @@ public class PopupTextVisualiser : MonoBehaviour, IVisualiser
         return sum / points.Count;
     }
 
-    public List<IVisualisedObject> CreateAreaTextPopups(Measurement measurement, GameObject parent)
+    public List<IVisualisedObject> CreateAreaTextPopups(List<Vector3> points, GameObject parent)
     {
-        List<IQuantity> quantities = measurement.GetQuantities();
-        List <IVisualisedObject> areaPopups = new List<IVisualisedObject>();
+        List<IVisualisedObject> areaPopups = new List<IVisualisedObject>();
+        List<Area> areas = TakeAreas(points);
 
-        foreach (IQuantity quantity in quantities)
+        foreach (Area area in areas)
         {
-            if (quantity.Type != QuantityType.Area)
-                continue;
-
-            List<Vector3> polygonVertices = ((Area)quantity).GetPoints;
-            Vector3 centroid = GetCentroid(polygonVertices);
-            string measText = $"{quantity.Value:F2}m²";
+            Vector3 centroid = GetCentroid(area.GetPoints);
+            string measText = $"{area.Value:F2}m²";
             GameObject popupObj = CreateTextPopup(parent, centroid, measText);
-            areaPopups.Add(new IVisualisedObject(VisualType.PopupText, popupObj, polygonVertices));
+            areaPopups.Add(new IVisualisedObject(VisualType.PopupText, popupObj, area.GetPoints));
         }
 
         return areaPopups;
+    }
+
+    private List<Area> TakeAreas(List<Vector3> points)
+    {
+        List<List<Vector3>> polygons = new List<List<Vector3>>();
+        for (int p = 0; p < points.Count - 3; p++)
+        {
+            List<Vector3> polygon = new List<Vector3>();
+            // finds the next index where the same point was selected.
+            // the next index has to be at minimum 3 away so it can at least form a triangle.
+            for (int p2 = points.Count - 1; p2 > p + 2; p2--)
+            {
+                if (points[p2] == points[p])
+                {
+                    polygon.AddRange(points.GetRange(p, p2 - p));
+                    polygons.Add(polygon);
+                }
+            }
+        }
+
+        List<Area> areas = new List<Area>();
+        foreach (List<Vector3> polygon in polygons)
+            areas.Add(new Area(polygon));
+        return areas;
     }
 
     public List<IVisualisedObject> CreatePopupTexts(List<IVisualisedObject> objects)
