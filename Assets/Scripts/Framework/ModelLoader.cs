@@ -52,7 +52,7 @@ public class ModelLoader : MonoBehaviour
         }
     }
 
-    public void DisplayModel(string modelStr)
+    public void DisplayModel(string modelStr, List<InteractiveObject> interactiveObjects=null)
     {
         // If there is a model currently being displayed, disable it
         currentModel?.SetActive(false);
@@ -65,17 +65,36 @@ public class ModelLoader : MonoBehaviour
             return;
         }
 
+        // Build dictionary of interactive objects within current level
+        Dictionary<string, InteractiveObject> interactiveAllocs = new Dictionary<string, InteractiveObject>();
+        foreach(InteractiveObject interactiveObject in interactiveObjects)
+        {
+            interactiveAllocs.Add(interactiveObject.gameObject, interactiveObject);
+        }
+
         // Enable selected model
         currentModel.SetActive(true);
 
-        // Disable all extra cameras within model
         foreach (Transform child in currentModel.transform)
         {
+            // Disable all extra cameras within model
             Camera extraCam = child.GetComponent<Camera>();
 
             if (extraCam != null)
             {
                 extraCam.enabled = false;
+            }
+
+            // Add the correct BuildingElement component to specific GameObjects
+            // This is required for them to be part of the task system
+            if (interactiveAllocs.ContainsKey(child.gameObject.name))
+            {
+                InteractiveObject elementConfig = interactiveAllocs[child.gameObject.name];
+                BuildingElement newElement = child.gameObject.AddComponent<BuildingElement>();        
+                newElement.elementName = elementConfig.elementName;
+                newElement.material = elementConfig.material;
+                newElement.description = elementConfig.description;
+                newElement.elementId = elementConfig.elementId;
             }
         }
     }
