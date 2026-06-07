@@ -22,7 +22,7 @@ public class PointSelector : MonoBehaviour
     [SerializeField] private float _snapToPreviousPointDistance = 0.2f;
 
     // Snapping to the vertical line or horizontal plane of the other points in the scene.
-    [SerializeField] private bool _inlinePointSnapping = true;
+    [SerializeField] private bool _inlinePointSnapping = false;
     [SerializeField] private float _snapToInlinePointDistance = 0.2f;
 
     [SerializeField] private MeasurementToolManager _measManager;

@@ -44,7 +44,7 @@ public class LessonLoader : MonoBehaviour
         currentLesson++;
 
         // If number of available lesson plans exceded, wrap around to 1st lesson
-        if (!File.Exists($"Assets/Resources/Lesson Plans/Lesson{currentLesson}.txt"))
+        if (!File.Exists($"Assets/Resources/Lesson Plans/Lesson{currentLesson}.json"))
         {
             currentLesson = 1;
         }

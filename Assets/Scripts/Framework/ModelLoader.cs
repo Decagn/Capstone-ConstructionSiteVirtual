@@ -44,7 +44,7 @@ public class ModelLoader : MonoBehaviour
 
             // Add collisions to model GameObjects, excluding doors
             foreach (Transform child in newModel.transform.GetComponentsInChildren<Transform>()
-                .Where(child => !child.name.Contains("Door")))
+                .Where(child => !child.name.Contains("Door") && !child.name.Contains("Porte")))
             {
                 child.gameObject.AddComponent<MeshCollider>();
             }
