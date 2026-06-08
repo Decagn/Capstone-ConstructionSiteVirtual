@@ -159,6 +159,67 @@
                     ]
                 }
             ]
+         },
+         {
+            "roomId": "PowderRoom",
+            "roomName": "Powder Room",
+            "centerPosition": {
+               "x": 4.5,
+               "y": 2.7,
+               "z": 5.2
+            },
+            "detectionRadius": 2,
+            "tasks": [
+               {
+                    "id": "task_powderroom_sink",
+                    "title": "Measure the Sink",
+                    "description": "Use the measurement tool to mark the width of the sink.",
+                    "measurementId": "powderroom_sink",
+                    "feedbackText": "Correct! You accurately measured the sink.",
+                    "isRequired": true
+                }
+            ],
+            "measurements": [
+                {
+                    "id": "powderroom_sink",
+                    "label": "Powder Room Sink",
+                    "points": [
+                        { "x": 5.10, "y": 1.92, "z": 6.15 },
+                        { "x": 5.10, "y": 1.92, "z": 4.20 }
+                    ]
+                }
+            ]
+         },
+         {
+            "roomId": "Stairs",
+            "roomName": "Stairs",
+            "centerPosition": {
+               "x": -2.9,
+               "y": 3.9,
+               "z": 2.1
+            },
+            "detectionRadius": 2,
+            "tasks": [
+               {
+                    "id": "task_stair_ceiling",
+                    "title": "Measure the Ceiling",
+                    "description": "Use the measurement tool to mark the angle of the ceiling.",
+                    "measurementId": "stair_ceiling",
+                    "feedbackText": "Correct! You accurately measured the ceiling's angle.",
+                    "isRequired": true
+                }
+            ],
+            "measurements": [
+                {
+                    "id": "stair_ceiling",
+                    "label": "Stair Ceiling",
+                    "points": [
+                        { "x": -4.06, "y": 4.78, "z": 3.05 },
+                        { "x": -1.89, "y": 4.78, "z": 3.05 },
+                        { "x": -1.53, "y": 4.62, "z": 3.05 }
+                    ]
+                }
+            ]
          }
       ]
    }
