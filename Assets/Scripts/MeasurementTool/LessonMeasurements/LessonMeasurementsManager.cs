@@ -1,3 +1,4 @@
+using Mono.Cecil;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -77,53 +78,66 @@ public class LessonMeasurementsManager : MonoBehaviour
         return points;
     }
 
-    // Checks whether the list of player points matches a named measurement
+    // Checks whether the list of player points matches a predefined measurement.
     // Used by TaskManager to validate measuring tasks.
-    public bool IsMeasurementComplete(string measurementId, List<Vector3> playerPoints, float tolerance = 0f)
+    public bool IsMeasurementComplete(string measurementId, List<Vector3> selectedPoints)
     {
-        // Searches every room's measurement list
-        // to find which room contains a measurement with the matching measurementId.
-        RoomConfig room = null;
+        LessonMeasurement target = null;
         foreach (RoomConfig r in _rooms)
         {
-            if (r.measurements == null) 
-                continue;
+            if (r.measurements == null) continue;
             foreach (LessonMeasurement m in r.measurements)
             {
                 if (m.id == measurementId)
                 {
-                    room = r;
+                    target = m;
                     break;
                 }
             }
-            if (room != null) 
-                break;
+            if (target != null) break;
         }
 
-        if (room == null)
-            return false;
-
-        // Searches the found room's measurements again
-        // to grab the actual LessonMeasurement object with the matching measurementId.
-        LessonMeasurement target = null;
-        foreach (LessonMeasurement m in room.measurements)
+        if (target == null)
         {
-            if (m.id == measurementId)
+            Debug.LogWarning($"[LessonMeasurementsManager] Measurement ID '{measurementId}' not found.");
+            return false;
+        }
+
+        // Check that all required points are found.
+        foreach (Vector3 requiredPoint in target.points)
+        {
+            bool found = false;
+            foreach (Vector3 selectedPoint in selectedPoints)
             {
-                target = m;
-                break;
+                if (selectedPoint == requiredPoint)
+                {
+                    found = true;
+                    break;
+                }
             }
-        }
 
-        if (playerPoints.Count != target.points.Count)
-            return false;
-
-        for (int i = 0; i < target.points.Count; i++)
-        {
-            if (Vector3.Distance(playerPoints[i], target.points[i]) > tolerance)
+            if (!found)
                 return false;
         }
 
-        return true;
+        // Return if only length or angle measurement and not perimeter.
+        if (target.points.Count <= 3)
+            return true;
+
+        // Check that at least one point was selected twice (polygon is closed)
+        foreach (Vector3 requiredPoint in target.points)
+        {
+            int count = 0;
+            foreach (Vector3 selectedPoint in selectedPoints)
+            {
+                if (selectedPoint == requiredPoint)
+                    count++;
+            }
+
+            if (count >= 2)
+                return true;
+        }
+
+        return false;
     }
 }
