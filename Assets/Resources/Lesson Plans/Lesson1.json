@@ -57,7 +57,27 @@
                   "targetElementId": "Sofa_LivingRoom",
                   "feedbackText": "Great! You inspected the sofa. Notice the upholstered design and sturdy frame.",
                   "isRequired": true
-               }
+               },
+               {
+                    "id": "task_livingroom_measure_window",
+                    "title": "Measure the Living Room Window",
+                    "description": "Use the measurement tool to mark the perimeter of the window.",
+                    "measurementId": "living_room_window",
+                    "feedbackText": "Correct! You accurately measured the window.",
+                    "isRequired": true
+                }
+            ],
+            "measurements": [
+                {
+                    "id": "living_room_window",
+                    "label": "Living Room Window",
+                    "points": [
+                        { "x": 4.72, "y": 1.10, "z": -4.48 },
+                        { "x": 3.35, "y": 1.10, "z": -4.48 },
+                        { "x": 3.35, "y": 3.05, "z": -4.48 },
+                        { "x": 4.72, "y": 3.05, "z": -4.48 }
+                    ]
+                }
             ]
          },
          {
@@ -92,10 +112,10 @@
                     "id": "table_counter",
                     "label": "Table Counter",
                     "points": [
-                        { "x": 1.00, "y": 0.92, "z": -2.65 },
-                        { "x": 1.89, "y": 0.92, "z": -2.65 },
-                        { "x": 1.89, "y": 0.92, "z": -0.15 },
-                        { "x": 1.00, "y": 0.92, "z": -0.15 }
+                        { "x": 1.00, "y": 1.92, "z": -2.65 },
+                        { "x": 1.89, "y": 1.92, "z": -2.65 },
+                        { "x": 1.89, "y": 1.92, "z": -0.15 },
+                        { "x": 1.00, "y": 1.92, "z": -0.15 }
                     ]
                 }
             ]
@@ -117,7 +137,27 @@
                   "targetElementId": "Table_DiningRoom",
                   "feedbackText": "Excellent! You inspected the table.",
                   "isRequired": true
-               }
+               },
+               {
+                    "id": "task_diningroom_diningtable",
+                    "title": "Measure the Dining Table",
+                    "description": "Use the measurement tool to mark the perimeter of the dining table.",
+                    "measurementId": "dining_table",
+                    "feedbackText": "Correct! You accurately measured the dining table.",
+                    "isRequired": true
+                }
+            ],
+            "measurements": [
+                {
+                    "id": "dining_table",
+                    "label": "Dining Table",
+                    "points": [
+                        { "x": 7.46, "y": 1.74, "z": 1.98 },
+                        { "x": 7.46, "y": 1.74, "z": 1.02 },
+                        { "x": 9.33, "y": 1.74, "z": 1.02 },
+                        { "x": 9.33, "y": 1.74, "z": 1.98 }
+                    ]
+                }
             ]
          },
          {

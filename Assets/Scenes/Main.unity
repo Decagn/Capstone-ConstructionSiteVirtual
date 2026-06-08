@@ -258,6 +258,7 @@ MonoBehaviour:
   taskUI: {fileID: 327462677}
   roomDetector: {fileID: 0}
   enableRoomFiltering: 1
+  lessonMeasurementsManager: {fileID: 0}
   lessonConfig:
     lessonTitle: Construction Learning
     rooms: []
@@ -6009,8 +6010,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 465519843}
   m_HandleRect: {fileID: 465519842}
   m_Direction: 0
-  m_Value: 0.0000107709
-  m_Size: 0.9149999
+  m_Value: 0
+  m_Size: 0.915
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6875,6 +6876,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5593440744876338489, guid: 533eef8347a6f31449a9caa30a5d2245, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5642809437804885357, guid: 533eef8347a6f31449a9caa30a5d2245, type: 3}
+      propertyPath: _devMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5642809437804885357, guid: 533eef8347a6f31449a9caa30a5d2245, type: 3}
+      propertyPath: _debugMode
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6245077488686265659, guid: 533eef8347a6f31449a9caa30a5d2245, type: 3}
