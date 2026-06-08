@@ -84,7 +84,7 @@ public class PointSelector : MonoBehaviour
     {
         if (_lessonPointSnapping)
         {
-            List<Vector3> LessonPoints = _lessonSnapManager.GetLessonMeasurementPoints();
+            List<Vector3> LessonPoints = _lessonSnapManager.GetCurrentMeasurementPoints();
             Vector3 lessonPoint = FindClosestPoint(point, LessonPoints);
             bool inLessonSnappingRange = Vector3.Distance(point, lessonPoint) < _snapToLessonPointDistance;
             if (inLessonSnappingRange) 

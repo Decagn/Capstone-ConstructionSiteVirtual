@@ -53,6 +53,9 @@ public class TaskManager : MonoBehaviour
     [Tooltip("If true, only tasks matching the current room are shown. If false, all tasks are shown.")]
     public bool enableRoomFiltering = true;
 
+    [Tooltip("Reference to the LessonMeasurementsManager. If empty, found automatically at Start().")]
+    public LessonMeasurementsManager lessonMeasurementsManager;
+
     // ─────────────────────────────────────────────
     // Runtime State
     // ─────────────────────────────────────────────
@@ -162,6 +165,13 @@ public class TaskManager : MonoBehaviour
         if (roomDetector == null)
             Debug.LogWarning("[TaskManager] No RoomDetector found in scene.");
 
+        // Find LessonMeasurementsManager if not assigned
+        if (lessonMeasurementsManager == null)
+            lessonMeasurementsManager = FindFirstObjectByType<LessonMeasurementsManager>();
+
+        if (lessonMeasurementsManager == null)
+            Debug.LogWarning("[TaskManager] No LessonMeasurementsManager found in scene.");
+
         StartCoroutine(LoadLessonConfigCoroutine());
     }
 
@@ -205,6 +215,8 @@ public class TaskManager : MonoBehaviour
 
                     if (!string.IsNullOrEmpty(task.targetElementId))
                         _taskLookup[task.targetElementId] = task;
+                    else if (!string.IsNullOrEmpty(task.measurementId))
+                        _taskLookup[task.measurementId] = task;
                     else
                         Debug.LogWarning($"[TaskManager] Task '{task.id}' in room '{room.roomId}' has no targetElementId.");
                 }
@@ -237,6 +249,9 @@ public class TaskManager : MonoBehaviour
         string previousRoom = _currentRoomId;
         _currentRoomId = newRoomId;
 
+        // Inform lesson measurements manager that room has been changed.
+        lessonMeasurementsManager?.OnRoomChanged(newRoomId);
+
         Debug.Log($"[TaskManager] Room changed from '{previousRoom}' to '{newRoomId}'");
 
         // Refresh task panel to show tasks for the new room
@@ -264,6 +279,55 @@ public class TaskManager : MonoBehaviour
         {
             Debug.Log($"[TaskManager] Task '{task.title}' already completed.");
             taskUI?.ShowFeedback(task, alreadyCompleted: true);
+            return;
+        }
+
+        // Mark the task as complete
+        task.isCompleted = true;
+        Debug.Log($"[TaskManager] Task completed: '{task.title}' ({CompletedTaskCount}/{TotalTaskCount})");
+
+        // Play task done sound
+        AudioManager.Instance?.PlayTaskDone();
+
+        // Update task panel and show feedback
+        taskUI?.RefreshTaskPanel();
+        taskUI?.ShowFeedback(task, alreadyCompleted: false);
+
+        // If all tasks are now done, show the results screen
+        if (AllTasksCompleted)
+            taskUI?.ShowResultsScreen();
+    }
+
+    /// <summary>
+    /// Called by the measuring tool when the player submits their measurement points.
+    /// Validates the points against the named LessonMeasurement and marks the task complete if correct.
+    /// </summary>
+    public void OnMeasurementSubmitted(string measurementId, List<Vector3> playerPoints, float tolerance = 0.1f)
+    {
+        if (lessonMeasurementsManager == null)
+        {
+            Debug.LogWarning("[TaskManager] OnMeasurementSubmitted called but no LessonMeasurementsManager is assigned.");
+            return;
+        }
+
+        if (!_taskLookup.TryGetValue(measurementId, out TaskEntry task))
+        {
+            Debug.Log($"[TaskManager] Measurement '{measurementId}' submitted — no matching task.");
+            return;
+        }
+
+        if (task.isCompleted)
+        {
+            Debug.Log($"[TaskManager] Measurement task '{task.title}' already completed.");
+            taskUI?.ShowFeedback(task, alreadyCompleted: true);
+            return;
+        }
+
+        bool correct = lessonMeasurementsManager.IsMeasurementComplete(measurementId, playerPoints, tolerance);
+
+        if (!correct)
+        {
+            Debug.Log($"[TaskManager] Measurement '{measurementId}' submitted but did not match within tolerance {tolerance}.");
             return;
         }
 

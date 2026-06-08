@@ -77,7 +77,27 @@
                   "targetElementId": "Counter_Kitchen",
                   "feedbackText": "Great! You inspected the counter.",
                   "isRequired": true
-               }
+               },
+               {
+                    "id": "task_kitchen_measure_counter",
+                    "title": "Measure the Table Counter",
+                    "description": "Use the measurement tool to mark the perimeter of the table counter.",
+                    "measurementId": "table_counter",
+                    "feedbackText": "Correct! You accurately measured the table counter.",
+                    "isRequired": true
+                }
+            ],
+            "measurements": [
+                {
+                    "id": "table_counter",
+                    "label": "Table Counter",
+                    "points": [
+                        { "x": 1.00, "y": 0.92, "z": -2.65 },
+                        { "x": 1.89, "y": 0.92, "z": -2.65 },
+                        { "x": 1.89, "y": 0.92, "z": -0.15 },
+                        { "x": 1.00, "y": 0.92, "z": -0.15 }
+                    ]
+                }
             ]
          },
          {

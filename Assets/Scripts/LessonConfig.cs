@@ -25,7 +25,19 @@ using UnityEngine;
 ///           "targetElementId": "Sofa_LivingRoom",
 ///           ...
 ///         }
-///       ]
+///       ],
+///       "measurements": [
+///         {
+///             "id": "table_counter",
+///             "label": "Table Counter",
+///             "points": [
+///                 { "x": 1.00, "y": 0.92, "z": -2.65 },
+///                 { "x": 1.89, "y": 0.92, "z": -2.65 },
+///                 { "x": 1.89, "y": 0.92, "z": -0.15 },
+///                 { "x": 1.00, "y": 0.92, "z": -0.15 }
+///                 ]
+///             }
+//          ]
 ///     }
 ///   ]
 /// }
@@ -78,6 +90,12 @@ public class RoomConfig
     public List<TaskEntry> tasks = new List<TaskEntry>();
 
     /// <summary>
+    /// List of measurement tasks that belong to this room.
+    /// These tasks are only shown when the player is in this room.
+    /// </summary>
+    public List<LessonMeasurement> measurements = new List<LessonMeasurement>();
+
+    /// <summary>
     /// Convert this RoomConfig to a RoomData for RoomDetector.
     /// </summary>
     public RoomData ToRoomData()
@@ -92,6 +110,14 @@ public class RoomConfig
     }
 }
 
+[Serializable]
+public class LessonMeasurement
+{
+    public string id;
+    public string label;
+    public List<Vector3> points;
+}
+
 /// <summary>
 /// TaskEntry remains the same as before, but now lives inside a RoomConfig.
 /// </summary>
@@ -102,6 +128,7 @@ public class TaskEntry
     public string title;
     public string description;
     public string targetElementId;
+    public string measurementId;
     public string feedbackText;
     public bool isRequired = true;
 
