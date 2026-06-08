@@ -56,9 +56,13 @@ public class LessonMeasurementsManager : MonoBehaviour
             if (measurement.points == null || measurement.points.Count < 2)
                 continue;
 
-            // Close the polygon by appending the first point at the end.
+
             List<Vector3> points = new List<Vector3>(measurement.points);
-            points.Add(points[0]);
+
+
+            // Close the polygon by appending the first point at the end for perimeter measurements.
+            if (measurement.points.Count > 3)
+                points.Add(points[0]);
 
             _currentMeasurements.Add(points);
         }
