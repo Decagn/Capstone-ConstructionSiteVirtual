@@ -48,7 +48,7 @@
                "y": 1.7,
                "z": -2.7
             },
-            "detectionRadius": 2,
+            "detectionRadius": 3,
             "tasks": [
                {
                   "id": "task_livingroom_sofa",
@@ -88,7 +88,7 @@
                "y": 1.0,
                "z": -1.9
             },
-            "detectionRadius": 2,
+            "detectionRadius": 3,
             "tasks": [
                {
                   "id": "task_kicthen_counter",
@@ -100,17 +100,17 @@
                },
                {
                     "id": "task_kitchen_measure_counter",
-                    "title": "Measure the Table Counter",
-                    "description": "Use the measurement tool to mark the perimeter of the table counter.",
-                    "measurementId": "table_counter",
-                    "feedbackText": "Correct! You accurately measured the table counter.",
+                    "title": "Measure the Kitchen Counter",
+                    "description": "Use the measurement tool to mark the perimeter of the kitchen counter.",
+                    "measurementId": "kitchen_counter",
+                    "feedbackText": "Correct! You accurately measured the kitchen counter.",
                     "isRequired": true
                 }
             ],
             "measurements": [
                 {
-                    "id": "table_counter",
-                    "label": "Table Counter",
+                    "id": "kitchen_counter",
+                    "label": "Kitchen Counter",
                     "points": [
                         { "x": 1.00, "y": 1.92, "z": -2.65 },
                         { "x": 1.89, "y": 1.92, "z": -2.65 },
@@ -128,7 +128,7 @@
                "y": 1.9,
                "z": 1.0
             },
-            "detectionRadius": 2,
+            "detectionRadius": 3,
             "tasks": [
                {
                   "id": "task_diningroom_table",
@@ -158,26 +158,6 @@
                         { "x": 9.33, "y": 1.74, "z": 1.98 }
                     ]
                 }
-            ]
-         },
-         {
-            "roomId": "Bedroom",
-            "roomName": "Bedroom",
-            "centerPosition": {
-               "x": 77.6,
-               "y": 1.5,
-               "z": 41.5
-            },
-            "detectionRadius": 3,
-            "tasks": [
-               {
-                  "id": "task_bedroom_floor",
-                  "title": "Inspect Floor",
-                  "description": "Click on bedroom floor",
-                  "targetElementId": "Floor_Bedroom",
-                  "feedbackText": "Excellent! You inspected the floor.",
-                  "isRequired": true
-               }
             ]
          }
       ]
