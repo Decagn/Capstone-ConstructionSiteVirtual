@@ -3,7 +3,6 @@
 /// </summary>
 
 using System.IO;
-using Unity.Android.Gradle;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -50,14 +49,17 @@ public class LessonLoader : MonoBehaviour
         currentLesson++;
 
         // If number of available lesson plans exceded, wrap around to 1st lesson
-        if (!File.Exists($"Assets/Resources/Lesson Plans/Lesson{currentLesson}.json"))
+
+        // File.Exists is not used here because file system APIs are unavailable in WebGL builds.
+        TextAsset lessonFile = (TextAsset)Resources.Load($"LessonPlans/Lesson{currentLesson}");
+        if (lessonFile == null)
         {
             currentLesson = 1;
+            lessonFile = (TextAsset)Resources.Load($"LessonPlans/Lesson{currentLesson}");
         }
 
         // Parse JSON lesson plan for current lesson
         Debug.Log($"Level change requested. Parsing lesson plan for Lesson {currentLesson}");
-        TextAsset lessonFile = (TextAsset)Resources.Load($"Lesson Plans/Lesson{currentLesson}");
         LessonPlan currentPlan = jsonParser.ParseLesson(lessonFile.text);
 
         // Pass measurements to lesson measurements manager

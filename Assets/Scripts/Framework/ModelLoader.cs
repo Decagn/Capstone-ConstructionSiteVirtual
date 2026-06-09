@@ -14,22 +14,11 @@ public class ModelLoader : MonoBehaviour
 
     void Start()
     {
-        // Initialise empty dictionary
-        Dictionary<string, GameObject> houseFiles = new Dictionary<string, GameObject>();
+        // Resources.LoadAll is used here instead of DirectoryInfo/EnumerateFiles because
+        // file system APIs are not available in WebGL builds.
+        GameObject[] loadedModels = Resources.LoadAll<GameObject>("HouseModels");
 
-        // Load all house models found in expected directory and store in dict
-        DirectoryInfo houseDir = new DirectoryInfo("Assets/Resources/HouseModels");
-        foreach (var file in houseDir.EnumerateFiles()
-            .Where(file => file.Extension == ".fbx" || file.Extension == ".skp"))
-        {
-            Debug.Log($"Attempting to load model at path: HouseModels/{file.Name}");
-            GameObject newModel = Resources.Load<GameObject>($"HouseModels/{Path.GetFileNameWithoutExtension(file.Name)}");
-            Debug.Log($"New model loaded: {newModel}");
-            houseFiles.Add(Path.GetFileNameWithoutExtension(file.Name), newModel);
-        }
-
-        // Display warning message and return if no house models found
-        if (houseFiles.Count == 0)
+        if (loadedModels.Length == 0)
         {
             Debug.LogError("[ModelLoader] Error: no house files located, exiting");
             return;
@@ -37,9 +26,9 @@ public class ModelLoader : MonoBehaviour
 
         // Instantiate, disable and store all available house models
         houseModels = new Dictionary<string, GameObject>();
-        foreach (var model in houseFiles)
+        foreach (var model in loadedModels)
         {
-            GameObject newModel = Instantiate<GameObject>(model.Value, new Vector3(0, 1, 0), Quaternion.identity);
+            GameObject newModel = Instantiate<GameObject>(model, new Vector3(0, 1, 0), Quaternion.identity);
             newModel.SetActive(false);
 
             // Add collisions to model GameObjects, excluding doors
@@ -49,7 +38,7 @@ public class ModelLoader : MonoBehaviour
                 child.gameObject.AddComponent<MeshCollider>();
             }
 
-            houseModels.Add(model.Key, newModel);
+            houseModels.Add(model.name, newModel);
         }
     }
 

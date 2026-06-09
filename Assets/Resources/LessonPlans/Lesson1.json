@@ -1,5 +1,5 @@
 {
-   "modelName" : "House1BIMModel-3DView-{3D}",
+   "modelName" : "House1",
    "playerPos" : { "x" : 3, "y" : 2, "z" : 1 },
    "labels" : [
       { "labelPos" : { "x" : 13, "y" : 1, "z" : 2 },
