@@ -53,6 +53,13 @@ public class TaskManager : MonoBehaviour
     [Tooltip("If true, only tasks matching the current room are shown. If false, all tasks are shown.")]
     public bool enableRoomFiltering = true;
 
+    [Header("Measuring Tasks")]
+    [Tooltip("Reference to the LessonMeasurementsManager. If empty, found automatically at Start().")]
+    public LessonMeasurementsManager lessonMeasurementsManager;
+
+    [Tooltip("Reference to the MeasurementToolManager. If empty, found automatically at Start().")]
+    public MeasurementToolManager measurementToolManager;
+
     // ─────────────────────────────────────────────
     // Runtime State
     // ─────────────────────────────────────────────
@@ -162,6 +169,21 @@ public class TaskManager : MonoBehaviour
         if (roomDetector == null)
             Debug.LogWarning("[TaskManager] No RoomDetector found in scene.");
 
+        // Find LessonMeasurementsManager if not assigned
+        if (lessonMeasurementsManager == null)
+            lessonMeasurementsManager = FindFirstObjectByType<LessonMeasurementsManager>();
+
+        if (lessonMeasurementsManager == null)
+            Debug.LogWarning("[TaskManager] No LessonMeasurementsManager found in scene.");
+
+        if (measurementToolManager == null)
+            measurementToolManager = FindFirstObjectByType<MeasurementToolManager>();
+
+        if (measurementToolManager == null)
+            Debug.LogWarning("[TaskManager] No MeasurementToolManager found in scene.");
+        else
+            measurementToolManager.OnMeasurementCreated += CheckMeasurementTasks;
+
         StartCoroutine(LoadLessonConfigCoroutine());
     }
 
@@ -205,6 +227,8 @@ public class TaskManager : MonoBehaviour
 
                     if (!string.IsNullOrEmpty(task.targetElementId))
                         _taskLookup[task.targetElementId] = task;
+                    else if (!string.IsNullOrEmpty(task.measurementId))
+                        _taskLookup[task.measurementId] = task;
                     else
                         Debug.LogWarning($"[TaskManager] Task '{task.id}' in room '{room.roomId}' has no targetElementId.");
                 }
@@ -236,6 +260,9 @@ public class TaskManager : MonoBehaviour
     {
         string previousRoom = _currentRoomId;
         _currentRoomId = newRoomId;
+
+        // Inform lesson measurements manager that room has been changed.
+        lessonMeasurementsManager?.OnRoomChanged(newRoomId);
 
         Debug.Log($"[TaskManager] Room changed from '{previousRoom}' to '{newRoomId}'");
 
@@ -281,5 +308,91 @@ public class TaskManager : MonoBehaviour
         // If all tasks are now done, show the results screen
         if (AllTasksCompleted)
             taskUI?.ShowResultsScreen();
+    }
+
+    /// <summary>
+    /// Called by the measuring tool when the player submits their measurement points.
+    /// Validates the points against the named LessonMeasurement and marks the task complete if correct.
+    /// </summary>
+    public void OnMeasurementSubmitted(string measurementId, List<Vector3> playerPoints, float tolerance = 0.1f)
+    {
+        if (lessonMeasurementsManager == null)
+        {
+            Debug.LogWarning("[TaskManager] OnMeasurementSubmitted called but no LessonMeasurementsManager is assigned.");
+            return;
+        }
+
+        if (!_taskLookup.TryGetValue(measurementId, out TaskEntry task))
+        {
+            Debug.Log($"[TaskManager] Measurement '{measurementId}' submitted — no matching task.");
+            return;
+        }
+
+        if (task.isCompleted)
+        {
+            Debug.Log($"[TaskManager] Measurement task '{task.title}' already completed.");
+            taskUI?.ShowFeedback(task, alreadyCompleted: true);
+            return;
+        }
+
+        bool correct = lessonMeasurementsManager.IsMeasurementComplete(measurementId, playerPoints);
+
+        if (!correct)
+        {
+            Debug.Log($"[TaskManager] Measurement '{measurementId}' submitted but did not match within tolerance {tolerance}.");
+            return;
+        }
+
+        // Mark the task as complete
+        task.isCompleted = true;
+        Debug.Log($"[TaskManager] Task completed: '{task.title}' ({CompletedTaskCount}/{TotalTaskCount})");
+
+        // Play task done sound
+        AudioManager.Instance?.PlayTaskDone();
+
+        // Update task panel and show feedback
+        taskUI?.RefreshTaskPanel();
+        taskUI?.ShowFeedback(task, alreadyCompleted: false);
+
+        // If all tasks are now done, show the results screen
+        if (AllTasksCompleted)
+            taskUI?.ShowResultsScreen();
+    }
+
+    // Loops through tasks in the current room
+    // and checks if measurement tasks are complete.
+    private void CheckMeasurementTasks(List<Vector3> selectedPoints)
+    {
+        if (string.IsNullOrEmpty(_currentRoomId) || !_roomLookup.ContainsKey(_currentRoomId))
+            return;
+
+        RoomConfig currentRoom = _roomLookup[_currentRoomId];
+
+        foreach (TaskEntry task in currentRoom.tasks)
+        {
+            if (task.isCompleted || string.IsNullOrEmpty(task.measurementId))
+                continue;
+
+            bool correct = lessonMeasurementsManager.IsMeasurementComplete(task.measurementId, selectedPoints);
+
+            if (!correct)
+                continue;
+
+            task.isCompleted = true;
+            Debug.Log($"[TaskManager] Measurement task completed: '{task.title}' ({CompletedTaskCount}/{TotalTaskCount})");
+
+            AudioManager.Instance?.PlayTaskDone();
+            taskUI?.RefreshTaskPanel();
+            taskUI?.ShowFeedback(task, alreadyCompleted: false);
+
+            if (AllTasksCompleted)
+                taskUI?.ShowResultsScreen();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (measurementToolManager != null)
+            measurementToolManager.OnMeasurementCreated -= CheckMeasurementTasks;
     }
 }

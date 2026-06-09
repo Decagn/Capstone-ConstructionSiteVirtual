@@ -1,4 +1,3 @@
-using GLTFast.Schema;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,13 +16,20 @@ public class LessonMeasurementsPointsVisualiser : MonoBehaviour
 
     // Create custom points and lines for the lesson measurements
     // so that they are distinct from the other visualised objects in the world.
-    public void DisplayLessonMeasurements(List<List<Vector3>> _lessonMeasurements)
+    public void DisplayLessonMeasurements(List<List<Vector3>> lessonMeasurements)
     {
-        foreach(List<Vector3> measurement in _lessonMeasurements)
+        foreach(List<Vector3> measurement in lessonMeasurements)
         {
             _visualisedObjects.AddRange(_markerVisualiser.CreateCustom(measurement, _lessonPointMarkerPrefab));
             _visualisedObjects.AddRange(_lineVisualiser.CreateCustom(measurement, _lessonMeasurementLineMaterial));
         }
+    }
+
+    public void ClearMeasurements()
+    {
+        foreach (IVisualisedObject obj in _visualisedObjects)
+            Destroy(obj.obj);
+        _visualisedObjects.Clear();
     }
 
     // Scales the visualised objects based on how far they are from the player/camera.

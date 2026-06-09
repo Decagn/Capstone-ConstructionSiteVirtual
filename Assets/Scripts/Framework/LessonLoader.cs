@@ -3,6 +3,7 @@
 /// </summary>
 
 using System.IO;
+using Unity.Android.Gradle;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,6 +16,7 @@ public class LessonLoader : MonoBehaviour
     ModelLoader modelLoader;
     TaskManager taskManager;
     TextRenderer textRenderer;
+    LessonMeasurementsManager lessonMeasurementsManager;
 
     void Start()
     {
@@ -25,6 +27,10 @@ public class LessonLoader : MonoBehaviour
         textRenderer = this.GetComponent<TextRenderer>();
         taskManager = GameObject.Find("TaskManager").GetComponent<TaskManager>();
         player = GameObject.Find("PlayerController");
+
+        lessonMeasurementsManager = FindFirstObjectByType<LessonMeasurementsManager>();
+        if (lessonMeasurementsManager == null)
+            Debug.LogWarning("[LessonLoader] No LessonMeasurementsManager found in scene.");
 
         // Load first level
         NextLevel();
@@ -53,6 +59,9 @@ public class LessonLoader : MonoBehaviour
         Debug.Log($"Level change requested. Parsing lesson plan for Lesson {currentLesson}");
         TextAsset lessonFile = (TextAsset)Resources.Load($"Lesson Plans/Lesson{currentLesson}");
         LessonPlan currentPlan = jsonParser.ParseLesson(lessonFile.text);
+
+        // Pass measurements to lesson measurements manager
+        lessonMeasurementsManager?.LoadMeasurements(currentPlan.lessonConfig.rooms);
 
         // Temporary checking of interactive objects loaded
         Debug.Log($"Loading {currentPlan.interactiveObjects.Count} interactive objects...");
