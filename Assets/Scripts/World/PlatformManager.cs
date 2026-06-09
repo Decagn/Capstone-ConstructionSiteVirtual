@@ -15,7 +15,7 @@ public class PlatformManager : MonoBehaviour
     [Header("Mobile Only")]
     public MobileInputHandler mobileInputHandler;
 
-    [Tooltip("The Canvas containing mobile UI — joystick, buttons, etc.")]
+    [Tooltip("The Canvas containing mobile UI â€” joystick, buttons, etc.")]
     public GameObject mobileCanvas;
 
     [Tooltip("The HUD Canvas containing crosshair and mobile interaction UI.")]
@@ -41,16 +41,6 @@ public class PlatformManager : MonoBehaviour
     /// </summary>
     private bool IsMobilePlatform()
     {
-        //#if UNITY_EDITOR
-        //        // Always treat as desktop when running in the Unity Editor
-        //        return false;
-        //#elif UNITY_ANDROID || UNITY_IOS
-        //    return true;
-        //#elif UNITY_WEBGL
-        //    return Input.touchSupported && !Input.mousePresent;
-        //#else
-        //    return false;
-        //#endif
         return Application.isMobilePlatform || UnityEngine.Device.Application.isMobilePlatform;
     }
 
@@ -72,7 +62,7 @@ public class PlatformManager : MonoBehaviour
         if (mobileCanvas != null)
             mobileCanvas.SetActive(false);
 
-        // Hide HUD canvas (no crosshair needed on desktop — using mouse)
+        // Hide HUD canvas (no crosshair needed on desktop â€” using mouse)
         if (hudCanvas != null)
             hudCanvas.SetActive(false);
     }
