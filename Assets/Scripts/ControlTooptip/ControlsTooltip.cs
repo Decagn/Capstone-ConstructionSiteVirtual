@@ -42,7 +42,7 @@ public class ControlsTooltip : MonoBehaviour
         rect.anchorMax = new Vector2(1f, 1f);
         rect.pivot = new Vector2(1f, 1f);
         rect.anchoredPosition = new Vector2(-20f, -20f);
-        rect.sizeDelta = new Vector2(400f, 350f);
+        rect.sizeDelta = new Vector2(400f, 375f);
 
         BuildKeysColumn(panel, keys);
         BuildControlsColumn(panel, controls);
