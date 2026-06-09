@@ -14,7 +14,9 @@ public class TutorialManager : MonoBehaviour
     // Create information popup upon game start
     void Start()
     {
-        CreateTutorialPopup();
+        // Only add popup in desktop mode, due to current limitations in mobile controls
+        if (!(Application.isMobilePlatform  || UnityEngine.Device.Application.isMobilePlatform)) 
+            CreateTutorialPopup();
     }
 
     void CreateTutorialPopup()
