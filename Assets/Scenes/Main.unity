@@ -6056,8 +6056,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 465519843}
   m_HandleRect: {fileID: 465519842}
   m_Direction: 0
-  m_Value: -0.00000089757503
-  m_Size: 0.9149999
+  m_Value: 0
+  m_Size: 0.915
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6997,6 +6997,18 @@ PrefabInstance:
       propertyPath: _playerCam
       value: 
       objectReference: {fileID: 999787015}
+    - target: {fileID: 8426167649295053671, guid: 533eef8347a6f31449a9caa30a5d2245, type: 3}
+      propertyPath: _snapToInlinePointDistance
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8426167649295053671, guid: 533eef8347a6f31449a9caa30a5d2245, type: 3}
+      propertyPath: _snapToLessonPointDistance
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8426167649295053671, guid: 533eef8347a6f31449a9caa30a5d2245, type: 3}
+      propertyPath: _snapToPreviousPointDistance
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

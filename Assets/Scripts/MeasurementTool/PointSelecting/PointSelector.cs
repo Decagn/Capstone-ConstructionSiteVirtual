@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,7 +15,7 @@ public class PointSelector : MonoBehaviour
 
     // Snapping to points placed in the lesson plan.
     [SerializeField] private LessonMeasurementsManager _lessonSnapManager;
-    [SerializeField] private bool _lessonPointSnapping = false;
+    [SerializeField] private bool _lessonPointSnapping = true;
     [SerializeField] private float _snapToLessonPointDistance = 0.2f;
 
     // Snapping to points that have previously been placed in the scene.
@@ -22,7 +23,7 @@ public class PointSelector : MonoBehaviour
     [SerializeField] private float _snapToPreviousPointDistance = 0.2f;
 
     // Snapping to the vertical line or horizontal plane of the other points in the scene.
-    [SerializeField] private bool _inlinePointSnapping = false;
+    [SerializeField] private bool _inlinePointSnapping = true;
     [SerializeField] private float _snapToInlinePointDistance = 0.2f;
 
     [SerializeField] private MeasurementToolManager _measManager;
@@ -81,21 +82,24 @@ public class PointSelector : MonoBehaviour
     }
     
     private Vector3 GetPointToSnapTo(Vector3 point, List<Vector3> prevSelecPoints)
-    {
+    { 
         if (_lessonPointSnapping)
         {
             List<Vector3> LessonPoints = _lessonSnapManager.GetCurrentMeasurementPoints();
-            Vector3 lessonPoint = FindClosestPoint(point, LessonPoints);
-            bool inLessonSnappingRange = Vector3.Distance(point, lessonPoint) < _snapToLessonPointDistance;
-            if (inLessonSnappingRange) 
-                return lessonPoint;
+            if (LessonPoints.Count > 0)
+            {
+                Vector3 lessonPoint = FindClosestPoint(point, LessonPoints);
+                bool inLessonSnappingRange = Vector3.Distance(point, lessonPoint) < _snapToLessonPointDistance;
+                if (inLessonSnappingRange)
+                    return lessonPoint;
+            }
         }
 
         if (_previousPointSnapping && prevSelecPoints.Count > 0)
         {
             Vector3 prevPoint = FindClosestPoint(point, prevSelecPoints);
             bool inPrevSnapRange = Vector3.Distance(prevPoint, point) < _snapToPreviousPointDistance;
-            if (inPrevSnapRange) 
+            if (inPrevSnapRange)
                 return prevPoint;
         }
 
@@ -104,7 +108,7 @@ public class PointSelector : MonoBehaviour
             List<Vector3> inlinePoints = InlineSnapping.GetPoints(point, prevSelecPoints);
             Vector3 inlinePoint = FindClosestPoint(point, inlinePoints);
             bool inInlineSnapRange = Vector3.Distance(inlinePoint, point) < _snapToInlinePointDistance;
-            if (inInlineSnapRange) 
+            if (inInlineSnapRange)
                 return inlinePoint;
         }
 
