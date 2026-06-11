@@ -205,36 +205,6 @@ public class RoomDetector : MonoBehaviour
             }
         }
     }
-
-    // ─────────────────────────────────────────────
-    // Debug Visualization (Editor Only)
-    // ─────────────────────────────────────────────
-
-#if UNITY_EDITOR
-    private void OnDrawGizmos()
-    {
-        if (rooms == null || rooms.Count == 0)
-            return;
-
-        foreach (RoomData room in rooms)
-        {
-            // Draw room detection radius as a green wireframe sphere
-            Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(room.centerPosition, room.detectionRadius);
-
-            // Draw room center as a small yellow sphere
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawSphere(room.centerPosition, 2f);
-        }
-
-        // Draw player position if assigned
-        if (playerTransform != null)
-        {
-            Gizmos.color = Color.cyan;
-            Gizmos.DrawSphere(playerTransform.position, 1.5f);
-        }
-    }
-#endif
 }
 
 /// <summary>
