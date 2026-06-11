@@ -2,9 +2,17 @@
    "modelName" : "House1",
    "playerPos" : { "x" : 3, "y" : 2, "z" : 1 },
    "labels" : [
-      { "labelPos" : { "x" : 13, "y" : 1, "z" : 2 },
-         "text" : "Living Area",
-         "fontSize" : 7.0
+      { "labelPos" : { "x" : 4.2, "y" : 3.5, "z" : -3.0 },
+         "text" : "Living Room",
+         "fontSize" : 3.5
+      },
+      { "labelPos" : { "x" : 0.4, "y" : 3.5, "z" : -1.3 },
+         "text" : "Kitchen",
+         "fontSize" : 3.5
+      },
+      { "labelPos" : { "x" : 8.6, "y" : 3.5, "z" : 1.4 },
+         "text" : "Dining",
+         "fontSize" : 3.5
       }
    ],
    "interactiveObjects" : [
@@ -44,9 +52,9 @@
             "roomId": "LivingRoom",
             "roomName": "Living Room",
             "centerPosition": {
-               "x": 4.1,
+               "x": 4.2,
                "y": 1.7,
-               "z": -2.7
+               "z": -3.0
             },
             "detectionRadius": 3,
             "tasks": [
@@ -84,9 +92,9 @@
             "roomId": "Kitchen",
             "roomName": "Kitchen",
             "centerPosition": {
-               "x": 0.3,
+               "x": 0.4,
                "y": 1.0,
-               "z": -1.9
+               "z": -1.3
             },
             "detectionRadius": 3,
             "tasks": [
@@ -124,9 +132,9 @@
             "roomId": "DiningRoom",
             "roomName": "Dining Room",
             "centerPosition": {
-               "x": 8.4,
+               "x": 8.6,
                "y": 1.9,
-               "z": 1.0
+               "z": 1.4
             },
             "detectionRadius": 3,
             "tasks": [

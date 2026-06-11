@@ -4658,6 +4658,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7918a35a16fba9949b63db6500a591ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TextRenderer
+  _playerCamera: {fileID: 999787015}
   modelLabels: []
 --- !u!114 &1000296373
 MonoBehaviour:
