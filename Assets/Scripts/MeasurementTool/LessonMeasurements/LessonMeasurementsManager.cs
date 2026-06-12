@@ -36,6 +36,7 @@ public class LessonMeasurementsManager : MonoBehaviour
         _currentMeasurements.Clear();
         _visualiser.ClearMeasurements();
 
+        // Check if room exists.
         RoomConfig room = null;
         foreach (RoomConfig r in _rooms)
         {
