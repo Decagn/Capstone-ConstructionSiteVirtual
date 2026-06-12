@@ -29,6 +29,10 @@ public class TextRenderer : MonoBehaviour
     public void RenderText(List<TextLabel> labelData)
     {
         // Clear existing text labels
+        foreach(GameObject label in modelLabels)
+        {
+            Destroy(label);
+        }
         modelLabels.Clear();        
 
         // Generate labels from JSON data
